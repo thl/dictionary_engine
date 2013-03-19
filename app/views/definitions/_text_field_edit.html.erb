@@ -1,0 +1,15 @@
+
+<%= include_tiny_mce_if_needed %>
+<%#= wide_tagged_tinymce_script %>
+
+<%= form_for :definition, :url => { :action => "inline_update",:field => params[:field], :div_suffix => params[:div_suffix] }, :remote =>true do |f| %>
+<p>
+<%= f.hidden_field :id %>
+<%= f.text_field params[:field] %>
+
+<%= submit_tag 'update'%>
+
+<%= link_to 'Cancel', definition_inline_show_path(params['id'], :field => params[:field], :div_suffix => params[:div_suffix]), :class => 'definitions_show', :remote => true %>
+</p>
+<% end %>
+

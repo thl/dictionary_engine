@@ -1,0 +1,187 @@
+<script>
+$(document).ready(function() {
+	$('div.showhide').hide();
+  	$('#hideh1').click(function(){
+	     $('div.showhide').hide();
+	   });
+	$('#showh1').click(function(){
+	     $('div.showhide').show();
+	   });
+	$('#toggleh1').click(function(){
+	     $('div.showhide').slideToggle("slow");
+	     //$('#toggleh1').val('collapse');
+	   });
+	
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); });
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});
+		
+	/* Activating Best In Place */
+	jQuery(".best_in_place").best_in_place();
+		
+});
+</script>
+
+
+<h1>Editing Spelling</h1>
+<%#= error_messages_for 'pronunciation' %>
+
+	<b>Spelling: </b>
+	<% inline_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'spelling', :div_suffix => 'popupspellingdiv') %>
+	<% if @spelling.spelling.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @spelling.spelling.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@spelling.id}_popupspellingdiv" %>">
+			<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	
+	
+	<br/><b>Basis of spelling: </b>
+	
+	<br/><b>Spelling type: </b>
+	
+	<br/><b>Dialect type: </b>
+	
+	<br/><b>Literary genre: </b>
+	
+	
+	<br/><b>Literary period: </b>
+	<%= link_to image_tag('pencil.png',:border => 0), spelling_inline_edit_url(:id => @spelling.id, :field => 'literary_period_type_id', :div_suffix => 'popupliterary_period_type_iddiv'), :remote => true %> 	
+	<%  popup_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'literary_period_type_id', :div_suffix => 'popupliterary_period_type_iddiv') %>
+	<% if @spelling.literary_period_type_id.blank?
+	       t_content = 'Click to modify'
+	     else
+	       t_content = @spelling.literary_period_type.title
+	   end %>
+	<span class="definitions_show">
+		<div id="<%= "#{@spelling.id}_popupliterary_period_type_iddiv" %>">
+			<%= link_to "#{t_content}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true %> 
+		</div>
+	</span>
+	
+	<br/><b>Literary form: </b>
+	<%= link_to image_tag('pencil.png',:border => 0), spelling_inline_edit_url(:id => @spelling.id, :field => 'literary_form_type_id', :div_suffix => 'popupliterary_form_type_iddiv'), :remote => true %> 
+	<%  popup_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'literary_form_type_id', :div_suffix => 'popupliterary_form_type_iddiv') %>
+	<% if @spelling.literary_form_type_id.blank?
+	       t_content = 'Click to modify'
+	     else
+	       t_content = @spelling.literary_form_type.title
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@spelling.id}_popupliterary_form_type_iddiv" %>">
+			<%= link_to "#{t_content}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true %> 
+		</div>
+	</span>	
+	
+	<br/><b>Analytical note: </b>
+	<% inline_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'analytical_note', :div_suffix => 'anotediv') %>
+	<% if @spelling.analytical_note.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @spelling.analytical_note.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@spelling.id}_anotediv" %>">
+			<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+
+	<b>Edit Multimedia Data: </b>
+	<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>
+	<div class='showhide'>
+		<br><b>Image: </b>
+		<br><%= best_in_place @spelling, :image %>
+		<br><b>Image caption: </b>
+		<br><%= best_in_place @spelling, :image_caption %>
+		<br><b>Image photographer: </b>
+		<br><%= best_in_place @spelling, :image_photographer %>
+		<br><b>Image link: </b>
+		<br><%= best_in_place @spelling, :image_link %>
+		<br><b>Image description: </b>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'image_description', :div_suffix => 'imagedescdiv') %>
+		<% if @spelling.image_description.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.image_description.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_imagedescdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
+		<br><b>Audio: </b>
+		<br><%= best_in_place @spelling, :audio %>
+		<br><b>Audio id number: </b>
+		<br><%= best_in_place @spelling, :audio_id_number %>
+		<br><b>Audio speaker: </b>
+		<br><%= best_in_place @spelling, :audio_speaker %>
+		<br><b>Audio date: </b>
+		<br><%= best_in_place @spelling, :audio_date %>
+		<br><b>Audio place of recording: </b>
+		<br><%= best_in_place @spelling, :audio_place_of_recording %>
+		<br><b>Audio link: </b>
+		<br><%= best_in_place @spelling, :audio_link %>
+		<br><b>Audio description: </b>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'audio_description', :div_suffix => 'audiodescdiv') %>
+		<% if @spelling.audio_description.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.audio_description.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_audiodescdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
+		<br><b>Video: </b>
+		<br><%= best_in_place @spelling, :video %>
+		<br><b>Video id number: </b>
+		<br><%= best_in_place @spelling, :video_id_number %>
+		<br><b>Video speaker: </b>
+		<br><%= best_in_place @spelling, :video_speaker %>
+		<br><b>Video date: </b>
+		<br><%= best_in_place @spelling, :video_date %>
+		<br><b>Video place of recording: </b>
+		<br><%= best_in_place @spelling, :video_place_of_recording %>
+		<br><b>Video link: </b>
+		<br><%= best_in_place @spelling, :video_link %>
+		<br><b>Video description: </b>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'video_description', :div_suffix => 'videodescdiv') %>
+		<% if @spelling.video_description.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.video_description.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_videodescdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
+	</div> <!--- #showhide -->
+
+	
+	
+
+<%= form_for :spelling, :url => { :action => "update_dynamic_spelling" }, :remote => true do |f| %>
+
+	<!--<br/><b>Literary period: </b>-->
+	<%# @data = Category.find(187)
+		@literary_period_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+ 	<%#= select(:spelling, :literary_period_type_id, @literary_period_type, { :include_blank => true }) %>
+
+	<!--<br/><b>Literary form: </b> -->
+	<%# @data = Category.find(186)
+    	@literary_form_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+    <%#= select(:spelling, :literary_form_type_id, @literary_form_type, { :include_blank => true }) %>
+
+
+  <input type="hidden" name="id" value="<%= params["id"] %>"/>
+  <input type="hidden" name="pk" value="<%= params['pk'] %>">
+  <br>
+  <%= submit_tag 'Update', :id => 'update_button' %>
+
+  <input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
+<% end %> <!--form_for-->

@@ -1,0 +1,172 @@
+<script>
+$(document).ready(function() {
+	$('div.showhide').hide();
+  	$('#hideh1').click(function(){
+	     $('div.showhide').hide();
+	   });
+	$('#showh1').click(function(){
+	     $('div.showhide').show();
+	   });
+	$('#toggleh1').click(function(){
+	     $('div.showhide').slideToggle("slow");
+	     //$('#toggleh1').val('collapse');
+	   });
+	
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); });
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});
+
+	/* Activating Best In Place */
+	jQuery(".best_in_place").best_in_place();		
+});
+</script>
+
+
+<h1>Editing Etymology</h1>
+<%#= error_messages_for 'etymology' %>
+	
+
+	<b>Etymology: </b>
+
+	<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'etymology', :div_suffix => 'etypopupdiv') %>
+	<% if @etymology.etymology.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @etymology.etymology.s     
+	   end %>
+	<span class="etymologies_show">
+		<div id="<%= "#{@etymology.id}_etypopupdiv" %>">
+			<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+	    </div>
+	</span>
+
+	<br><b>Analytical note: </b>
+	<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'analytical_note', :div_suffix => 'anotediv') %>
+	<% if @etymology.analytical_note.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @etymology.analytical_note.s     
+	   end %>
+	<span class="etymologies_show">
+		<div id="<%= "#{@etymology.id}_anotediv" %>">
+			<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+	    </div>
+	</span>
+	
+	
+
+	
+	<br><b>Tibetan Dialect: </b>
+	
+	<br><b>Literary genre: </b>
+	
+
+	
+	<br><b>Edit Multimedia Data: </b>
+	<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>
+	<div class='showhide'>
+		<br><b>Image: </b>
+		<br><%= best_in_place @etymology, :image %>
+		<br><b>Image caption: </b>
+		<br><%= best_in_place @etymology, :image_caption %>
+		<br><b>Image photographer: </b>
+		<br><%= best_in_place @etymology, :image_photographer %>
+		<br><b>Image link: </b>
+		<br><%= best_in_place @etymology, :image_link %>
+		<br><b>Image description: </b>
+		<% def_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'image_description', :div_suffix => 'imagedescdiv') %>
+		<% if @etymology.image_description.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.image_description.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@etymology.id}_imagedescdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
+		<br><b>Audio: </b>
+		<br><%= best_in_place @etymology, :audio %>
+		<br><b>Audio id number: </b>
+		<br><%= best_in_place @etymology, :audio_id_number %>
+		<br><b>Audio speaker: </b>
+		<br><%= best_in_place @etymology, :audio_speaker %>
+		<br><b>Audio date: </b>
+		<br><%= best_in_place @etymology, :audio_date %>
+		<br><b>Audio place of recording: </b>
+		<br><%= best_in_place @etymology, :audio_place_of_recording %>
+		<br><b>Audio link: </b>
+		<br><%= best_in_place @etymology, :audio_link %>
+		<br><b>Audio description: </b>
+		<% def_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'audio_description', :div_suffix => 'audiodescdiv') %>
+		<% if @etymology.audio_description.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.audio_description.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@etymology.id}_audiodescdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
+		<br><b>Video: </b>
+		<br><%= best_in_place @etymology, :video %>
+		<br><b>Video id number: </b>
+		<br><%= best_in_place @etymology, :video_id_number %>
+		<br><b>Video speaker: </b>
+		<br><%= best_in_place @etymology, :video_speaker %>
+		<br><b>Video date: </b>
+		<br><%= best_in_place @etymology, :video_date %>
+		<br><b>Video place of recording: </b>
+		<br><%= best_in_place @etymology, :video_place_of_recording %>
+		<br><b>Video link: </b>
+		<br><%= best_in_place @etymology, :video_link %>
+		<br><b>Video description: </b>
+		<% def_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'video_description', :div_suffix => 'videodescdiv') %>
+		<% if @etymology.video_description.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.video_description.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@etymology.id}_videodescdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
+	</div> <!--- #showhide -->
+	
+<%= form_for :etymology, :url => { :action => "update_dynamic_etymology" }, :remote => true  do |f| %>
+	
+	<br><b>Etymology type: </b>
+	<% 	@data = Category.find(182)
+		@etymology_category = @data.children.collect {|l| [ h(l.title), l.id ] }
+	%>
+	<%= select(:etymology, :etymology_category_id, @etymology_category, { :include_blank => true }) %>
+
+	<br><b>Loan language: </b>
+	<% 	@data = Category.find(184)
+		@loan_language_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+	<%= select(:etymology, :loan_language_type_id, @loan_language_type, { :include_blank => true }) %>
+	
+	
+	<br><b>Derivation type: </b>
+	<%	@data = Category.find(180)
+    	@derivation_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+	<%= select(:etymology, :derivation_type_id, @derivation_type, { :include_blank => true }) %>
+	
+	<br><b>Literary period: </b>
+	<% @data = Category.find(187)
+    	@literary_period_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+    <%= select(:etymology, :literary_period_type_id, @literary_period_type, { :include_blank => true }) %>
+
+	<br><b>Literary form: </b>
+	<% @data = Category.find(186)
+		@literary_form_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+	<%= select(:etymology, :literary_form_type_id, @literary_form_type, { :include_blank => true }) %>
+	
+  <input type="hidden" name="id" value="<%= params["id"] %>"/>
+  <input type="hidden" name="pk" value="<%= params['pk'] %>">
+  <br>
+  <%= submit_tag 'Update', :id => 'update_button' %>
+  <input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
+<% end %> <!--form_for-->	
+

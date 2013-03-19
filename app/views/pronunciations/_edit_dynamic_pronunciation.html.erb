@@ -1,0 +1,166 @@
+<script>
+$(document).ready(function() {
+	$('div.showhide').hide();
+  	$('#hideh1').click(function(){
+	     $('div.showhide').hide();
+	   });
+	$('#showh1').click(function(){
+	     $('div.showhide').show();
+	   });
+	$('#toggleh1').click(function(){
+	     $('div.showhide').slideToggle("slow");
+	     //$('#toggleh1').val('collapse');
+	   });
+	
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); });
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});
+		
+	/* Activating Best In Place */
+	jQuery(".best_in_place").best_in_place();
+		
+});
+</script>
+
+
+<h1>Editing Pronunciation</h1>
+<%#= error_messages_for 'pronunciation' %>
+
+	<b>Phonetic transliteration: </b>
+	<%#= best_in_place @pronunciation, :phonetic_transliteration %>
+	<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'phonetic_transliteration', :div_suffix => 'popupphonetic_transliterationdiv') %>
+	<% if @pronunciation.phonetic_transliteration.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @pronunciation.phonetic_transliteration.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@pronunciation.id}_popupphonetic_transliterationdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	
+	
+	<br><b>Pronunciation type: </b>
+	<%#  @data = Category.find(189)
+    	@pronunciation_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+	<%#= select(:pronunciation, :pronunciation_category_id, @pronunciation_type, { :include_blank => true }) %>
+	<%= link_to image_tag('pencil.png',:border => 0), pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'pronunciation_category_id', :div_suffix => 'popuppronunciation_category_iddiv'), :remote => true %> 
+	<%  popup_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'pronunciation_category_id', :div_suffix => 'popuppronunciation_category_iddiv') %>
+	<% if @pronunciation.pronunciation_category_id.blank?
+	       t_content = 'Click to modify'
+	     else
+	       t_content = @pronunciation.pronunciation_category.title
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@pronunciation.id}_popuppronunciation_category_iddiv" %>">
+			<%= link_to "#{t_content}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true %> 
+		</div>
+	</span>
+	
+	<br><b>Tibetan Dialect: </b>
+	
+	
+ 	<br/><b>Analytical note: </b>
+	<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'analytical_note', :div_suffix => 'anotediv') %>
+	<% if @pronunciation.analytical_note.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @pronunciation.analytical_note.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@pronunciation.id}_anotediv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	
+	
+	<b>Edit Multimedia Data: </b>
+	<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>
+	<div class='showhide'>
+		<br><b>Image: </b>
+		<br><%= best_in_place @pronunciation, :image %>
+		<br><b>Image caption: </b>
+		<br><%= best_in_place @pronunciation, :image_caption %>
+		<br><b>Image photographer: </b>
+		<br><%= best_in_place @pronunciation, :image_photographer %>
+		<br><b>Image link: </b>
+		<br><%= best_in_place @pronunciation, :image_link %>
+		<br><b>Image description: </b>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'image_description', :div_suffix => 'imagedescdiv') %>
+		<% if @pronunciation.image_description.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.image_description.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_imagedescdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
+		<br><b>Audio: </b>
+		<br><%= best_in_place @pronunciation, :audio %>
+		<br><b>Audio id number: </b>
+		<br><%= best_in_place @pronunciation, :audio_id_number %>
+		<br><b>Audio speaker: </b>
+		<br><%= best_in_place @pronunciation, :audio_speaker %>
+		<br><b>Audio date: </b>
+		<br><%= best_in_place @pronunciation, :audio_date %>
+		<br><b>Audio place of recording: </b>
+		<br><%= best_in_place @pronunciation, :audio_place_of_recording %>
+		<br><b>Audio link: </b>
+		<br><%= best_in_place @pronunciation, :audio_link %>
+		<br><b>Audio description: </b>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio_description', :div_suffix => 'audiodescdiv') %>
+		<% if @pronunciation.audio_description.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.audio_description.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_audiodescdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
+		<br><b>Video: </b>
+		<br><%= best_in_place @pronunciation, :video %>
+		<br><b>Video id number: </b>
+		<br><%= best_in_place @pronunciation, :video_id_number %>
+		<br><b>Video speaker: </b>
+		<br><%= best_in_place @pronunciation, :video_speaker %>
+		<br><b>Video date: </b>
+		<br><%= best_in_place @pronunciation, :video_date %>
+		<br><b>Video place of recording: </b>
+		<br><%= best_in_place @pronunciation, :video_place_of_recording %>
+		<br><b>Video link: </b>
+		<br><%= best_in_place @pronunciation, :video_link %>
+		<br><b>Video description: </b>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'video_description', :div_suffix => 'videodescdiv') %>
+		<% if @pronunciation.video_description.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.video_description.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_videodescdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
+	</div> <!--- #showhide -->
+	
+<%= form_for :pronunciation, :url => { :action => "update_dynamic_pronunciation" }, :remote => true do |f| %>
+
+
+
+
+	
+	
+
+	
+  <input type="hidden" name="id" value="<%= params["id"] %>"/>
+  <input type="hidden" name="pk" value="<%= params['pk'] %>">
+  <br>
+  <%= submit_tag 'Update', :id => 'update_button' %>
+
+  <input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
+<% end %> <!--form_for-->	
+

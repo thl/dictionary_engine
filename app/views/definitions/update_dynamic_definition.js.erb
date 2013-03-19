@@ -1,0 +1,10 @@
+<%#  if params[:definition][:level] == "head term" %>
+<% if @definition.level == "head term" %>
+	$("#<%= @definition.id %>_defdiv").html("<%= escape_javascript(render(:partial => 'definitions/definition_show')) %>")
+<% else
+	if params[:parent_definition_id].blank? %>
+	$("#<%= @definition.id %>_defdiv").html("<%= escape_javascript(render(:partial => 'definitions/definition_show')) %>")
+	<% else %>
+	//render_subdefinitions(params[:parent_definition_id])
+	<% end%>
+<% end %>

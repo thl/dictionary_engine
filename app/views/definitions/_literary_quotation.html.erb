@@ -1,0 +1,114 @@
+<% for t in literary_quotation.translations %>
+	<% if t.translation != nil and t.translation != ''%>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header">
+				<strong>Translation<%= "(#{link_to t.language_type.title, t.language_type.get_url_with_parent})".html_safe if !t.language_type.blank? %>:</strong> 
+			</span>
+			<span class='tinyfied_public_show'>
+				<%= t.translation.html_safe %> 
+			</span>
+		</dd>
+	</dl>
+	<% end %>
+	<% if t.analytical_note != nil and t.analytical_note != ''%>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+		<span class="inner_def_header">
+			<strong>Translation Note:</strong> </span>
+			<span class='tinyfied_public_show'>
+				<%= t.analytical_note.html_safe  %>
+			</span>
+			</dd>
+		</dl>
+	<% end %>
+	
+<% end %>
+
+
+<% if !literary_quotation.spelling.blank? %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header">
+				<strong>Spelling:</strong> 
+			</span><%= literary_quotation.spelling.html_safe %>
+		</dd>
+	</dl>
+<% end %>
+<% if !literary_quotation.source.blank? %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header">
+				<strong>Source:</strong> 
+			</span><%= literary_quotation.source.html_safe %>
+		</dd>
+	</dl>
+<% end %>
+<% assoc = literary_quotation.category_literary_quotation_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
+<% if !assoc.blank? %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header">
+				<strong>Literary Genre:</strong> 
+			</span>
+			<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ').html_safe %>
+		</dd>
+	</dl>
+<% end %>
+<% if !literary_quotation.literary_period_type.blank? %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header"><strong>Literary period:</strong> </span>
+			<%= link_to literary_quotation.literary_period_type.title, literary_quotation.literary_period_type.get_url_with_parent if !literary_quotation.literary_period_type.blank? %>
+		</dd>
+	</dl>
+<% end %>
+<% if !literary_quotation.literary_form_type.blank? %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header">
+				<strong>Literary form:</strong> 
+			</span>
+			<%= link_to literary_quotation.literary_form_type.title, literary_quotation.literary_form_type.get_url_with_parent if !literary_quotation.literary_form_type.blank?  %>
+		</dd>
+	</dl>
+<% end %>
+<% if !literary_quotation.passage_number.blank? %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header">
+				<strong>Page number:</strong> 
+			</span><%= literary_quotation.passage_number %>
+		</dd>
+	</dl>
+<% end %>
+<% if !literary_quotation.page_side.blank? %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header">
+				<strong>Page side:</strong> 
+			</span><%= literary_quotation.page_side %>
+		</dd>
+	</dl>
+<% end %>
+<% if !literary_quotation.analytical_note.blank? %>
+	<dl class="inner_dl">
+		<dd class="inner_dd">
+			<span class="inner_def_header">
+				<strong>Analytical note:</strong> 
+			</span>
+			<span class='tinyfied_public_show'>
+				<%= literary_quotation.analytical_note.html_safe %>
+			</span>
+		</dd>
+	</dl>
+<% end %>
+		
+<%# !if literary_quotation.meta.blank? %>
+		<dl class="inner_dl">
+				<dd>
+		<% t = Time.now %>
+		<%#= render :partial => 'public_meta', :locals => {:meta_location => t.to_f, :meta => literary_quotation.meta , :head_id => head_id} %>
+				</dd>
+		</dl>
+<%# end %>

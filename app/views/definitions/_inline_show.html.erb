@@ -1,0 +1,12 @@
+
+<% edit_path = definition_inline_edit_url(:id => @definition.id, :field => params[:field], :div_suffix => params[:div_suffix] ) 
+   field = params[:field]
+   div_suffix = params[:div_suffix]
+%>	
+
+<% if @definition[field].blank?
+  t_content = 'Click to modify'
+else
+  t_content = @definition[field].s  
+end %>
+<%= link_to "#{t_content}".html_safe, edit_path, :class => 'definitions_show', :remote => true %>

@@ -1,0 +1,17 @@
+
+<% edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => params[:field], :div_suffix => params[:div_suffix] ) 
+   field = params[:field]
+   div_suffix = params[:div_suffix]
+%>	
+
+<% if @pronunciation[field].blank?
+  	t_content = 'Click to modify'
+   else
+	case params[:field] 
+		when 'pronunciation_category_id' then 
+			t_content = @pronunciation.pronunciation_category.title
+		else
+  			t_content = @pronunciation[field].s 
+	end	
+   end %>
+<%= link_to "#{t_content}".html_safe, edit_path, :class => 'definitions_show', :remote => true %>

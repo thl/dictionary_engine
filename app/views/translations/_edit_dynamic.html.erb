@@ -1,0 +1,79 @@
+<script>
+$(document).ready(function() {
+	$('div.showhide').hide();
+  	$('#hideh1').click(function(){
+	     $('div.showhide').hide();
+	   });
+	$('#showh1').click(function(){
+	     $('div.showhide').show();
+	   });
+	$('#toggleh1').click(function(){
+	     $('div.showhide').slideToggle("slow");
+	   });
+	
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); });
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});
+		
+	/* Activating Best In Place */
+	jQuery(".best_in_place").best_in_place();
+		
+});
+</script>
+
+<h1>Editing Translation</h1>
+<%#= error_messages_for 'translation' %>
+
+<b>Translation: </b>
+<%# inline_edit_path = translation_inline_edit_url(:id => @translation.id, :field => 'translation', :div_suffix => 'translationpopupdiv') %>
+<% inline_edit_path = inline_edit_translation_path(@translation, :field => 'translation', :div_suffix => 'translationpopupdiv') %>
+
+<% if @translation.translation.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @translation.translation.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@translation.id}_translationpopupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Language: </b>
+<%#= link_to image_tag('pencil.png',:border => 0), translation_inline_edit_url(:id => @translation.id, :field => 'language_type_id', :div_suffix => 'popuplanguage_type_iddiv'), :remote => true %> 
+<%#  popup_edit_path = translation_inline_edit_url(:id => @translation.id, :field => 'language_type_id', :div_suffix => 'popuplanguage_type_iddiv') %>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_translation_path(@translation, :field => 'language_type_id', :div_suffix => 'popuplanguage_type_iddiv'), :remote => true %> 
+<%  popup_edit_path = inline_edit_translation_path(:id => @translation.id, :field => 'language_type_id', :div_suffix => 'popuplanguage_type_iddiv') %>
+
+<% if @translation.language_type_id.blank?
+       t_content = 'Click to modify'
+     else
+       t_content = @translation.language_type.title
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@translation.id}_popuplanguage_type_iddiv" %>">
+		<%= link_to "#{t_content}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true %> 
+	</div>
+</span>
+
+<br/><b>Analytical note: </b>
+<%# inline_edit_path = translation_inline_edit_url(:id => @translation.id, :field => 'analytical_note', :div_suffix => 'anotediv') %>
+<% inline_edit_path = inline_edit_translation_path(@translation, :field => 'analytical_note', :div_suffix => 'anotediv') %>
+
+<% if @translation.analytical_note.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @translation.analytical_note.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@translation.id}_anotediv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+    </div>
+</span>
+
+
+
+<%= form_for(:translation, :url => update_dynamic_translation_path(@translation), :method => :get, :remote => true) do |f| %>
+  <br>
+  <%= submit_tag 'Update', :id => 'update_button' %>
+  <input type='button' name='cancel_button' value='Cancel' id='cancel_button'>  
+<% end %> <!--form_for-->

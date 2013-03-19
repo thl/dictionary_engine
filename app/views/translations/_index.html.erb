@@ -1,0 +1,65 @@
+
+<% if o.translations.size > 0%>
+<% 	 for e in o.translations %>
+
+       <dd>
+
+			<b>Translation<% if !e.language_type.blank? %> (<%= link_to e.language_type.title, e.language_type.get_url_with_parent, :target => '_blank'  if !e.language_type.blank? %>)<% end %>:</b> 
+	
+				<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+				<%= link_to image_tag('pencil.png',:border => 0), edit_dynamic_translation_path(e, :internal=>'edit_box', :public=>'yes'), :remote => true, :class => 'ui_definition_dialog', :title=>'Translation Edit' %>
+
+				
+	     <span class=menuvalue onclick=show_menu(translation_menu,getCoord(arguments[0]));>
+<%=      link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'translation_id='+e.id.to_s, :title => 'Edit Relationships' %> 
+	     </span>
+<%       if o.class.name.downcase == "definition" %>
+<%=        link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => o.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this translation?" %>
+<%       end %>
+
+<%       if o.class.name.downcase == "etymology" %>
+<%=        link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_etymology_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => o.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>
+<%       end %>
+<%       if o.class.name.downcase == "literaryquotation" %>
+<%=        link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_literary_quotation_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => o.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>
+<%       end %>
+<%       if o.class.name.downcase == "oralquotation" %>
+<%=        link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_oral_quotation_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => o.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>
+<%       end %>
+<%       if o.class.name.downcase == "modelsentence" %>
+<%=        link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_model_sentence_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => o.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>
+<%       end %>
+
+	
+		<% inline_edit_path = inline_edit_translation_path(:id => e.id, :field => 'translation', :div_suffix => 'translationdiv') %>
+		
+		<% if e.translation .blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = e.translation.s     
+		   end %>
+		<span class="tib1">
+			<span class="tinyfied_show">
+				<div id="<%= "#{e.id}_translationdiv" %>">
+					<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+		    	</div>
+			</span>
+		</span>
+	
+	
+		 <% if e.analytical_note != nil and e.analytical_note != '' %>
+		      <br>
+			  &nbsp;&nbsp;&nbsp;&nbsp;<b>Analytical note: </b><span class="tib1"><span class='tinyfied_show'><%= e.analytical_note.s %></span></span>
+		 <% end %>
+
+         <div id="<%= e.id%>_<%= o.class.name.downcase%>_translation_metas_div">
+<%         if !e.meta.blank? %>
+<%           tm = Time.now %>
+<%#=          render :partial => 'metas/index', :locals => {:t => tm.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+<%         end %>
+	     </div>		
+	     <br>
+	   </dd>
+<%   end %> <!-- for -->  
+<% end %>  <!-- if size > 0 -->
+<span id="<%= o.id%>_translation" > </span>

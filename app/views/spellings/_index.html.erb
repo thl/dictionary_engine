@@ -1,0 +1,86 @@
+<script>
+$(document).ready(function() {
+	tb_init('a.thickbox, area.thickbox, input.thickbox');
+});
+</script>
+
+<% if d.spellings.size > 0%>
+	<% count = 0;
+   	size = d.spellings.size;
+	for e in d.spellings %>	
+		<b>Spelling:</b>
+		<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+		<%= link_to image_tag('pencil.png',:border => 0), {:controller => 'spellings', :action => 'edit_dynamic_spelling',:id => e.id, :internal=>'edit_box', :public=>'yes'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Spelling Edit' %>
+			
+		<span class=menuvalue onclick=show_menu(spelling_menu,getCoord(arguments[0]));>
+			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'spelling_id='+e.id.to_s, :title => 'Edit Relationships' %> 
+		</span>
+		<%= link_to image_tag('cross.png',:border => 0), {:controller => 'definitions', :action => 'public_remove_spelling', :id => d.id, :parent_id => parent_id, :head_id => head_id, :spelling => e.id}, :remote => true, :class => 'ui_definition_dialog', :title=>'Remove Spelling', :confirm => "Are you sure you want to remove this Spelling?", :complete => 're_initialize();' %>
+	
+		<% inline_edit_path = spelling_inline_edit_url(:id => e.id, :field => 'spelling', :div_suffix => 'spellingdiv') %>
+		<% if e.spelling.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = e.spelling.s     
+		   end %>
+		<span class="tib1">
+			<span class="tinyfied_show">
+				<div id="<%= "#{e.id}_spellingdiv" %>">
+					<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+		    	</div>
+			</span>
+		</span>
+	
+		<dl style="margin-top:0em;margin-bottom:0em;">
+			<dd style="display:none"></dd>
+			<% assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 191}) %>
+			<% if !assoc.blank? %>
+				<dd><b>Basis: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => "_blank"}.join(', ').html_safe %>]</dd>
+			<% end %>
+	
+			<% assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 4091}) %>
+			<% if !assoc.blank? %>
+				<dd><b>Type: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => "_blank"}.join(', ').html_safe %>]</dd>
+			<% end %>
+
+			<% assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
+			<% if !assoc.blank? %>
+				<dd><b>Tibetan Dialect: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => "_blank"}.join(', ').html_safe %>]</dd>
+			<% end %>
+
+			<% assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
+			<% if !assoc.blank? %>
+				<dd><b>Literary Genre: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => "_blank"}.join(', ').html_safe %>]</dd>
+			<% end %>
+	
+			<%# assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 187}) %>
+			<%# if !assoc.blank? %>
+			<!--	<dd><b>Literary form: </b>[<%#= assoc.collect{|a| a.category.title}.join(', ') %>]</dd>-->
+			<%# end %>
+			<% if !e.literary_period_type.blank? %>
+				<dd><b>Literary period: </b><%= link_to e.literary_period_type.title, e.literary_period_type.get_url_with_parent, :target => "_blank" if !e.literary_period_type.blank? %></dd>
+			<% end %>
+	
+			<%# assoc = e.category_spelling_associations.find(:all, :conditions => {:category_branch_id => 186}) %>
+			<%# if !assoc.blank? %>
+			<!--	<dd><b>Literary form: </b>[<%#= assoc.collect{|a| a.category.title}.join(', ') %>]</dd> -->
+			<%# end %>
+			<% if !e.literary_form_type.blank? %>
+				<dd><b>Literary form: </b><%= link_to e.literary_form_type.title, e.literary_form_type.get_url_with_parent, :target => "_blank" if !e.literary_form_type.blank?  %></dd>
+			<% end %>
+	
+			<% if !e.analytical_note.blank? %>
+		  		<dd><b>Analytical note: </b><span class="tib1"><span class='tinyfied_show'><%= e.analytical_note.s %></span></span></dd>
+	 			<% end %>
+		</dl>
+	
+		<div id="<%= e.id%>_spelling_metas_div">
+      		<%# if e.meta != nil%>
+        		<% t = Time.now %>
+        		<%#= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+	  		<%# end %>
+		</div>
+	
+	<% end %>
+<% end %>
+<span id="<%= d.id%>_spelling" > </span>

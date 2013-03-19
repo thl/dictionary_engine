@@ -1,0 +1,2 @@
+module OralQuotationsHelper
+end

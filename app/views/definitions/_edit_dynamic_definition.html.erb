@@ -1,0 +1,343 @@
+<script>
+$(document).ready(function() {
+	$('div.showhide').hide();
+  	$('#hideh1').click(function(){
+	     $('div.showhide').hide();
+	   });
+	$('#showh1').click(function(){
+	     $('div.showhide').show();
+	   });
+	$('#toggleh1').click(function(){
+	     $('div.showhide').slideToggle("slow");
+	     //$('#toggleh1').val('collapse');
+	   });
+	
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); });
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});
+	
+	/* Activating Best In Place */
+	jQuery(".best_in_place").best_in_place();
+});
+</script>
+
+
+<%= tag "div", {:id => @divname } %>
+<h1>Editing Definition</h1>
+<%#= error_messages_for 'definition' %>
+
+
+<%# moving modal_internal_edit_dynamic_definition into this view%>
+<b>Term: </b>
+<%= link_to image_tag('pencil.png',:border => 0), definition_inline_edit_url(:id => @definition.id, :field => 'term', :div_suffix => 'popuptermdiv'), :remote => true %> 
+<%  popup_edit_path = definition_inline_edit_url(:id => @definition.id, :field => 'term', :div_suffix => 'popuptermdiv') %>
+<%	if @definition.term.blank?
+  		t_term = 'Click to modify'
+	else
+  		t_term = @definition.term.to_s.s 
+	end
+%>
+<span class="tib1">
+	<span class='tinyfied_show'>
+		<div id="<%= "#{@definition.id}_popuptermdiv" %>">
+			<%= link_to "#{t_term}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true  %>
+		</div>
+	</span>
+</span>
+
+<b>Level: </b>
+<%= link_to image_tag('pencil.png',:border => 0), definition_inline_dropdown_edit_url(:id => @definition.id, :field => 'level', :div_suffix => 'popupleveldiv'), :remote => true %> 
+<%  popup_edit_path = definition_inline_dropdown_edit_url(:id => @definition.id, :field => 'level', :div_suffix => 'popupleveldiv') %>
+<% if @definition.level.blank?
+       t_content = 'Click to modify'
+     else
+       t_content = @definition.level
+   end %>
+<span class="definitions_show">
+	<div id="<%= "#{@definition.id}_popupleveldiv" %>">
+		<%= link_to "#{t_content}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true %> 
+	</div>
+</span>
+
+<b>THL Wylie Transliteration: </b>
+<%= link_to image_tag('pencil.png',:border => 0), definition_inline_edit_url(:id => @definition.id, :field => 'wylie', :div_suffix => 'popupwyliediv'), :remote => true %> 
+<%  inline_edit_path = definition_inline_edit_url(:id => @definition.id, :field => 'wylie', :div_suffix => 'popupwyliediv') %>
+<%	if @definition.wylie.blank?
+  		t_content = 'Click to modify'
+	else
+  		t_content = @definition.wylie.to_s.s 
+	end
+%>
+<span class='tinyfied_show'>
+	<div id="<%= "#{@definition.id}_popupwyliediv" %>">
+	  <%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+	</div>
+</span>
+
+<%#= best_in_place @definition, :phonetic %>
+<b>THL Phonetic Transcription: </b>
+<%= link_to image_tag('pencil.png',:border => 0), definition_inline_edit_url(:id => @definition.id, :field => 'phonetic', :div_suffix => 'popupphoneticdiv'), :remote => true %> 
+<%  popup_edit_path = definition_inline_edit_url(:id => @definition.id, :field => 'phonetic', :div_suffix => 'popupphoneticdiv') %>
+<% if @definition.phonetic.blank?
+       t_phonetic = 'Click to modify'
+     else
+       t_phonetic = @definition.phonetic.to_s.s     
+   end %>
+<span class="definitions_show">
+	<div id="<%= "#{@definition.id}_popupphoneticdiv" %>">
+		<%= link_to "#{t_phonetic}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true %> 
+	</div>
+</span>
+
+	
+<br><b>Definition: </b>
+<% def_edit_path = definition_edit_url(:id => @definition.id, :field => 'definition', :div_suffix => 'popupdefdiv') %>
+<% if @definition.definition.blank?
+       t_definition = 'Click to modify'
+   else
+       t_definition = @definition.definition.s     
+	end %>
+<span class="tib1">
+	<span class="definitions_show">
+		<div id="<%= "#{@definition.id}_popupdefdiv" %>">
+			<%= link_to "#{t_definition}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		  <%#= render :partial => 'definition_show', :locals => {:div => 'popupdefdiv' } %>
+	    </div>
+	</span>
+</span>
+
+<br><b>Language of definition: </b>
+<%= link_to image_tag('pencil.png',:border => 0), definition_inline_dropdown_edit_url(:id => @definition.id, :field => 'language_type_id', :div_suffix => 'popuplanguage_type_iddiv'), :remote => true %> 
+<%  popup_edit_path = definition_inline_dropdown_edit_url(:id => @definition.id, :field => 'language_type_id', :div_suffix => 'popuplanguage_type_iddiv') %>
+<% if @definition.language_type_id.blank?
+       t_content = 'Click to modify'
+     else
+       t_content = @definition.language_type.title
+   end %>
+<span class="definitions_show">
+	<div id="<%= "#{@definition.id}_popuplanguage_type_iddiv" %>">
+		<%= link_to "#{t_content}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true %> 
+	</div>
+</span>
+
+<div id='square_tibetan_dialect' style='border-style:solid;border-width:1px;padding:5px 5px;'>
+	<b>Tibetan Dialect: </b>
+	<%#= link_to image_tag('pencil.png',:border => 0), new_category_definition_association_url(@definition.id, 638), :remote => true %>
+	<% assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
+	<table><tr><td>
+		<%="#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => '_blank' }.join(', ')}".html_safe%> 		
+	</td></tr></table><br />
+	
+	<%= link_to image_tag('pencil.png',:border => 0), new_inplace_category_definition_association_definition_url(@definition.id, 638), :remote => true %>
+	<div id="<%= @definition.id%>_definition_major_dialect_family_type_div"> 
+		<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 638} %>			
+	</div>
+	
+		
+	
+	
+</div>
+
+
+<br><b>Register: </b>
+<%# @data = Category.find(190)
+	@register_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+<%#= select(:definition, :register_type_id, @register_type, { :include_blank => true })  %> 
+<%= link_to image_tag('pencil.png',:border => 0), definition_inline_dropdown_edit_url(:id => @definition.id, :field => 'register_type_id', :div_suffix => 'popupregister_type_iddiv'), :remote => true %> 
+<%  popup_edit_path = definition_inline_dropdown_edit_url(:id => @definition.id, :field => 'register_type_id', :div_suffix => 'popupregister_type_iddiv') %>
+<% if @definition.register_type_id.blank?
+       t_content = 'Click to modify'
+     else
+       t_content = @definition.register_type.title
+   end %>
+<span class="definitions_show">
+	<div id="<%= "#{@definition.id}_popupregister_type_iddiv" %>">
+		<%= link_to "#{t_content}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true %> 
+	</div>
+</span>
+
+
+<br><b>Language context: </b>
+<%# @data = Category.find(185)
+	@language_context_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+<%#= select(:definition, :language_context_type_id, @language_context_type, { :include_blank => true }) %>
+<%= link_to image_tag('pencil.png',:border => 0), definition_inline_dropdown_edit_url(:id => @definition.id, :field => 'language_context_type_id', :div_suffix => 'popuplanguage_context_type_iddiv'), :remote => true %> 
+<%  popup_edit_path = definition_inline_dropdown_edit_url(:id => @definition.id, :field => 'language_context_type_id', :div_suffix => 'popuplanguage_context_type_iddiv') %>
+<% if @definition.language_context_type_id.blank?
+       t_content = 'Click to modify'
+     else
+       t_content = @definition.language_context_type.title
+   end %>
+<span class="definitions_show">
+	<div id="<%= "#{@definition.id}_popuplanguage_context_type_iddiv" %>">
+		<%= link_to "#{t_content}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true %> 
+	</div>
+</span>
+
+<br><b>Literary period: </b>
+<%# @data = Category.find(187)
+	@literary_period_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+<%#= select(:definition, :literary_period_type_id, @literary_period_type, { :include_blank => true }) %>
+<%= link_to image_tag('pencil.png',:border => 0), definition_inline_dropdown_edit_url(:id => @definition.id, :field => 'literary_period_type_id', :div_suffix => 'popupliterary_period_type_iddiv'), :remote => true %> 
+<%  popup_edit_path = definition_inline_dropdown_edit_url(:id => @definition.id, :field => 'literary_period_type_id', :div_suffix => 'popupliterary_period_type_iddiv') %>
+<% if @definition.literary_period_type_id.blank?
+       t_content = 'Click to modify'
+     else
+       t_content = @definition.literary_period_type.title
+   end %>
+<span class="definitions_show">
+	<div id="<%= "#{@definition.id}_popupliterary_period_type_iddiv" %>">
+		<%= link_to "#{t_content}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true %> 
+	</div>
+</span>
+
+<br><b>Literary form: </b>
+<%# @data = Category.find(186)
+	@literary_form_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+<%#= select(:definition, :literary_form_type_id, @literary_form_type, { :include_blank => true }) %>
+<%= link_to image_tag('pencil.png',:border => 0), definition_inline_dropdown_edit_url(:id => @definition.id, :field => 'literary_form_type_id', :div_suffix => 'popupliterary_form_type_iddiv'), :remote => true %> 
+<%  popup_edit_path = definition_inline_dropdown_edit_url(:id => @definition.id, :field => 'literary_form_type_id', :div_suffix => 'popupliterary_form_type_iddiv') %>
+<% if @definition.literary_form_type_id.blank?
+       t_content = 'Click to modify'
+     else
+       t_content = @definition.literary_form_type.title
+   end %>
+<span class="definitions_show">
+	<div id="<%= "#{@definition.id}_popupliterary_form_type_iddiv" %>">
+		<%= link_to "#{t_content}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true %> 
+	</div>
+</span>
+
+	<br><b>Enumeration: </b>
+	<br><%= best_in_place @definition, :numerology %>
+	<br><b>Encyclopedia entry: </b>
+	<br><%= best_in_place @definition, :encyclopedia_entry %>
+	
+	<br><b>Analytical note: </b>
+	<% def_edit_path = definition_edit_url(:id => @definition.id, :field => 'analytical_note', :div_suffix => 'anotediv') %>
+	<% if @definition.analytical_note.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @definition.analytical_note.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@definition.id}_anotediv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	
+	<b>Edit Multimedia Data: </b>
+	<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>
+	<div class='showhide'>
+		<br><b>Image: </b>
+		<br><%= best_in_place @definition, :image %>
+		<br><b>Image caption: </b>
+		<br><%= best_in_place @definition, :image_caption %>
+		<br><b>Image photographer: </b>
+		<br><%= best_in_place @definition, :image_photographer %>
+		<br><b>Image link: </b>
+		<br><%= best_in_place @definition, :image_link %>
+		<br><b>Image description: </b>
+		<% def_edit_path = definition_edit_url(:id => @definition.id, :field => 'image_description', :div_suffix => 'imagedescdiv') %>
+		<% if @definition.image_description.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @definition.image_description.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@definition.id}_imagedescdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
+		<br><b>Audio: </b>
+		<br><%= best_in_place @definition, :audio %>
+		<br><b>Audio id number: </b>
+		<br><%= best_in_place @definition, :audio_id_number %>
+		<br><b>Audio speaker: </b>
+		<br><%= best_in_place @definition, :audio_speaker %>
+		<br><b>Audio date: </b>
+		<br><%= best_in_place @definition, :audio_date %>
+		<br><b>Audio place of recording: </b>
+		<br><%= best_in_place @definition, :audio_place_of_recording %>
+		<br><b>Audio link: </b>
+		<br><%= best_in_place @definition, :audio_link %>
+		<br><b>Audio description: </b>
+		<% def_edit_path = definition_edit_url(:id => @definition.id, :field => 'audio_description', :div_suffix => 'audiodescdiv') %>
+		<% if @definition.audio_description.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @definition.audio_description.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@definition.id}_audiodescdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
+		<br><b>Video: </b>
+		<br><%= best_in_place @definition, :video %>
+		<br><b>Video id number: </b>
+		<br><%= best_in_place @definition, :video_id_number %>
+		<br><b>Video speaker: </b>
+		<br><%= best_in_place @definition, :video_speaker %>
+		<br><b>Video date: </b>
+		<br><%= best_in_place @definition, :video_date %>
+		<br><b>Video place of recording: </b>
+		<br><%= best_in_place @definition, :video_place_of_recording %>
+		<br><b>Video link: </b>
+		<br><%= best_in_place @definition, :video_link %>
+		<br><b>Video description: </b>
+		<% def_edit_path = definition_edit_url(:id => @definition.id, :field => 'video_description', :div_suffix => 'videodescdiv') %>
+		<% if @definition.video_description.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @definition.video_description.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@definition.id}_videodescdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
+		
+		
+	</div> <!--- #showhide -->
+			
+	<br><b>Root Letter (calculated automatically, override here):</b> 
+	<%  popup_edit_path = definition_inline_dropdown_edit_url(:id => @definition.id, :field => 'root_letter_id', :div_suffix => 'popuproot_letter_iddiv') %>
+	<% if @definition.root_letter_id.blank?
+	       t_content = 'Click to modify'
+	     else
+	       t_content = ComplexScripts::TibetanLetter.find(@definition.root_letter_id).unicode
+	   end %>
+	<span class="definitions_show">
+		<div id="<%= "#{@definition.id}_popuproot_letter_iddiv" %>">
+			<%= link_to "#{t_content}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true %> 
+		</div>
+	</span>
+	<%#= f.select :root_letter_id, @alphabet.collect{|letter| [letter.unicode, letter.id]}, { :include_blank => true } %>			
+		
+<%= form_for :definition, :url => { :action => "update_dynamic_definition" }, :remote => true do |f| %>
+
+	<!--- <br><b>Level: </b> -->
+	<%#= select(:definition, :level, @level)  %>
+	
+	<!--- <br><b>Language of definition: </b> -->
+	<%# 	@data = Category.find(184)
+		@language_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+		<%#= 	select(:definition, :language_type_id, @language_type, { :include_blank => true }) %>
+
+
+
+	<input type="hidden" name="id" value="<%= params["id"] %>"/>
+	<input type="hidden" name="internal" value="<%= params['internal'] %>">
+	<input type="hidden" name="pk" value="<%= params['pk'] %>">
+	<% if Definition.find(params[:id]).level == "not head" %>
+		<input type="hidden" name="parent_definition_id" value="<%= params['definition_id'] %>">
+		<% end %>
+
+
+	<br>
+	<%= submit_tag 'Update', :id => 'update_button' %>
+	<input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
+<% end %>
+<br>
+
+

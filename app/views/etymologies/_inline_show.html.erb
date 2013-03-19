@@ -1,0 +1,12 @@
+
+<% edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => params[:field], :div_suffix => params[:div_suffix] ) 
+   field = params[:field]
+   div_suffix = params[:div_suffix]
+%>	
+
+<% if @etymology[field].blank?
+  t_content = 'Click to modify'
+else
+  t_content = @etymology[field].s  
+end %>
+<%= link_to "#{t_content}".html_safe, edit_path, :class => 'etymologies_show', :remote => true %>

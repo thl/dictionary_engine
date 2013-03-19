@@ -1,0 +1,88 @@
+<script>
+$(document).ready(function() {
+	tb_init('a.thickbox, area.thickbox, input.thickbox');
+});
+</script>
+
+<% if d.pronunciations.size > 0 %>
+	<% count = 0;
+	   size = d.pronunciations.size;
+		for e in d.pronunciations %>
+			
+			<b>Pronunciation <% if (e.pronunciation_type != nil and e.pronunciation_type != '') or (e.pronunciation_category != nil) %>
+				(
+					<%#= '['+e.pronunciation_type.s+']' if (e.pronunciation_type != nil and e.pronunciation_type != '') %>
+					<%= link_to e.pronunciation_category.title, e.pronunciation_category.get_url_with_parent, :target => "_blank" if !e.pronunciation_category.blank? %>
+					<%#= e.pronunciation_category.title if (e.pronunciation_category != nil) %>
+				)
+				<% end %>
+			:</b>
+		
+			<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+
+			<%= link_to image_tag('pencil.png',:border => 0), {:controller => 'pronunciations', :action => 'edit_dynamic_pronunciation',:id => e.id, :internal=>'edit_box', :public=>'yes'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Pronunciation Edit' %>
+
+			<span class=menuvalue onclick=show_menu(pro_menu,getCoord(arguments[0]));>
+			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'pronunciation_controller="pronunciation";pronunciation_id='+e.id.to_s, :title => 'Edit Relationships' %> 
+			</span>
+
+			<%= link_to image_tag('cross.png',:border => 0), {:controller => 'definitions', :action => 'public_remove_pronunciation', :id => d.id, :parent_id => parent_id, :head_id => head_id, :pronunciation => e.id},  :remote => true, :class => 'ui_definition_dialog', :title=>'Remove Pronunciation', :confirm => "Are you sure you want to remove this Pronunciation?", :complete => 're_initialize();' %>
+		<%#= link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_pronunciation' , :update => 'definition_space', :complete => 're_initialize();',  :id => d.id, :parent_id => parent_id, :head_id => head_id, :pronunciation => e.id),  :title=>'Remove Pronunciation', :confirm => "Are you sure you want to remove this Pronunciation?" %>
+		
+
+		
+		<% def_edit_path = pronunciation_inline_edit_url(:id => e.id, :field => 'phonetic_transliteration', :div_suffix => 'pronunciationdiv') %>
+		<% if e.phonetic_transliteration.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = e.phonetic_transliteration.s     
+		   end %>
+		<span class="tib1">
+			<span class="tinyfied_show">
+				<div id="<%= "#{e.id}_pronunciationdiv" %>">
+					<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    	</div>
+			</span>
+		</span>
+
+		
+		
+		<dl style="margin-top:0em;margin-bottom:0em;">
+			<dd style="display:none"></dd>
+			<% assoc = e.category_pronunciation_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
+		<%# if (e.major_dialect_family != nil and e.major_dialect_family != '') or (e.major_dialect_family_type != nil) %>
+		<% if !assoc.blank? %>
+			 <dd><b>Tibetan Dialect: </b>
+			<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => "_blank"}.join(', ').html_safe %>	
+			<!--	<span class="tib1"><%#= '['+e.major_dialect_family.s+']' if e.major_dialect_family != nil and e.major_dialect_family != '' %></span>
+				<%= e.major_dialect_family_type.title if e.major_dialect_family_type != nil %>-->
+				</dd>
+		<% end %>
+		<%# end %>
+		
+		<% if e.pronunciation_category_id != nil and e.pronunciation_category_id != ''%>
+		    <!-- <br>	
+		   &nbsp;&nbsp;&nbsp;&nbsp;<b>Pronunciation type: </b><%#= e.pronunciation_category_id %>-->
+		<% end %>
+		<!--<%# if e.major_dialect_family_type != nil and e.major_dialect_family_type != ''%>
+		     <br>	
+		   &nbsp;&nbsp;&nbsp;&nbsp;<b>Tibetan Dialect: </b><%#= e.major_dialect_family_type.title %>
+		<%# end %>-->
+		<% if !e.analytical_note.blank? %>
+		      <br>
+			  &nbsp;&nbsp;&nbsp;&nbsp;<b>Analytical note: </b><span class="tib1"><span class='tinyfied_show'><%= e.analytical_note.s %></span></span>
+		 <% end %>
+		
+		<div id="<%= e.id%>_pronunciation_metas_div">
+	      <%# if e.meta != nil%>
+	        <% t = Time.now %>
+	        <%#= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+		  <%# end %>
+		</div>
+
+
+		</dl>
+	<% end %>
+	<!-- <br> -->
+<% end %>
+<span id="<%= d.id%>_pronunciation" ></span>

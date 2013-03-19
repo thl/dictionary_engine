@@ -1,0 +1,10 @@
+
+<% assoc = @definition.definition_category_associations.find(:all, :conditions => {:category_branch_id => data_id}) %>
+
+<table>
+  <tr>
+	<td><%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ').html_safe %></td>
+  </tr>
+</table>
+
+<br />

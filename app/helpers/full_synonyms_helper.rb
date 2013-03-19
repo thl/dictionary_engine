@@ -1,0 +1,2 @@
+module FullSynonymsHelper
+end

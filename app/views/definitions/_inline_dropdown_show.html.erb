@@ -1,0 +1,28 @@
+
+<% edit_path = definition_inline_dropdown_edit_url(:id => @definition.id, :field => params[:field], :div_suffix => params[:div_suffix] ) 
+   field = params[:field]
+   div_suffix = params[:div_suffix]
+%>	
+<% if @definition[field].blank?
+  t_content = 'Click to modify'
+else
+	 case params[:field] 
+		when 'level' then 
+			t_content = @definition[field].s
+		when 'root_letter_id' then 
+			t_content = ComplexScripts::TibetanLetter.find(@definition[field]).unicode
+		when 'language_type_id' then 
+			t_content = @definition.language_type.title
+		when 'register_type_id'
+			t_content = @definition.register_type.title
+		when 'language_context_type_id'
+			t_content = @definition.language_context_type.title
+		when 'literary_period_type_id'
+			t_content = @definition.literary_period_type.title	
+		when 'literary_form_type_id'
+			t_content = @definition.literary_form_type.title	
+	  end 
+end %>
+
+
+<%= link_to "#{t_content}".html_safe, edit_path, :class => 'definitions_show', :remote => true %>

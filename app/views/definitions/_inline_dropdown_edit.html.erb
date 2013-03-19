@@ -1,0 +1,39 @@
+
+<%= include_tiny_mce_if_needed %>
+<%#= wide_tagged_tinymce_script %>
+
+<%= form_for :definition, :url => { :action => "inline_dropdown_update", :field => params[:field], :div_suffix => params[:div_suffix] }, :remote =>true do |f| %>
+<p>
+<%= f.hidden_field :id %>
+<% case params[:field] 
+	when 'level' then %>
+		<%= select(:definition, :level, @level)  %>
+<% 	when 'root_letter_id' then %>
+		<%= f.select :root_letter_id, @alphabet.collect{|letter| [letter.unicode, letter.id]}, { :include_blank => true } %>
+<%  when 'language_type_id' then %>
+		<% 	@data = Category.find(184)
+			@language_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+		<%= select(:definition, :language_type_id, @language_type, { :include_blank => true }) %>
+<%  when 'register_type_id' then %>
+		<% @data = Category.find(190)
+			@register_type = @data.children.collect {|l| [ h(l.title), l.id ] }%>
+		<%= select(:definition, :register_type_id, @register_type, { :include_blank => true })  %>
+<%  when 'language_context_type_id' then %>
+		<% @data = Category.find(185)
+			@language_context_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+		<%= select(:definition, :language_context_type_id, @language_context_type, { :include_blank => true }) %>
+<%  when 'literary_period_type_id' then %>
+		<% @data = Category.find(187)
+			@literary_period_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+		<%= select(:definition, :literary_period_type_id, @literary_period_type, { :include_blank => true }) %>
+<%  when 'literary_form_type_id' then %>
+		<% @data = Category.find(186)
+			@literary_form_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+		<%= select(:definition, :literary_form_type_id, @literary_form_type, { :include_blank => true }) %>
+<% end %>
+
+<%= submit_tag 'update'%>
+
+<%= link_to 'Cancel', definition_inline_dropdown_show_path(params['id'], :field => params[:field], :div_suffix => params[:div_suffix]), :class => 'definitions_show', :remote => true, :method => :get %> 
+</p>
+<% end %>

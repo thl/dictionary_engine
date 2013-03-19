@@ -1,0 +1,2 @@
+
+$("#<%= @spelling.definition_id %>_spellings_div").html("<%= escape_javascript(render(:partial => 'spellings/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition, :head_id => @temp_definition})) %>")

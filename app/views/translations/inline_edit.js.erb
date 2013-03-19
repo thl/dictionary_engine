@@ -1,0 +1,1 @@
+$("#<%= @translation.id %>_<%= params[:div_suffix]%>").html("<%= escape_javascript(render(:partial => 'translations/inline_edit')) %>")

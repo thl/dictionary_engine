@@ -1,0 +1,22 @@
+
+<%= include_tiny_mce_if_needed %>
+<%#= wide_tagged_tinymce_script %>
+
+<%= form_for :pronunciation, :url => { :action => "inline_update", :field => params[:field], :div_suffix => params[:div_suffix] }, :remote =>true do |f| %>
+<p>
+<%= f.hidden_field :id %>
+
+<% case params[:field] 
+	when 'pronunciation_category_id' then
+		 @data = Category.find(189)
+	    	@pronunciation_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
+		<%= select(:pronunciation, :pronunciation_category_id, @pronunciation_type, { :include_blank => true }) %>
+<%	else %>
+		<%= f.text_area params[:field], :class => 'mceEditor'  %>
+<% end %>
+
+<%= submit_tag 'update'%>
+
+<%= link_to 'Cancel', pronunciation_inline_show_path(params['id'], :field => params[:field], :div_suffix => params[:div_suffix]), :class => 'definitions_show', :remote => true, :method => :get %> 
+</p>
+<% end %>

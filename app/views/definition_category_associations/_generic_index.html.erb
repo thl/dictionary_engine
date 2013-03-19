@@ -1,0 +1,10 @@
+
+<% assoc = @definition.send(:not_fixed_associations) %>
+
+<table>
+  <tr>
+	<td><%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ').html_safe %></td>
+  </tr>
+</table>
+
+<br />

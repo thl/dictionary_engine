@@ -1,0 +1,21 @@
+
+<%= include_tiny_mce_if_needed %>
+<%#= wide_tagged_tinymce_script %>
+
+<%= form_for(:translation, :url => inline_update_translation_path(@translation, :field => params[:field], :div_suffix => params[:div_suffix]), :remote =>true) do |f| %>
+<p>
+<% case params[:field] 
+	when 'language_type_id' then 
+		data = Category.find(184)
+	    language_type = data.children.collect {|l| [ h(l.title), l.id ] } %>
+ 		<%= f.select(:language_type_id, language_type, { :include_blank => true }) %>
+<%	else %>
+		<%= f.text_area params[:field], :class => 'mceEditor'  %>
+<% end %>
+
+
+<%= submit_tag 'update'%>
+
+<%= link_to 'Cancel', inline_show_translation_path(@translation, :field => params[:field], :div_suffix => params[:div_suffix]), :class => 'definitions_show', :remote => true %> 
+</p>
+<% end %>
