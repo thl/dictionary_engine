@@ -1,7 +1,7 @@
 require 'digest/sha1'
 
 # this model expects a certain database layout and its based on the name/login pattern. 
-class User < ActiveRecord::Base
+class Dictionary::User < ActiveRecord::Base
   
   # Please change the salt to something else, 
   # Every application should use a different one 

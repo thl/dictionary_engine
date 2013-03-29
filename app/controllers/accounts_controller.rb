@@ -4,7 +4,7 @@ class AccountsController < ApplicationController
   def login
     @current_section = :home
     if !params[:user_login].blank?
-      if session[:user] = User.authenticate(params[:user_login], params[:user_password])
+      if session[:user] = Dictionary::User.authenticate(params[:user_login], params[:user_password])
         flash['notice']  = "Login successful"
         redirect_back_or_default index_edit_definitions_url  #:controller => 'definitions', :action => 'index_edit' #:action => "welcome"
       else
@@ -16,7 +16,7 @@ class AccountsController < ApplicationController
   end
   
   def signup
-    @user = User.new(params[:user])
+    @user = Dictionary::User.new(params[:user])
     @current_section = :home
     if request.post? and @user.save
       session[:user] = User.authenticate(@user.login, params[:user][:password])

@@ -24,8 +24,8 @@ class DefinitionsController < ApplicationController
    def home
        @current_tab_id = :custom_home
        @current_section = :home
-       #@users = User.find :all, :conditions => 'full_name is not null'
-       @users = User.where('full_name is not null')
+       #@users = Dictionary::User.find :all, :conditions => 'full_name is not null'
+       @users = Dictionary::User.where('full_name is not null')
        @page_class = 'home'    
        render :layout => 'staging_new'
    end
@@ -35,7 +35,7 @@ class DefinitionsController < ApplicationController
      # render :action => 'list'
      @current_tab_id = :search  #:home
      @current_section = :home
-     @users = User.find :all, :conditions => 'full_name is not null'
+     @users = Dictionary::User.find :all, :conditions => 'full_name is not null'
      @page_class = 'search'
      render :layout => 'staging_new' #'thdl_home'
    end   
@@ -579,7 +579,7 @@ class DefinitionsController < ApplicationController
 
      def index_edit
        @current_section = :home
-       @users = User.find :all, :conditions => 'full_name is not null'
+       @users = Dictionary::User.find :all, :conditions => 'full_name is not null'
        @page_class = 'edit'
        render :layout => 'staging_new' 
      end
@@ -979,7 +979,7 @@ class DefinitionsController < ApplicationController
         a.each {|k| hash[k.split(' ')[0]] = k} 
         hash.each do |k,v|
            k = 'none' if k == nil
-           user = User.find(:first,:conditions=>"login='"+k+"'")
+           user = Dictionary::User.find(:first,:conditions=>"login='"+k+"'")
 
            @history += hash[k].gsub(k,user.full_name) unless user == nil
            @history += "\n"
