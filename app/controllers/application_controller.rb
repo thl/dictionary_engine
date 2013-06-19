@@ -33,9 +33,9 @@ class ApplicationController < ActionController::Base
   
   include LoginSystem
   before_filter :login_required, :only => [:new, :edit, :destroy, :create, :list, :show, :show_edit, :edit_dynamic, :public_edit, :index_edit ]
-	before_filter :set_charset
+	#before_filter :set_charset
   
-  def set_charset
-    headers["Content-Type"] = "text/html; charset=utf-8" 
-  end
+  #def set_charset
+  #  headers["Content-Type"] = "text/html; charset=utf-8" 
+  #end
 end

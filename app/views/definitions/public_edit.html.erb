@@ -388,25 +388,11 @@ function clear_contents(node)
 
 
 
-<script>
-	$('.ui_definition_dialog').live('click', function() {
-	//alert('click');
-	
-  	$("#popup_dialog").html("<p></p>")
-  	$("#popup_dialog").dialog( "destroy" );
-	$("#popup_dialog" ).dialog({ modal: true, width: 650});
-  	//$("#popup_dialog").dialog({ modal: true, width: 650, autoOpen: false, position: 'top' });
-  	//$("#popup_dialog").dialog('open');
-});
-</script>
+
 
 <script>
   $(document).ready(function() {
-	//alert('initialized');
-	$("#popup_dialog").dialog( "destroy" );
-    $("#popup_dialog").dialog({ modal: true, width: 650, autoOpen: false });
-	$("#popup_dialog").dialog({ autoOpen: false })
-	$("#popup_dialog").dialog("close");	
+
 	
 	/* Activating Best In Place */
 	  jQuery(".best_in_place").best_in_place();
@@ -417,19 +403,13 @@ function clear_contents(node)
   });
 
 </script>
-<script>
-	//$(function() {
-	//	$( "#dialog" ).dialog();
-	//});
-</script>
+
 
 
 <%#= include_tiny_mce_if_needed %>
 <div id="popup_dialog">
 </div>
-<div id="dialog" title="Basic dialog">
-	<!---<p>algo </p> -->
-</div>
+
 
 <div id="definition_space">
 	
