@@ -1,6 +1,6 @@
 <% d = @d %>
 
-<%= include_tiny_mce_if_needed %>
+<%#= include_tiny_mce_if_needed %>
 <%#= wide_tagged_tinymce_script %>
 
 <%= form_for :definition, :url => { :action => "definition_update", :field => params[:field], :div_suffix => params[:div_suffix] }, :remote =>true do |f| %>
