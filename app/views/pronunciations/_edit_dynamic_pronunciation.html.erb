@@ -78,13 +78,57 @@ $(document).ready(function() {
 	<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>
 	<div class='showhide'>
 		<br><b>Image: </b>
-		<br><%= best_in_place @pronunciation, :image %>
+		<br><%#= best_in_place @pronunciation, :image %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'image', :div_suffix => 'imagediv') %>
+		<% if @pronunciation.image.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.image.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_imagediv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Image caption: </b>
-		<br><%= best_in_place @pronunciation, :image_caption %>
+		<br><%#= best_in_place @pronunciation, :image_caption %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'image_caption', :div_suffix => 'image_captiondiv') %>
+		<% if @pronunciation.image_caption.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.image_caption.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_image_captiondiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Image photographer: </b>
-		<br><%= best_in_place @pronunciation, :image_photographer %>
+		<br><%#= best_in_place @pronunciation, :image_photographer %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'image_photographer', :div_suffix => 'image_photographerdiv') %>
+		<% if @pronunciation.image_photographer.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.image_photographer.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_image_photographerdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Image link: </b>
-		<br><%= best_in_place @pronunciation, :image_link %>
+		<br><%#= best_in_place @pronunciation, :image_link %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'image_link', :div_suffix => 'image_linkdiv') %>
+		<% if @pronunciation.image_link.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.image_link.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_image_linkdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Image description: </b>
 		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'image_description', :div_suffix => 'imagedescdiv') %>
 		<% if @pronunciation.image_description.blank?
@@ -98,17 +142,83 @@ $(document).ready(function() {
 		    </div>
 		</span>
 		<br><b>Audio: </b>
-		<br><%= best_in_place @pronunciation, :audio %>
+		<br><%#= best_in_place @pronunciation, :audio %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+		<% if @pronunciation.audio.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.audio.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_audiodiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio id number: </b>
 		<br><%= best_in_place @pronunciation, :audio_id_number %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+		<% if @pronunciation.audio.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.audio.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_audiodiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio speaker: </b>
 		<br><%= best_in_place @pronunciation, :audio_speaker %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+		<% if @pronunciation.audio.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.audio.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_audiodiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio date: </b>
 		<br><%= best_in_place @pronunciation, :audio_date %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+		<% if @pronunciation.audio.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.audio.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_audiodiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio place of recording: </b>
 		<br><%= best_in_place @pronunciation, :audio_place_of_recording %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+		<% if @pronunciation.audio.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.audio.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_audiodiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio link: </b>
 		<br><%= best_in_place @pronunciation, :audio_link %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+		<% if @pronunciation.audio.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.audio.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_audiodiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio description: </b>
 		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio_description', :div_suffix => 'audiodescdiv') %>
 		<% if @pronunciation.audio_description.blank?
@@ -123,16 +233,82 @@ $(document).ready(function() {
 		</span>
 		<br><b>Video: </b>
 		<br><%= best_in_place @pronunciation, :video %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'video', :div_suffix => 'videodiv') %>
+		<% if @pronunciation.video.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.video.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_videodiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video id number: </b>
 		<br><%= best_in_place @pronunciation, :video_id_number %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'video_id_number', :div_suffix => 'video_id_numberdiv') %>
+		<% if @pronunciation.video_id_number.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.video_id_number.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_video_id_numberdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video speaker: </b>
 		<br><%= best_in_place @pronunciation, :video_speaker %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'video_speaker', :div_suffix => 'video_speakerdiv') %>
+		<% if @pronunciation.video_speaker.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.video_speaker.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_video_speakerdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video date: </b>
 		<br><%= best_in_place @pronunciation, :video_date %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'video_date', :div_suffix => 'video_datediv') %>
+		<% if @pronunciation.video_date.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.video_date.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_video_datediv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video place of recording: </b>
 		<br><%= best_in_place @pronunciation, :video_place_of_recording %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'video_place_of_recording', :div_suffix => 'video_place_of_recordingdiv') %>
+		<% if @pronunciation.video_place_of_recording.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.video_place_of_recording.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_video_place_of_recordingdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video link: </b>
 		<br><%= best_in_place @pronunciation, :video_link %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'video_link', :div_suffix => 'video_linkdiv') %>
+		<% if @pronunciation.video_link.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @pronunciation.video_link.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@pronunciation.id}_video_linkdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video description: </b>
 		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'video_description', :div_suffix => 'videodescdiv') %>
 		<% if @pronunciation.video_description.blank?

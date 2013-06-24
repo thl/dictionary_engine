@@ -1,6 +1,6 @@
 
-<%= include_tiny_mce_if_needed %>
-<%#= wide_tagged_tinymce_script %>
+<%#= include_tiny_mce_if_needed %>
+<%##= wide_tagged_tinymce_script %>
 
 <%= form_for :pronunciation, :url => { :action => "inline_update", :field => params[:field], :div_suffix => params[:div_suffix] }, :remote =>true do |f| %>
 <p>
@@ -11,6 +11,8 @@
 		 @data = Category.find(189)
 	    	@pronunciation_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
 		<%= select(:pronunciation, :pronunciation_category_id, @pronunciation_type, { :include_blank => true }) %>
+<%  when 'image', 'image_caption', 'image_photographer','image_link', 'audio', 'audio_id_number', 'audio_speaker', 'audio_date', 'audio_place_of_recording', 'audio_link', 'video', 'video_id_number', 'video_speaker', 'video_date', 'video_place_of_recording', 'video_link'  then %>
+		<%= f.text_field params[:field] %>
 <%	else %>
 		<%= f.text_area params[:field], :class => 'mceEditor'  %>
 <% end %>

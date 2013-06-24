@@ -7,7 +7,13 @@
 <p>
 <%= f.hidden_field :id %>
 <%#= f.text_area :definition, :class => 'mceEditor' %>
-<%= f.text_area params[:field], :class => 'mceEditor'  %>
+<% case params[:field] 
+	when 'image', 'image_caption', 'image_photographer','image_link', 'audio', 'audio_id_number', 'audio_speaker', 'audio_date', 'audio_place_of_recording', 'audio_link', 'video', 'video_id_number', 'video_speaker', 'video_date', 'video_place_of_recording', 'video_link'  then %>
+		<%= f.text_field params[:field]  %>
+	<%	else %>
+		<%= f.text_area params[:field], :class => 'mceEditor'  %>
+<% end %>
+
 
 <%= submit_tag 'update'%>
 

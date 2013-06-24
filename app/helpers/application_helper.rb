@@ -20,7 +20,7 @@ module ApplicationHelper
         #super + ['best_in_place'] 
         #['jquery', 'jquery-ui'] + super +  ['jquery.inplace','jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed','menu', 'menu_items', 'menu_tpl']
         #['jquery', 'jquery-ui'] + super + ['thickbox-compressed', 'best_in_place']
-        ['jquery', 'jquery-ui'] + super +  ['best_in_place', 'category_selector', 'jquery.inplace','jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed','menu', 'menu_items', 'menu_tpl']
+        super +  ['best_in_place', 'category_selector', 'jquery.inplace','jquery.autocomplete', 'jquery.checktree', 'model-searcher','thickbox-compressed','menu', 'menu_items', 'menu_tpl']
       end
     end
     #['jquery','jquery-ui'] + super

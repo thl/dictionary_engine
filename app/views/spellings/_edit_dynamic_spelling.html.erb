@@ -93,13 +93,57 @@ $(document).ready(function() {
 	<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>
 	<div class='showhide'>
 		<br><b>Image: </b>
-		<br><%= best_in_place @spelling, :image %>
+		<br><%#= best_in_place @spelling, :image %>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'image', :div_suffix => 'imagediv') %>
+		<% if @spelling.image.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.image.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_imagediv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Image caption: </b>
-		<br><%= best_in_place @spelling, :image_caption %>
+		<br><%#= best_in_place @spelling, :image_caption %>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'image_caption', :div_suffix => 'image_captiondiv') %>
+		<% if @spelling.image_caption.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.image_caption.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_image_captiondiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Image photographer: </b>
-		<br><%= best_in_place @spelling, :image_photographer %>
+		<br><%#= best_in_place @spelling, :image_photographer %>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'image_photographer', :div_suffix => 'image_photographerdiv') %>
+		<% if @spelling.image_photographer.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.image_photographer.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_image_photographerdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Image link: </b>
-		<br><%= best_in_place @spelling, :image_link %>
+		<br><%#= best_in_place @spelling, :image_link %>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'image_link', :div_suffix => 'image_linkdiv') %>
+		<% if @spelling.image_link.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.image_link.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_image_linkdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Image description: </b>
 		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'image_description', :div_suffix => 'imagedescdiv') %>
 		<% if @spelling.image_description.blank?
@@ -113,17 +157,83 @@ $(document).ready(function() {
 		    </div>
 		</span>
 		<br><b>Audio: </b>
-		<br><%= best_in_place @spelling, :audio %>
+		<br><%#= best_in_place @spelling, :audio %>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+		<% if @spelling.audio.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.audio.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_audiodiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio id number: </b>
-		<br><%= best_in_place @spelling, :audio_id_number %>
+		<br><%#= best_in_place @spelling, :audio_id_number %>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'audio_id_number', :div_suffix => 'audio_id_numberdiv') %>
+		<% if @spelling.audio_id_number.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.audio_id_number.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_audio_id_numberdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio speaker: </b>
-		<br><%= best_in_place @spelling, :audio_speaker %>
+		<br><%#= best_in_place @spelling, :audio_speaker %>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'audio_speaker', :div_suffix => 'audio_speakerdiv') %>
+		<% if @spelling.audio_speaker.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.audio_speaker.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_audio_speakerdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio date: </b>
-		<br><%= best_in_place @spelling, :audio_date %>
+		<br><%#= best_in_place @spelling, :audio_date %>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'audio_date', :div_suffix => 'audio_datediv') %>
+		<% if @spelling.audio_date.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.audio_date.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_audio_datediv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio place of recording: </b>
-		<br><%= best_in_place @spelling, :audio_place_of_recording %>
+		<br><%#= best_in_place @spelling, :audio_place_of_recording %>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'audio_place_of_recording', :div_suffix => 'audio_place_of_recordingdiv') %>
+		<% if @spelling.audio_place_of_recording.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.audio_place_of_recording.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_audio_place_of_recordingdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio link: </b>
-		<br><%= best_in_place @spelling, :audio_link %>
+		<br><%#= best_in_place @spelling, :audio_link %>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'audio_link', :div_suffix => 'audio_linkdiv') %>
+		<% if @spelling.audio_link.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.audio_link.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_audio_linkdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio description: </b>
 		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'audio_description', :div_suffix => 'audiodescdiv') %>
 		<% if @spelling.audio_description.blank?
@@ -137,17 +247,83 @@ $(document).ready(function() {
 		    </div>
 		</span>
 		<br><b>Video: </b>
-		<br><%= best_in_place @spelling, :video %>
+		<br><%#= best_in_place @spelling, :video %>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'video', :div_suffix => 'videodiv') %>
+		<% if @spelling.video.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.video.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_videodiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video id number: </b>
-		<br><%= best_in_place @spelling, :video_id_number %>
+		<br><%#= best_in_place @spelling, :video_id_number %>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'video_id_number', :div_suffix => 'video_id_numberdiv') %>
+		<% if @spelling.video_id_number.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.video_id_number.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_video_id_numberdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video speaker: </b>
-		<br><%= best_in_place @spelling, :video_speaker %>
+		<br><%#= best_in_place @spelling, :video_speaker %>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'video_speaker', :div_suffix => 'video_speakerdiv') %>
+		<% if @spelling.video_speaker.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.video_speaker.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_video_speakerdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video date: </b>
-		<br><%= best_in_place @spelling, :video_date %>
+		<br><%#= best_in_place @spelling, :video_date %>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'video_date', :div_suffix => 'video_datediv') %>
+		<% if @spelling.video_date.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.video_date.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_video_datediv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video place of recording: </b>
-		<br><%= best_in_place @spelling, :video_place_of_recording %>
+		<br><%#= best_in_place @spelling, :video_place_of_recording %>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'video_place_of_recording', :div_suffix => 'video_place_of_recordingdiv') %>
+		<% if @spelling.video_place_of_recording.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.video_place_of_recording.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_video_place_of_recordingdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video link: </b>
-		<br><%= best_in_place @spelling, :video_link %>
+		<br><%#= best_in_place @spelling, :video_link %>
+		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'video_link', :div_suffix => 'video_linkdiv') %>
+		<% if @spelling.video_link.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @spelling.video_link.s     
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@spelling.id}_video_linkdiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video description: </b>
 		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'video_description', :div_suffix => 'videodescdiv') %>
 		<% if @spelling.video_description.blank?

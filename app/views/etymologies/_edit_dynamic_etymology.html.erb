@@ -65,13 +65,57 @@ $(document).ready(function() {
 	<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>
 	<div class='showhide'>
 		<br><b>Image: </b>
-		<br><%= best_in_place @etymology, :image %>
+		<br><%#= best_in_place @etymology, :image %>
+		<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'image', :div_suffix => 'imagediv') %>
+		<% if @etymology.image.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.image.s     
+		   end %>
+		<span class="etymologies_show">
+			<div id="<%= "#{@etymology.id}_imagediv" %>">
+				<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Image caption: </b>
-		<br><%= best_in_place @etymology, :image_caption %>
+		<br><%#= best_in_place @etymology, :image_caption %>
+		<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'image_caption', :div_suffix => 'image_captiondiv') %>
+		<% if @etymology.image_caption.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.image_caption.s     
+		   end %>
+		<span class="etymologies_show">
+			<div id="<%= "#{@etymology.id}_image_captiondiv" %>">
+				<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Image photographer: </b>
-		<br><%= best_in_place @etymology, :image_photographer %>
+		<br><%#= best_in_place @etymology, :image_photographer %>
+		<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'image_photographer', :div_suffix => 'image_photographerdiv') %>
+		<% if @etymology.image_photographer.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.image_photographer.s     
+		   end %>
+		<span class="etymologies_show">
+			<div id="<%= "#{@etymology.id}_image_photographerdiv" %>">
+				<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Image link: </b>
-		<br><%= best_in_place @etymology, :image_link %>
+		<br><%#= best_in_place @etymology, :image_link %>
+		<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'image_link', :div_suffix => 'image_linkdiv') %>
+		<% if @etymology.image_link.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.image_link.s     
+		   end %>
+		<span class="etymologies_show">
+			<div id="<%= "#{@etymology.id}_image_linkdiv" %>">
+				<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Image description: </b>
 		<% def_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'image_description', :div_suffix => 'imagedescdiv') %>
 		<% if @etymology.image_description.blank?
@@ -85,17 +129,83 @@ $(document).ready(function() {
 		    </div>
 		</span>
 		<br><b>Audio: </b>
-		<br><%= best_in_place @etymology, :audio %>
+		<br><%#= best_in_place @etymology, :audio %>
+		<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+		<% if @etymology.audio.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.audio.s     
+		   end %>
+		<span class="etymologies_show">
+			<div id="<%= "#{@etymology.id}_audiodiv" %>">
+				<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio id number: </b>
-		<br><%= best_in_place @etymology, :audio_id_number %>
+		<br><%#= best_in_place @etymology, :audio_id_number %>
+		<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'audio_id_number', :div_suffix => 'audio_id_numberdiv') %>
+		<% if @etymology.audio_id_number.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.audio_id_number.s     
+		   end %>
+		<span class="etymologies_show">
+			<div id="<%= "#{@etymology.id}_audio_id_numberdiv" %>">
+				<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio speaker: </b>
-		<br><%= best_in_place @etymology, :audio_speaker %>
+		<br><%#= best_in_place @etymology, :audio_speaker %>
+		<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'audio_speaker', :div_suffix => 'audio_speakerdiv') %>
+		<% if @etymology.audio_speaker.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.audio_speaker.s     
+		   end %>
+		<span class="etymologies_show">
+			<div id="<%= "#{@etymology.id}_audio_speakerdiv" %>">
+				<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio date: </b>
-		<br><%= best_in_place @etymology, :audio_date %>
+		<br><%#= best_in_place @etymology, :audio_date %>
+		<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'audio_date', :div_suffix => 'audio_datediv') %>
+		<% if @etymology.audio_date.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.audio_date.s     
+		   end %>
+		<span class="etymologies_show">
+			<div id="<%= "#{@etymology.id}_audio_datediv" %>">
+				<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio place of recording: </b>
-		<br><%= best_in_place @etymology, :audio_place_of_recording %>
+		<br><%#= best_in_place @etymology, :audio_place_of_recording %>
+		<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'audio_place_of_recording', :div_suffix => 'audio_place_of_recordingdiv') %>
+		<% if @etymology.audio_place_of_recording.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.audio_place_of_recording.s     
+		   end %>
+		<span class="etymologies_show">
+			<div id="<%= "#{@etymology.id}_audio_place_of_recordingdiv" %>">
+				<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio link: </b>
-		<br><%= best_in_place @etymology, :audio_link %>
+		<br><%#= best_in_place @etymology, :audio_link %>
+		<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'audio_link', :div_suffix => 'audio_linkdiv') %>
+		<% if @etymology.audio_link.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.audio_link.s     
+		   end %>
+		<span class="etymologies_show">
+			<div id="<%= "#{@etymology.id}_audio_linkdiv" %>">
+				<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Audio description: </b>
 		<% def_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'audio_description', :div_suffix => 'audiodescdiv') %>
 		<% if @etymology.audio_description.blank?
@@ -109,17 +219,83 @@ $(document).ready(function() {
 		    </div>
 		</span>
 		<br><b>Video: </b>
-		<br><%= best_in_place @etymology, :video %>
+		<br><%#= best_in_place @etymology, :video %>
+		<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'video', :div_suffix => 'videodiv') %>
+		<% if @etymology.video.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.video.s     
+		   end %>
+		<span class="etymologies_show">
+			<div id="<%= "#{@etymology.id}_videodiv" %>">
+				<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video id number: </b>
-		<br><%= best_in_place @etymology, :video_id_number %>
+		<br><%#= best_in_place @etymology, :video_id_number %>
+		<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'video_id_number', :div_suffix => 'video_id_numberdiv') %>
+		<% if @etymology.video_id_number.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.video_id_number.s     
+		   end %>
+		<span class="etymologies_show">
+			<div id="<%= "#{@etymology.id}_video_id_numberdiv" %>">
+				<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video speaker: </b>
-		<br><%= best_in_place @etymology, :video_speaker %>
+		<br><%#= best_in_place @etymology, :video_speaker %>
+		<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'video_speaker', :div_suffix => 'video_speakerdiv') %>
+		<% if @etymology.video_speaker.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.video_speaker.s     
+		   end %>
+		<span class="etymologies_show">
+			<div id="<%= "#{@etymology.id}_video_speakerdiv" %>">
+				<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video date: </b>
-		<br><%= best_in_place @etymology, :video_date %>
+		<br><%#= best_in_place @etymology, :video_date %>
+		<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'video_date', :div_suffix => 'video_datediv') %>
+		<% if @etymology.video_date.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.video_date.s     
+		   end %>
+		<span class="etymologies_show">
+			<div id="<%= "#{@etymology.id}_video_datediv" %>">
+				<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video place of recording: </b>
-		<br><%= best_in_place @etymology, :video_place_of_recording %>
+		<br><%#= best_in_place @etymology, :video_place_of_recording %>
+		<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'video_place_of_recording', :div_suffix => 'video_place_of_recordingdiv') %>
+		<% if @etymology.video_place_of_recording.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.video_place_of_recording.s     
+		   end %>
+		<span class="etymologies_show">
+			<div id="<%= "#{@etymology.id}_video_place_of_recordingdiv" %>">
+				<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video link: </b>
-		<br><%= best_in_place @etymology, :video_link %>
+		<br><%#= best_in_place @etymology, :video_link %>
+		<% inline_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'video_link', :div_suffix => 'video_linkdiv') %>
+		<% if @etymology.video_link.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @etymology.video_link.s     
+		   end %>
+		<span class="etymologies_show">
+			<div id="<%= "#{@etymology.id}_video_linkdiv" %>">
+				<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'etymologies_show', :remote => true %>
+		    </div>
+		</span>
 		<br><b>Video description: </b>
 		<% def_edit_path = etymology_inline_edit_url(:id => @etymology.id, :field => 'video_description', :div_suffix => 'videodescdiv') %>
 		<% if @etymology.video_description.blank?
