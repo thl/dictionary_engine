@@ -10,6 +10,11 @@
 <% if @definition[field].blank?
   t_content = 'Click to modify'
 else
-  t_content = @definition[field].s  
+	case params[:field] 
+		when 'numerology'
+			t_content = @definition[field]
+		else
+  			t_content = @definition[field].s  
+	end
 end %>
 <%= link_to "#{t_content}".html_safe, edit_path, :class => 'definitions_show', :remote => true %>

@@ -27,6 +27,7 @@ $(document).ready(function() {
 
 	<b>Phonetic transliteration: </b>
 	<%#= best_in_place @pronunciation, :phonetic_transliteration %>
+	<%= link_to image_tag('pencil.png',:border => 0), pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'phonetic_transliteration', :div_suffix => 'popupphonetic_transliterationdiv'), :remote => true %> 	
 	<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'phonetic_transliteration', :div_suffix => 'popupphonetic_transliterationdiv') %>
 	<% if @pronunciation.phonetic_transliteration.blank?
 	       t_content = 'Click to modify'
@@ -61,6 +62,7 @@ $(document).ready(function() {
 	
 	
  	<br/><b>Analytical note: </b>
+	<%= link_to image_tag('pencil.png',:border => 0), pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'analytical_note', :div_suffix => 'anotediv'), :remote => true %> 	
 	<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'analytical_note', :div_suffix => 'anotediv') %>
 	<% if @pronunciation.analytical_note.blank?
 	       t_content = 'Click to modify'
@@ -76,7 +78,7 @@ $(document).ready(function() {
 	
 	<b>Edit Multimedia Data: </b>
 	<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>
-	<div class='showhide'>
+	<div class='showhide' style='border-style:solid;border-width:1px;padding:5px 5px;margin-left: 5pt;'>
 		<br><b>Image: </b>
 		<br><%#= best_in_place @pronunciation, :image %>
 		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'image', :div_suffix => 'imagediv') %>
@@ -194,7 +196,7 @@ $(document).ready(function() {
 		    </div>
 		</span>
 		<br><b>Audio place of recording: </b>
-		<br><%= best_in_place @pronunciation, :audio_place_of_recording %>
+		<br><%#= best_in_place @pronunciation, :audio_place_of_recording %>
 		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audiodiv') %>
 		<% if @pronunciation.audio.blank?
 		       t_content = 'Click to modify'
@@ -207,7 +209,7 @@ $(document).ready(function() {
 		    </div>
 		</span>
 		<br><b>Audio link: </b>
-		<br><%= best_in_place @pronunciation, :audio_link %>
+		<br><%#= best_in_place @pronunciation, :audio_link %>
 		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audiodiv') %>
 		<% if @pronunciation.audio.blank?
 		       t_content = 'Click to modify'
@@ -232,7 +234,7 @@ $(document).ready(function() {
 		    </div>
 		</span>
 		<br><b>Video: </b>
-		<br><%= best_in_place @pronunciation, :video %>
+		<br><%#= best_in_place @pronunciation, :video %>
 		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'video', :div_suffix => 'videodiv') %>
 		<% if @pronunciation.video.blank?
 		       t_content = 'Click to modify'
@@ -245,7 +247,7 @@ $(document).ready(function() {
 		    </div>
 		</span>
 		<br><b>Video id number: </b>
-		<br><%= best_in_place @pronunciation, :video_id_number %>
+		<br><%#= best_in_place @pronunciation, :video_id_number %>
 		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'video_id_number', :div_suffix => 'video_id_numberdiv') %>
 		<% if @pronunciation.video_id_number.blank?
 		       t_content = 'Click to modify'
@@ -258,7 +260,7 @@ $(document).ready(function() {
 		    </div>
 		</span>
 		<br><b>Video speaker: </b>
-		<br><%= best_in_place @pronunciation, :video_speaker %>
+		<br><%#= best_in_place @pronunciation, :video_speaker %>
 		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'video_speaker', :div_suffix => 'video_speakerdiv') %>
 		<% if @pronunciation.video_speaker.blank?
 		       t_content = 'Click to modify'
@@ -271,7 +273,7 @@ $(document).ready(function() {
 		    </div>
 		</span>
 		<br><b>Video date: </b>
-		<br><%= best_in_place @pronunciation, :video_date %>
+		<br><%#= best_in_place @pronunciation, :video_date %>
 		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'video_date', :div_suffix => 'video_datediv') %>
 		<% if @pronunciation.video_date.blank?
 		       t_content = 'Click to modify'
@@ -284,7 +286,7 @@ $(document).ready(function() {
 		    </div>
 		</span>
 		<br><b>Video place of recording: </b>
-		<br><%= best_in_place @pronunciation, :video_place_of_recording %>
+		<br><%#= best_in_place @pronunciation, :video_place_of_recording %>
 		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'video_place_of_recording', :div_suffix => 'video_place_of_recordingdiv') %>
 		<% if @pronunciation.video_place_of_recording.blank?
 		       t_content = 'Click to modify'
@@ -297,7 +299,7 @@ $(document).ready(function() {
 		    </div>
 		</span>
 		<br><b>Video link: </b>
-		<br><%= best_in_place @pronunciation, :video_link %>
+		<br><%#= best_in_place @pronunciation, :video_link %>
 		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'video_link', :div_suffix => 'video_linkdiv') %>
 		<% if @pronunciation.video_link.blank?
 		       t_content = 'Click to modify'

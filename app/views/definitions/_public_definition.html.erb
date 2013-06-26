@@ -49,7 +49,19 @@
 	
 	<% if !d.numerology.blank?  %>
 		<br><b>Enumeration: </b>
-		<%= best_in_place @definition, :numerology %> <br>
+		<%#= best_in_place @definition, :numerology %> 
+		<% def_edit_path = definition_edit_url(:id => @definition.id, :field => 'numerology', :div_suffix => 'numerologydiv') %>
+		<% if @definition.numerology.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = @definition.numerology   
+		   end %>
+		<span class="tinyfied_show">
+			<div id="<%= "#{@definition.id}_numerologydiv" %>">
+				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+		    </div>
+		</span>
+		<br>
 	<% end %>
 	
 	<br/>

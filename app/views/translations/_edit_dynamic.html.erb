@@ -25,6 +25,7 @@ $(document).ready(function() {
 
 <b>Translation: </b>
 <%# inline_edit_path = translation_inline_edit_url(:id => @translation.id, :field => 'translation', :div_suffix => 'translationpopupdiv') %>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_translation_path(@translation, :field => 'translation', :div_suffix => 'translationpopupdiv'), :remote => true %> 	
 <% inline_edit_path = inline_edit_translation_path(@translation, :field => 'translation', :div_suffix => 'translationpopupdiv') %>
 
 <% if @translation.translation.blank?
@@ -57,6 +58,7 @@ $(document).ready(function() {
 
 <br/><b>Analytical note: </b>
 <%# inline_edit_path = translation_inline_edit_url(:id => @translation.id, :field => 'analytical_note', :div_suffix => 'anotediv') %>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_translation_path(@translation, :field => 'analytical_note', :div_suffix => 'anotediv'), :remote => true %> 	
 <% inline_edit_path = inline_edit_translation_path(@translation, :field => 'analytical_note', :div_suffix => 'anotediv') %>
 
 <% if @translation.analytical_note.blank?

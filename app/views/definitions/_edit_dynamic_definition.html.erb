@@ -90,6 +90,7 @@ $(document).ready(function() {
 
 	
 <br><b>Definition: </b>
+<%= link_to image_tag('pencil.png',:border => 0), definition_edit_url(:id => @definition.id, :field => 'definition', :div_suffix => 'popupdefdiv'), :remote => true %> 
 <% def_edit_path = definition_edit_url(:id => @definition.id, :field => 'definition', :div_suffix => 'popupdefdiv') %>
 <% if @definition.definition.blank?
        t_definition = 'Click to modify'
@@ -119,6 +120,7 @@ $(document).ready(function() {
 	</div>
 </span>
 
+<br>
 <div id='square_tibetan_dialect' style='border-style:solid;border-width:1px;padding:5px 5px;'>
 	<b>Tibetan Dialect: </b>
 	<%#= link_to image_tag('pencil.png',:border => 0), new_category_definition_association_url(@definition.id, 638), :remote => true %>
@@ -127,9 +129,9 @@ $(document).ready(function() {
 		<%="#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => '_blank' }.join(', ')}".html_safe%> 		
 	</td></tr></table><br />
 	
-	<%= link_to image_tag('pencil.png',:border => 0), new_inplace_category_definition_association_definition_url(@definition.id, 638), :remote => true %>
+	<%#= link_to image_tag('pencil.png',:border => 0), new_inplace_category_definition_association_definition_url(@definition.id, 638), :remote => true %>
 	<div id="<%= @definition.id%>_definition_major_dialect_family_type_div"> 
-		<%=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 638} %>			
+		<%#=   render :partial => 'definition_category_associations/index', :locals => {:data_id => 638} %>			
 	</div>
 	
 		
@@ -208,11 +210,36 @@ $(document).ready(function() {
 </span>
 
 	<br><b>Enumeration: </b>
-	<br><%= best_in_place @definition, :numerology %>
+	<%= link_to image_tag('pencil.png',:border => 0), definition_edit_url(:id => @definition.id, :field => 'numerology', :div_suffix => 'numerologydiv'), :remote => true %> 
+	<br><%#= best_in_place @definition, :numerology %>
+	<% def_edit_path = definition_edit_url(:id => @definition.id, :field => 'numerology', :div_suffix => 'numerologydiv') %>
+	<% if @definition.numerology.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @definition.numerology   
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@definition.id}_numerologydiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
 	<br><b>Encyclopedia entry: </b>
-	<br><%= best_in_place @definition, :encyclopedia_entry %>
+	<%= link_to image_tag('pencil.png',:border => 0), definition_edit_url(:id => @definition.id, :field => 'encyclopedia_entry', :div_suffix => 'encyclopedia_entrydiv'), :remote => true %> 
+	<br><%#= best_in_place @definition, :encyclopedia_entry %>
+	<% def_edit_path = definition_edit_url(:id => @definition.id, :field => 'encyclopedia_entry', :div_suffix => 'encyclopedia_entrydiv') %>
+	<% if @definition.encyclopedia_entry.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @definition.encyclopedia_entry.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@definition.id}_encyclopedia_entrydiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
 	
 	<br><b>Analytical note: </b>
+	<%= link_to image_tag('pencil.png',:border => 0), definition_edit_url(:id => @definition.id, :field => 'analytical_note', :div_suffix => 'anotediv'), :remote => true %> 	
 	<% def_edit_path = definition_edit_url(:id => @definition.id, :field => 'analytical_note', :div_suffix => 'anotediv') %>
 	<% if @definition.analytical_note.blank?
 	       t_content = 'Click to modify'
@@ -227,7 +254,8 @@ $(document).ready(function() {
 	
 	<b>Edit Multimedia Data: </b>
 	<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>
-	<div class='showhide'>
+	<div class='showhide' style='border-style:solid;border-width:1px;padding:5px 5px;margin-left: 5pt;'>
+		
 		<br><b>Image: </b>
 		<br><%#= best_in_place @definition, :image %>
 		<% def_edit_path = definition_edit_url(:id => @definition.id, :field => 'image', :div_suffix => 'imagediv') %>

@@ -26,6 +26,7 @@ $(document).ready(function() {
 <%#= error_messages_for 'pronunciation' %>
 
 	<b>Spelling: </b>
+	<%= link_to image_tag('pencil.png',:border => 0), spelling_inline_edit_url(:id => @spelling.id, :field => 'spelling', :div_suffix => 'popupspellingdiv'), :remote => true %> 	
 	<% inline_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'spelling', :div_suffix => 'popupspellingdiv') %>
 	<% if @spelling.spelling.blank?
 	       t_content = 'Click to modify'
@@ -77,6 +78,7 @@ $(document).ready(function() {
 	</span>	
 	
 	<br/><b>Analytical note: </b>
+	<%= link_to image_tag('pencil.png',:border => 0), spelling_inline_edit_url(:id => @spelling.id, :field => 'analytical_note', :div_suffix => 'anotediv'), :remote => true %> 	
 	<% inline_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'analytical_note', :div_suffix => 'anotediv') %>
 	<% if @spelling.analytical_note.blank?
 	       t_content = 'Click to modify'
@@ -91,7 +93,7 @@ $(document).ready(function() {
 
 	<b>Edit Multimedia Data: </b>
 	<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>
-	<div class='showhide'>
+	<div class='showhide' style='border-style:solid;border-width:1px;padding:5px 5px;margin-left: 5pt;'>
 		<br><b>Image: </b>
 		<br><%#= best_in_place @spelling, :image %>
 		<% def_edit_path = spelling_inline_edit_url(:id => @spelling.id, :field => 'image', :div_suffix => 'imagediv') %>
