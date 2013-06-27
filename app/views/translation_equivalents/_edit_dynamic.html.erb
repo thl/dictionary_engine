@@ -1,0 +1,324 @@
+<script>
+$(document).ready(function() {
+	$('div.showhide').hide();
+  	$('#hideh1').click(function(){
+	     $('div.showhide').hide();
+	   });
+	$('#showh1').click(function(){
+	     $('div.showhide').show();
+	   });
+	$('#toggleh1').click(function(){
+	     $('div.showhide').slideToggle("slow");
+	   });
+	
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); });
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});
+		
+	/* Activating Best In Place */
+	jQuery(".best_in_place").best_in_place();
+		
+});
+</script>
+
+<h1>Editing Translation Equivalent</h1>
+<%#= error_messages_for 'translation' %>
+
+<b>Translation: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_translation_equivalent_path(@translation, :field => 'translation_equivalent', :div_suffix => 'translation_equivalentpopupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_translation_equivalent_path(@translation_equivalent, :field => 'translation_equivalent', :div_suffix => 'translation_equivalentpopupdiv') %>
+
+<% if @translation_equivalent.translation_equivalent.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @translation_equivalent.translation_equivalent.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@translation_equivalent.id}_translation_equivalentpopupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Language: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_translation_equivalent_path(@translation_equivalent, :field => 'language_type_id', :div_suffix => 'popuplanguage_type_iddiv'), :remote => true %> 
+<%  popup_edit_path = inline_edit_translation_equivalent_path(@translation_equivalent, :field => 'language_type_id', :div_suffix => 'popuplanguage_type_iddiv') %>
+
+<% if @translation_equivalent.language_type_id.blank?
+       t_content = 'Click to modify'
+     else
+       t_content = @translation_equivalent.language_type.title
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@translation_equivalent.id}_popuplanguage_type_iddiv" %>">
+		<%= link_to "#{t_content}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true %> 
+	</div>
+</span>
+
+<br/><b>Analytical note: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_translation_equivalent_path(@translation, :field => 'analytical_note', :div_suffix => 'anotediv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_translation_equivalent_path(@translation_equivalent, :field => 'analytical_note', :div_suffix => 'anotediv') %>
+
+<% if @translation_equivalent.analytical_note.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @translation_equivalent.analytical_note.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@translation_equivalent.id}_anotediv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+    </div>
+</span>
+
+<b>Edit Multimedia Data: </b>
+<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>
+<div class='showhide' style='border-style:solid;border-width:1px;padding:5px 5px;margin-left: 5pt;'>
+	<br><b>Image: </b>
+	<br><%#= best_in_place @translation_equivalent, :image %>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'image', :div_suffix => 'imagediv') %>
+	<% if @translation_equivalent.image.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.image.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_imagediv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Image caption: </b>
+	<br><%#= best_in_place @translation_equivalent, :image_caption %>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'image_caption', :div_suffix => 'image_captiondiv') %>
+	<% if @translation_equivalent.image_caption.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.image_caption.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_image_captiondiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Image photographer: </b>
+	<br><%#= best_in_place @translation_equivalent, :image_photographer %>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'image_photographer', :div_suffix => 'image_photographerdiv') %>
+	<% if @translation_equivalent.image_photographer.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.image_photographer.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_image_photographerdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Image link: </b>
+	<br><%#= best_in_place @translation_equivalent, :image_link %>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'image_link', :div_suffix => 'image_linkdiv') %>
+	<% if @translation_equivalent.image_link.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.image_link.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_image_linkdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Image description: </b>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'image_description', :div_suffix => 'imagedescdiv') %>
+	<% if @translation_equivalent.image_description.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.image_description.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_imagedescdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio: </b>
+	<br><%#= best_in_place @translation_equivalent, :audio %>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+	<% if @translation_equivalent.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_audiodiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio id number: </b>
+	<br><%#= best_in_place @translation_equivalent, :audio_id_number %>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'audio', :div_suffix => 'audio_id_numberdiv') %>
+	<% if @translation_equivalent.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_audio_id_numberdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio speaker: </b>
+	<br><%#= best_in_place @translation_equivalent, :audio_speaker %>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'audio', :div_suffix => 'audio_speakerdiv') %>
+	<% if @translation_equivalent.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_audio_speakerdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio date: </b>
+	<br><%#= best_in_place @translation_equivalent, :audio_date %>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'audio', :div_suffix => 'audio_datediv') %>
+	<% if @translation_equivalent.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_audio_datediv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio place of recording: </b>
+	<br><%#= best_in_place @translation_equivalent, :audio_place_of_recording %>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'audio', :div_suffix => 'audio_place_of_recordingdiv') %>
+	<% if @translation_equivalent.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_audio_place_of_recordingdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio link: </b>
+	<br><%#= best_in_place @translation_equivalent, :audio_link %>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'audio', :div_suffix => 'audio_linkdiv') %>
+	<% if @translation_equivalent.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_audio_linkdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<!--<br><b>Audio description: </b> 
+	<%# def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'audio_description', :div_suffix => 'audiodescdiv') %>
+	<%# if @translation_equivalent.audio_description.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.audio_description.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%#= "#{@translation_equivalent.id}_audiodescdiv" %>">
+			<%#= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>-->
+	<br><b>Video: </b>
+	<br><%#= best_in_place @translation_equivalent, :video %>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'video', :div_suffix => 'videodiv') %>
+	<% if @translation_equivalent.video.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.video.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_videodiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video id number: </b>
+	<br><%#= best_in_place @translation_equivalent, :video_id_number %>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'video_id_number', :div_suffix => 'video_id_numberdiv') %>
+	<% if @translation_equivalent.video_id_number.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.video_id_number.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_video_id_numberdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video speaker: </b>
+	<br><%#= best_in_place @translation_equivalent, :video_speaker %>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'video_speaker', :div_suffix => 'video_speakerdiv') %>
+	<% if @translation_equivalent.video_speaker.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.video_speaker.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_video_speakerdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video date: </b>
+	<br><%#= best_in_place @translation_equivalent, :video_date %>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'video_date', :div_suffix => 'video_datediv') %>
+	<% if @translation_equivalent.video_date.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.video_date.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_video_datediv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video place of recording: </b>
+	<br><%#= best_in_place @translation_equivalent, :video_place_of_recording %>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'video_place_of_recording', :div_suffix => 'video_place_of_recordingdiv') %>
+	<% if @translation_equivalent.video_place_of_recording.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.video_place_of_recording.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_video_place_of_recordingdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video link: </b>
+	<br><%#= best_in_place @translation_equivalent, :video_link %>
+	<% def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'video_link', :div_suffix => 'video_linkdiv') %>
+	<% if @translation_equivalent.video_link.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.video_link.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@translation_equivalent.id}_video_linkdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<!--<br><b>Video description: </b>
+	<%# def_edit_path = inline_edit_translation_equivalent_path(:id => @translation_equivalent.id, :field => 'video_description', :div_suffix => 'videodescdiv') %>
+	<%# if @translation_equivalent.video_description.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @translation_equivalent.video_description.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%#= "#{@translation_equivalent.id}_videodescdiv" %>">
+			<%#= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>-->
+</div> <!--- #showhide -->
+
+<%= form_for(:translation_equivalent, :url => update_dynamic_translation_equivalent_path(@translation_equivalent), :method => :get, :remote => true) do |f| %>
+  <br>
+  <%= submit_tag 'Update', :id => 'update_button' %>
+  <input type='button' name='cancel_button' value='Cancel' id='cancel_button'>  
+<% end %> <!--form_for-->

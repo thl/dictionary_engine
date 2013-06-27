@@ -1,0 +1,1 @@
+$("#<%= @parent_element.id %>_<%=@parent_element.class.name.downcase%>_translation_equivalents_div").html("<%= escape_javascript(render(:partial => 'translation_equivalents/index', :locals => {:o => @parent_element, :parent_id => @temp_definition, :head_id => @temp_definition})) %>")

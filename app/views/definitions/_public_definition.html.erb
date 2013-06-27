@@ -86,6 +86,30 @@
 	<div id="<%= d.id%>_spellings_div">
 	  	<%=   render :partial => 'spellings/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>
 	</div> 
+
+	<div id="<%= d.id%>_related_terms_div"> 
+	  <%#=   render :partial => 'definition_definition_forms/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
+	</div>
+	
+	<div id="<%= d.id%>_full_synonyms_div"> 
+	  <%#=   render :partial => 'full_synonyms/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
+	</div>
+	
+	<div id="<%= d.id%>_translation_equivalents_div"> 
+	  <%=   render :partial => 'translation_equivalents/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
+	</div>
+
+	<div id="<%= d.id%>_model_sentences_div"> 
+	  <%#=   render :partial => 'model_sentences/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
+	</div>
+	
+	<div id="<%= d.id%>_literary_quotations_div"> 
+	  <%#=   render :partial => 'literary_quotations/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
+	</div>
+	
+	<div id="<%= d.id%>_oral_quotations_div"> 
+	  <%#=   render :partial => 'oral_quotations/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
+	</div>
 		
 	
 <% end %>

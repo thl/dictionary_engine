@@ -49,6 +49,16 @@ Rails.application.routes.draw do
   #match 'translations/:id/inline_edit' => 'translations#inline_edit', :as => :translation_inline_edit
   #match 'translations/:id/inline_show' => 'translations#inline_show', :as => :translation_inline_show
   
+  #========== Translation Equivalents Routes
+  resources :translation_equivalents do
+    member do
+      get :edit_dynamic
+      get :update_dynamic
+      get :inline_edit
+      get :inline_show
+      post :inline_update
+    end
+  end
   
   #========== Spellings Routes
   resources :spellings 

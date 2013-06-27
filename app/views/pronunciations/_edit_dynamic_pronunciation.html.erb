@@ -157,67 +157,67 @@ $(document).ready(function() {
 		    </div>
 		</span>
 		<br><b>Audio id number: </b>
-		<br><%= best_in_place @pronunciation, :audio_id_number %>
-		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+		<br><%#= best_in_place @pronunciation, :audio_id_number %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audio_id_numberdiv') %>
 		<% if @pronunciation.audio.blank?
 		       t_content = 'Click to modify'
 		   else
 		       t_content = @pronunciation.audio.s     
 		   end %>
 		<span class="tinyfied_show">
-			<div id="<%= "#{@pronunciation.id}_audiodiv" %>">
+			<div id="<%= "#{@pronunciation.id}_audio_id_numberdiv" %>">
 				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
 		    </div>
 		</span>
 		<br><b>Audio speaker: </b>
-		<br><%= best_in_place @pronunciation, :audio_speaker %>
-		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+		<br><%#= best_in_place @pronunciation, :audio_speaker %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audio_speakerdiv') %>
 		<% if @pronunciation.audio.blank?
 		       t_content = 'Click to modify'
 		   else
 		       t_content = @pronunciation.audio.s     
 		   end %>
 		<span class="tinyfied_show">
-			<div id="<%= "#{@pronunciation.id}_audiodiv" %>">
+			<div id="<%= "#{@pronunciation.id}_audio_speakerdiv" %>">
 				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
 		    </div>
 		</span>
 		<br><b>Audio date: </b>
-		<br><%= best_in_place @pronunciation, :audio_date %>
-		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+		<br><%#= best_in_place @pronunciation, :audio_date %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audio_datediv') %>
 		<% if @pronunciation.audio.blank?
 		       t_content = 'Click to modify'
 		   else
 		       t_content = @pronunciation.audio.s     
 		   end %>
 		<span class="tinyfied_show">
-			<div id="<%= "#{@pronunciation.id}_audiodiv" %>">
+			<div id="<%= "#{@pronunciation.id}_audio_datediv" %>">
 				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
 		    </div>
 		</span>
 		<br><b>Audio place of recording: </b>
 		<br><%#= best_in_place @pronunciation, :audio_place_of_recording %>
-		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audio_place_of_recordingdiv') %>
 		<% if @pronunciation.audio.blank?
 		       t_content = 'Click to modify'
 		   else
 		       t_content = @pronunciation.audio.s     
 		   end %>
 		<span class="tinyfied_show">
-			<div id="<%= "#{@pronunciation.id}_audiodiv" %>">
+			<div id="<%= "#{@pronunciation.id}_audio_place_of_recordingdiv" %>">
 				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
 		    </div>
 		</span>
 		<br><b>Audio link: </b>
 		<br><%#= best_in_place @pronunciation, :audio_link %>
-		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+		<% def_edit_path = pronunciation_inline_edit_url(:id => @pronunciation.id, :field => 'audio', :div_suffix => 'audio_linkdiv') %>
 		<% if @pronunciation.audio.blank?
 		       t_content = 'Click to modify'
 		   else
 		       t_content = @pronunciation.audio.s     
 		   end %>
 		<span class="tinyfied_show">
-			<div id="<%= "#{@pronunciation.id}_audiodiv" %>">
+			<div id="<%= "#{@pronunciation.id}_audio_linkdiv" %>">
 				<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
 		    </div>
 		</span>
