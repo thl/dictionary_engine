@@ -93,6 +93,7 @@ Rails.application.routes.draw do
   
   #========== pronunciation Routes
   resources :pronunciations
+  match 'pronunciations/:id/edit_dynamic_pronunciation' => 'pronunciations#edit_dynamic_pronunciation', :as => :edit_dynamic_pronunciation
   match 'pronunciations/:id/inline_edit' => 'pronunciations#inline_edit', :as => :pronunciation_inline_edit
   match 'pronunciations/:id/inline_show' => 'pronunciations#inline_show', :as => :pronunciation_inline_show
 
