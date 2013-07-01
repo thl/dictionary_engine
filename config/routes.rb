@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   resources :translations do
     member do
       get :edit_dynamic
-      get :update_dynamic
+      post :update_dynamic
       get :inline_edit
       get :inline_show
       post :inline_update
@@ -53,7 +53,7 @@ Rails.application.routes.draw do
   resources :translation_equivalents do
     member do
       get :edit_dynamic
-      get :update_dynamic
+      post :update_dynamic
       get :inline_edit
       get :inline_show
       post :inline_update

@@ -29,7 +29,9 @@ class TranslationEquivalentsController < ApplicationController
   end  
  
   def update_dynamic
+    debugger
       @translation_equivalent = TranslationEquivalent.find(params[:id])
+      @temp_definition = @translation_equivalent.definition
       #if params[:translation_equivalent][:language_type_id].blank?
       #   params[:translation_equivalent].delete :language_type_id
       #else

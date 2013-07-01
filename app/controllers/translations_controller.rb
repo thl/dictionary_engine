@@ -112,7 +112,6 @@ class TranslationsController < ApplicationController
     # POST
     def inline_update
       @translation = Translation.find(params[:id])
-      debugger
       if @translation.created_by.blank?
          @translation.created_by = session[:user].login
          @translation.created_at = Time.now

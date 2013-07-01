@@ -72,8 +72,6 @@ $(document).ready(function() {
     </div>
 </span>
 
-
-
 <%= form_for(:translation, :url => update_dynamic_translation_path(@translation), :method => :get, :remote => true) do |f| %>
   <br>
   <%= submit_tag 'Update', :id => 'update_button' %>
