@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   resources :definitions do
     member do
       match 'new_inplace/branches/:branch_id' => 'definition_category_associations#new_inline', :as => :new_inplace_category_definition_association
-
+      get :public_remove_etymology
     end
     collection do
       get :index_edit

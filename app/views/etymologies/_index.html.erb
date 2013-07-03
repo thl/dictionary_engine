@@ -13,7 +13,7 @@
 				<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'etymology_id='+e.id.to_s, :title => 'Edit Relationships' %> 
 				</span>
 		
-				<%= link_to image_tag('cross.png',:border => 0), {:controller => 'definitions', :action => 'public_remove_etymology', :id => d.id, :parent_id => parent_id, :head_id => head_id, :pronunciation => e.id},  :remote => true, :class => 'ui_definition_dialog', :title=>'Remove Etymology', :confirm => "Are you sure you want to remove this Etymology?", :complete => 're_initialize();' %>
+				<%= link_to image_tag('cross.png',:border => 0), {:controller => 'definitions', :action => 'public_remove_etymology', :id => d.id, :parent_id => parent_id, :head_id => head_id, :etymology => e.id},  :remote => true, :class => 'ui_definition_dialog', :title=>'Remove Etymology', :confirm => "Are you sure you want to remove this Etymology?", :complete => 're_initialize();' %>
 				
 		<%# assoc = e.category_etymology_associations.find(:all, :conditions => {:category_branch_id => 182}) %>
 		<%# if !assoc.blank? %>

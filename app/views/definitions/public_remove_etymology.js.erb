@@ -1,0 +1,1 @@
+$("#<%= @etymology.definition_id %>_etymologies_div").html("<%= escape_javascript(render(:partial => 'etymologies/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition, :head_id => @temp_definition})) %>")

@@ -13,22 +13,24 @@
 	     <span class=menuvalue onclick=show_menu(translation_menu,getCoord(arguments[0]));>
 <%=      link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'translation_id='+e.id.to_s, :title => 'Edit Relationships' %> 
 	     </span>
-<%       if o.class.name.downcase == "definition" %>
-<%=        link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => o.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this translation?" %>
-<%       end %>
-
-<%       if o.class.name.downcase == "etymology" %>
-<%=        link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_etymology_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => o.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>
-<%       end %>
-<%       if o.class.name.downcase == "literaryquotation" %>
-<%=        link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_literary_quotation_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => o.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>
-<%       end %>
-<%       if o.class.name.downcase == "oralquotation" %>
-<%=        link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_oral_quotation_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => o.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>
-<%       end %>
-<%       if o.class.name.downcase == "modelsentence" %>
-<%=        link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_model_sentence_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => o.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>
-<%       end %>
+	
+		<%= link_to image_tag('cross.png',:border => 0), {:controller => 'definitions', :action => 'public_remove_translation', :id => o.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id}, :remote => true, :class => 'ui_definition_dialog', :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>
+	
+<%#       if o.class.name.downcase == "definition" %>
+<%#=        link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => o.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>
+<%#       end %>
+<%#       if o.class.name.downcase == "etymology" %>
+<%#=        link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_etymology_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => o.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>
+<%#       end %>
+<%#       if o.class.name.downcase == "literaryquotation" %>
+<%#=        link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_literary_quotation_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => o.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>
+<%#       end %>
+<%#       if o.class.name.downcase == "oralquotation" %>
+<%#=        link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_oral_quotation_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => o.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>
+<%#       end %>
+<%#       if o.class.name.downcase == "modelsentence" %>
+<%#=        link_to image_tag('cross.png',:border => 0), url_for(:controller => 'definitions', :action => 'public_remove_model_sentence_translation' , :update => 'definition_space', :complete => 're_initialize();',  :id => o.id, :parent_id => parent_id, :head_id => head_id, :translation => e.id),  :title=>'Remove Translation', :confirm => "Are you sure you want to remove this Translation?" %>
+<%#       end %>
 
 	
 		<% inline_edit_path = inline_edit_translation_path(:id => e.id, :field => 'translation', :div_suffix => 'translationdiv') %>

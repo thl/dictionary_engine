@@ -986,7 +986,80 @@ class DefinitionsController < ApplicationController
         end
      	end
        
+      def public_remove_etymology
+        d = Definition.find(params[:id])
+        p = Etymology.find(params['etymology'])
+        @etymology = Etymology.find(params['etymology'])
+        @temp_definition = Definition.find(params[:id])
+        d.etymologies.delete(p) unless d == nil
+        ##redirect_to :action => 'public_content_only', :id => params['head_id']
+        #redirect_to :action => 'public_edit', :id => params['head_id']
+      end
+      
+      def public_remove_translation_equivalent
+        d = Definition.find(params[:id])
+        p = TranslationEquivalent.find(params['translation_equivalent'])
+        @translation_equivalent = TranslationEquivalent.find(params['translation_equivalent'])
+        @temp_definition = Definition.find(params[:id])
+        d.translation_equivalents.delete(p) unless d == nil
+        ##redirect_to :action => 'public_content_only', :id => params['head_id']
+        #redirect_to :action => 'public_edit', :id => params['head_id']
+      end
 
+      def public_remove_pronunciation
+        d = Definition.find(params[:id])
+        p = Pronunciation.find(params['pronunciation'])
+        @pronunciation = Pronunciation.find(params['pronunciation'])
+        @temp_definition = Definition.find(params[:id])        
+        d.pronunciations.delete(p) unless d == nil
+        ##redirect_to :action => 'public_content_only', :id => params['head_id']
+        #redirect_to :action => 'public_edit', :id => params['head_id']
+      end
 
-
+      def public_remove_spelling
+        d = Definition.find(params[:id])
+        p = Spelling.find(params['spelling'])
+        @spelling = Spelling.find(params['spelling'])
+        @temp_definition = Definition.find(params[:id])
+        d.spellings.delete(p) unless d == nil
+        ##redirect_to :action => 'public_content_only', :id => params['head_id']
+        #redirect_to :action => 'public_edit', :id => params['head_id']
+      end
+      
+      def public_remove_translation
+        #now determine who's the parent of the translation to update
+        translation = Translation.find(params['translation'])
+          if translation.definition_id.nil?
+            if translation.etymology_id.nil?
+              if translation.literary_quotation_id.nil?
+                if translation.oral_quotation_id.nil?
+                  if translation.model_sentence_id.nil?
+                  else
+                    @parent_element = ModelSentence.find(translation.model_sentence_id) 
+                    @temp_definition = Definition.find(@parent_element.definitions.first.definition_id)
+                  end
+                else
+                  @parent_element = OralQuotation.find(translation.oral_quotation_id) 
+                  @temp_definition = Definition.find(@parent_element.definitions.first.definition_id)
+                end
+              else
+                @parent_element = LiteraryQuotation.find(translation.literary_quotation_id) 
+                @temp_definition = Definition.find(@parent_element.definitions.first.definition_id)
+              end
+            else
+              @parent_element = Etymology.find(translation.etymology_id) 
+              @temp_definition = Definition.find(@parent_element.definition_id)
+            end
+          else
+            @parent_element = Definition.find(translation.definition_id) 
+            @temp_definition = Definition.find(translation.definition_id) 
+          end
+        debugger
+        #d = Definition.find(params[:id])
+        #p = Translation.find(params['translation'])
+        #d.translations.delete(p) unless d == nil
+        @parent_element.translations.delete(translation) unless @parent_element == nil
+        
+      end
+      
 end
