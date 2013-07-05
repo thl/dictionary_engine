@@ -1,0 +1,401 @@
+<script>
+$(document).ready(function() {
+	$('div.showhide').hide();
+  	$('#hideh1').click(function(){
+	     $('div.showhide').hide();
+	   });
+	$('#showh1').click(function(){
+	     $('div.showhide').show();
+	   });
+	$('#toggleh1').click(function(){
+	     $('div.showhide').slideToggle("slow");
+	   });
+	
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); });
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});
+		
+	/* Activating Best In Place */
+	jQuery(".best_in_place").best_in_place();
+		
+});
+</script>
+
+<h1>Editing Model Sentence</h1>
+<%#= error_messages_for 'translation' %>
+
+<b>Model Sentence: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_model_sentence_path(@model_sentence, :field => 'model_sentence', :div_suffix => 'model_sentencepopupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_model_sentence_path(@model_sentence, :field => 'model_sentence', :div_suffix => 'model_sentencepopupdiv') %>
+
+<% if @model_sentence.model_sentence.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @model_sentence.model_sentence.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@model_sentence.id}_model_sentencepopupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Language: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_model_sentence_path(@model_sentence, :field => 'language_type_id', :div_suffix => 'popuplanguage_type_iddiv'), :remote => true %> 
+<%  popup_edit_path = inline_edit_model_sentence_path(@model_sentence, :field => 'language_type_id', :div_suffix => 'popuplanguage_type_iddiv') %>
+
+<% if @model_sentence.language_type_id.blank?
+       t_content = 'Click to modify'
+     else
+       t_content = @model_sentence.language_type.title
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@model_sentence.id}_popuplanguage_type_iddiv" %>">
+		<%= link_to "#{t_content}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true %> 
+	</div>
+</span>
+
+<br/><b>Tibetan Dialect: </b>
+
+<br/><b>Sentence type: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_model_sentence_path(@model_sentence, :field => 'sentence_type', :div_suffix => 'sentence_typediv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_model_sentence_path(@model_sentence, :field => 'sentence_type', :div_suffix => 'sentence_typediv') %>
+
+<% if @model_sentence.sentence_type.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @model_sentence.sentence_type.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@model_sentence.id}_sentence_typediv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+    </div>
+</span>
+
+<br/><b>Source: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_model_sentence_path(@model_sentence, :field => 'source', :div_suffix => 'popupsourcediv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_model_sentence_path(@model_sentence, :field => 'source', :div_suffix => 'popupsourcediv') %>
+
+<% if @model_sentence.source.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @model_sentence.source.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@model_sentence.id}_popupsourcediv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+    </div>
+</span>
+
+<br/><b>Spelling: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_model_sentence_path(@model_sentence, :field => 'spelling', :div_suffix => 'popupspellingdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_model_sentence_path(@model_sentence, :field => 'spelling', :div_suffix => 'popupspellingdiv') %>
+
+<% if @model_sentence.spelling.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @model_sentence.spelling.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@model_sentence.id}_popupspellingdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+    </div>
+</span>
+
+<br/><b>Literary genre: </b>
+
+<br/><b>Literary period: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_model_sentence_path(@model_sentence, :field => 'literary_period_type_id', :div_suffix => 'popupliterary_period_type_iddiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_model_sentence_path(@model_sentence, :field => 'literary_period_type_id', :div_suffix => 'popupliterary_period_type_iddiv') %>
+<% if @model_sentence.literary_period_type_id.blank?
+       t_content = 'Click to modify'
+     else
+       t_content = @model_sentence.literary_period_type.title
+   end %>
+<span class="definitions_show">
+	<div id="<%= "#{@model_sentence.id}_popupliterary_period_type_iddiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %> 
+	</div>
+</span>
+
+<br/><b>Literary form: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_model_sentence_path(@model_sentence, :field => 'literary_form_type_id', :div_suffix => 'popupliterary_form_type_iddiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_model_sentence_path(@model_sentence, :field => 'literary_form_type_id', :div_suffix => 'popupliterary_form_type_iddiv') %>
+<% if @model_sentence.literary_form_type_id.blank?
+       t_content = 'Click to modify'
+     else
+       t_content = @model_sentence.literary_form_type.title
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@model_sentence.id}_popupliterary_form_type_iddiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %> 
+	</div>
+</span>
+
+<br/><b>Analytical note: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_model_sentence_path(@model_sentence, :field => 'analytical_note', :div_suffix => 'anotediv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_model_sentence_path(@model_sentence, :field => 'analytical_note', :div_suffix => 'anotediv') %>
+
+<% if @model_sentence.analytical_note.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @model_sentence.analytical_note.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@model_sentence.id}_anotediv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+    </div>
+</span>
+
+<b>Edit Multimedia Data: </b>
+<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>
+<div class='showhide' style='border-style:solid;border-width:1px;padding:5px 5px;margin-left: 5pt;'>
+	<br><b>Image: </b>
+	<br><%#= best_in_place @model_sentence, :image %>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'image', :div_suffix => 'imagediv') %>
+	<% if @model_sentence.image.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.image.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_imagediv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Image caption: </b>
+	<br><%#= best_in_place @model_sentence, :image_caption %>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'image_caption', :div_suffix => 'image_captiondiv') %>
+	<% if @model_sentence.image_caption.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.image_caption.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_image_captiondiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Image photographer: </b>
+	<br><%#= best_in_place @model_sentence, :image_photographer %>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'image_photographer', :div_suffix => 'image_photographerdiv') %>
+	<% if @model_sentence.image_photographer.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.image_photographer.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_image_photographerdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Image link: </b>
+	<br><%#= best_in_place @model_sentence, :image_link %>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'image_link', :div_suffix => 'image_linkdiv') %>
+	<% if @model_sentence.image_link.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.image_link.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_image_linkdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Image description: </b>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'image_description', :div_suffix => 'imagedescdiv') %>
+	<% if @model_sentence.image_description.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.image_description.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_imagedescdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio: </b>
+	<br><%#= best_in_place @model_sentence, :audio %>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+	<% if @model_sentence.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_audiodiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio id number: </b>
+	<br><%#= best_in_place @model_sentence, :audio_id_number %>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'audio', :div_suffix => 'audio_id_numberdiv') %>
+	<% if @model_sentence.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_audio_id_numberdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio speaker: </b>
+	<br><%#= best_in_place @model_sentence, :audio_speaker %>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'audio', :div_suffix => 'audio_speakerdiv') %>
+	<% if @model_sentence.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_audio_speakerdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio date: </b>
+	<br><%#= best_in_place @model_sentence, :audio_date %>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'audio', :div_suffix => 'audio_datediv') %>
+	<% if @model_sentence.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_audio_datediv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio place of recording: </b>
+	<br><%#= best_in_place @model_sentence, :audio_place_of_recording %>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'audio', :div_suffix => 'audio_place_of_recordingdiv') %>
+	<% if @model_sentence.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_audio_place_of_recordingdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio link: </b>
+	<br><%#= best_in_place @model_sentence, :audio_link %>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'audio', :div_suffix => 'audio_linkdiv') %>
+	<% if @model_sentence.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_audio_linkdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<!--<br><b>Audio description: </b> 
+	<%# def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'audio_description', :div_suffix => 'audiodescdiv') %>
+	<%# if @model_sentence.audio_description.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.audio_description.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%#= "#{@model_sentence.id}_audiodescdiv" %>">
+			<%#= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>-->
+	<br><b>Video: </b>
+	<br><%#= best_in_place @model_sentence, :video %>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'video', :div_suffix => 'videodiv') %>
+	<% if @model_sentence.video.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.video.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_videodiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video id number: </b>
+	<br><%#= best_in_place @model_sentence, :video_id_number %>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'video_id_number', :div_suffix => 'video_id_numberdiv') %>
+	<% if @model_sentence.video_id_number.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.video_id_number.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_video_id_numberdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video speaker: </b>
+	<br><%#= best_in_place @model_sentence, :video_speaker %>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'video_speaker', :div_suffix => 'video_speakerdiv') %>
+	<% if @model_sentence.video_speaker.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.video_speaker.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_video_speakerdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video date: </b>
+	<br><%#= best_in_place @model_sentence, :video_date %>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'video_date', :div_suffix => 'video_datediv') %>
+	<% if @model_sentence.video_date.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.video_date.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_video_datediv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video place of recording: </b>
+	<br><%#= best_in_place @model_sentence, :video_place_of_recording %>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'video_place_of_recording', :div_suffix => 'video_place_of_recordingdiv') %>
+	<% if @model_sentence.video_place_of_recording.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.video_place_of_recording.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_video_place_of_recordingdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video link: </b>
+	<br><%#= best_in_place @model_sentence, :video_link %>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'video_link', :div_suffix => 'video_linkdiv') %>
+	<% if @model_sentence.video_link.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.video_link.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_video_linkdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video description: </b>
+	<% def_edit_path = inline_edit_model_sentence_path(:id => @model_sentence.id, :field => 'video_description', :div_suffix => 'videodescdiv') %>
+	<% if @model_sentence.video_description.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @model_sentence.video_description.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@model_sentence.id}_videodescdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+</div> <!--- #showhide -->
+
+<%= form_for(:model_sentence, :url => update_dynamic_model_sentence_path(@model_sentence), :method => :get, :remote => true) do |f| %>
+  <br>
+  <%= submit_tag 'Update', :id => 'update_button' %>
+  <input type='button' name='cancel_button' value='Cancel' id='cancel_button'>  
+<% end %> <!--form_for-->

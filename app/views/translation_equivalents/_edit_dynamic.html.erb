@@ -24,7 +24,7 @@ $(document).ready(function() {
 <%#= error_messages_for 'translation' %>
 
 <b>Translation: </b>
-<%= link_to image_tag('pencil.png',:border => 0), inline_edit_translation_equivalent_path(@translation, :field => 'translation_equivalent', :div_suffix => 'translation_equivalentpopupdiv'), :remote => true %> 	
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_translation_equivalent_path(@translation_equivalent, :field => 'translation_equivalent', :div_suffix => 'translation_equivalentpopupdiv'), :remote => true %> 	
 <% inline_edit_path = inline_edit_translation_equivalent_path(@translation_equivalent, :field => 'translation_equivalent', :div_suffix => 'translation_equivalentpopupdiv') %>
 
 <% if @translation_equivalent.translation_equivalent.blank?
@@ -54,7 +54,7 @@ $(document).ready(function() {
 </span>
 
 <br/><b>Analytical note: </b>
-<%= link_to image_tag('pencil.png',:border => 0), inline_edit_translation_equivalent_path(@translation, :field => 'analytical_note', :div_suffix => 'anotediv'), :remote => true %> 	
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_translation_equivalent_path(@translation_equivalent, :field => 'analytical_note', :div_suffix => 'anotediv'), :remote => true %> 	
 <% inline_edit_path = inline_edit_translation_equivalent_path(@translation_equivalent, :field => 'analytical_note', :div_suffix => 'anotediv') %>
 
 <% if @translation_equivalent.analytical_note.blank?

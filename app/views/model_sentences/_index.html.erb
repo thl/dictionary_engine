@@ -1,0 +1,94 @@
+<script>
+$(document).ready(function() {
+	
+});
+</script>
+
+<% if d.model_sentences.size > 0%>
+	<% count = 0;
+	size = d.model_sentences.size;
+	for e in d.model_sentences %>
+	<b>Model sentence:</b>
+		<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+		<%= link_to image_tag('pencil.png',:border => 0), edit_dynamic_model_sentence_path(e, :internal=>'edit_box', :public=>'yes'), :remote => true, :class => 'ui_definition_dialog', :title=>'Model Sentence Edit' %>
+
+		<span class=menuvalue onclick=show_menu(model_sentence_menu,getCoord(arguments[0]));>
+			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'model_sentence_id='+e.id.to_s, :title => 'Edit Relationships' %> 
+		</span>
+				
+		<%= link_to image_tag('cross.png',:border => 0), {:controller => 'definitions', :action => 'public_remove_model_sentence', :id => d.id, :parent_id => parent_id, :head_id => head_id, :model_sentence => e.id},  :remote => true, :class => 'ui_definition_dialog', :title=>'Remove Model Sentence', :confirm => "Are you sure you want to remove this Model Sentence?" %>
+			
+		
+		<% inline_edit_path = inline_edit_model_sentence_path(:id => e.id, :field => 'model_sentence', :div_suffix => 'model_sentencediv') %>
+		<% if e.model_sentence.blank?
+		       t_content = 'Click to modify'
+		   else
+		       t_content = e.model_sentence.s     
+		end %>
+		<span class="tib1">
+			<span class="tinyfied_show">
+				<div id="<%= "#{e.id}_model_sentencediv" %>">
+					<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+		    	</div>
+			</span>
+		</span>
+			
+		<dl style="margin-top:0em;margin-bottom:0em;">
+			<dd style="display:none"></dd>
+				<% if !e.language_type.blank? %>
+					<dd><b>Language: </b><%= link_to e.language_type.title, e.language_type.get_url_with_parent, :target => "_blank", :target => "_blank" if !e.language_type.blank? %></dd>
+				<% end %>
+
+				<% assoc = e.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
+				<% if !assoc.blank? %>
+					<dd><b>Tibetan Dialect: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => "_blank"}.join(', ') %>]</dd>
+				<% end %>
+				<% if e.sentence_type != nil and e.sentence_type != ''%>
+					<dd><b>Type: </b><%= e.sentence_type %></dd>
+				<% end %>
+				<% if !e.source.blank? %>
+					<dd><b>Source: </b>
+						<% inline_edit_path = inline_edit_model_sentence_path(@model_sentence, :field => 'source', :div_suffix => 'sourcediv') %>
+
+						<% if e.source.blank?
+						       t_content = 'Click to modify'
+						   else
+						       t_content = e.source.s     
+						   end %>
+						<span class="tinyfied_show">
+							<div id="<%= "#{e.id}_sourcediv" %>">
+								<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+						    </div>
+						</span>
+					</dd>
+				<% end %>
+
+				<% assoc = e.category_model_sentence_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
+				<% if !assoc.blank? %>
+					<dd><b>Literary Genre: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => "_blank"}.join(', ') %>]</dd>
+				<% end %>
+
+				<% if !e.literary_period_type.blank? %>
+					<dd><b>Literary period: </b><%= link_to e.literary_period_type.title, e.literary_period_type.get_url_with_parent, :target => "_blank" if !e.literary_period_type.blank? %></dd>
+				<% end %>
+				<% if !e.literary_form_type.blank? %>
+					<dd><b>Literary form: </b><%= link_to e.literary_form_type.title, e.literary_form_type.get_url_with_parent, :target => "_blank" if !e.literary_form_type.blank?  %></dd>
+				<% end %>
+				<% if !e.analytical_note.blank? %>
+			  		<dd><b>Analytical note: </b><span class='tinyfied_show'><span class="tib1"><%= e.analytical_note.s %></span></span></dd>
+		 		<% end %>		
+		
+				<div id="<%= e.id%>_modelsentence_metas_div">
+	      			<%# if e.meta != nil%>
+	        			<% t = Time.now %>
+	        			<%#= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+		  			<%# end %>
+				</div>
+		
+				<div id="<%= e.id%>_modelsentence_translations_div"> 
+					<%=   render :partial => 'translations/index', :locals => {:o => e, :parent_id => parent_id, :head_id => head_id} %>			
+				</div>
+		</dl>
+	<% end %>
+<% end %>
+<span id="<%= d.id%>_model_sentence" > </span>

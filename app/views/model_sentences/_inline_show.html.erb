@@ -1,0 +1,21 @@
+
+<% edit_path = inline_edit_model_sentence_path(@model_sentence, :field => params[:field], :div_suffix => params[:div_suffix] ) 
+   field = params[:field]
+   div_suffix = params[:div_suffix]
+%>	
+
+<% if @model_sentence[field].blank?
+  	t_content = 'Click to modify'
+   else
+	case params[:field] 
+		when 'language_type_id' then 
+			t_content = @model_sentence.language_type.title
+		when 'literary_period_type_id' then 
+			t_content = @model_sentence.literary_period_type.title
+		when 'literary_form_type_id' then
+			t_content = @model_sentence.literary_form_type.title
+		else
+  			t_content = @model_sentence[field].s
+	end	
+   end %>
+<%= link_to "#{t_content}".html_safe, edit_path, :class => 'definitions_show', :remote => true %>

@@ -60,6 +60,17 @@ Rails.application.routes.draw do
     end
   end
   
+  #========== Model Sentences Routes
+  resources :model_sentences do
+    member do
+      get :edit_dynamic
+      post :update_dynamic
+      get :inline_edit
+      get :inline_show
+      post :inline_update
+    end
+  end  
+  
   #========== Spellings Routes
   resources :spellings 
  
