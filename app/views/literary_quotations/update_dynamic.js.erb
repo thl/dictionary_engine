@@ -1,0 +1,1 @@
+$("#<%= @literary_quotation.definitions.first.id %>_literary_quotations_div").html("<%= escape_javascript(render(:partial => 'literary_quotations/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition, :head_id => @temp_definition})) %>")

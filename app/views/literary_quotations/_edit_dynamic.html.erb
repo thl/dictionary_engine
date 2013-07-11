@@ -1,0 +1,631 @@
+<script>
+$(document).ready(function() {
+	$('div.showhide').hide();
+  	$('#hideh1').click(function(){
+	     $('div.showhide').hide();
+	   });
+	$('#showh1').click(function(){
+	     $('div.showhide').show();
+	   });
+	$('#toggleh1').click(function(){
+	     $('div.showhide').slideToggle("slow");
+	   });
+	
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); });
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});
+		
+	/* Activating Best In Place */
+	jQuery(".best_in_place").best_in_place();
+		
+});
+</script>
+
+<h1>Editing Literary Quotation</h1>
+
+<b>Source ID: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'source_id', :div_suffix => 'literary_quotation_source_id_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'source_id', :div_suffix => 'literary_quotation_source_id_popupdiv') %>
+
+<% if @literary_quotation.source_id.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.source_id.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_source_id_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Title: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'title', :div_suffix => 'literary_quotation_title_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'title', :div_suffix => 'literary_quotation_title_popupdiv') %>
+<% if @literary_quotation.title.blank?
+   t_content = 'Click to modify'
+else
+   t_content = @literary_quotation.title.s     
+end %>
+<span class="tib1">
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_literary_quotation_title_popupdiv" %>">
+			<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+		</div>
+	</span>
+</span>
+
+<b>Author: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'author', :div_suffix => 'literary_quotation_author_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'author', :div_suffix => 'literary_quotation_author_popupdiv') %>
+
+<% if @literary_quotation.author.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.author.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_author_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Passage: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'passage', :div_suffix => 'literary_quotation_passage_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'passage', :div_suffix => 'literary_quotation_passage_popupdiv') %>
+
+<% if @literary_quotation.passage.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.passage.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_passage_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Spelling: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'spelling', :div_suffix => 'literary_quotation_spelling_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'spelling', :div_suffix => 'literary_quotation_spelling_popupdiv') %>
+
+<% if @literary_quotation.spelling.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.spelling.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_spelling_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Script: </b>
+
+<br/><b>Literary genre: </b>
+
+<br/><b>Literary period: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'literary_period_type_id', :div_suffix => 'literary_quotation_literary_period_type_id_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'literary_period_type_id', :div_suffix => 'literary_quotation_literary_period_type_id_popupdiv') %>
+
+<% if @literary_quotation.literary_period_type_id.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.literary_period_type.title    
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_literary_period_type_id_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Literary form: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'literary_form_type_id', :div_suffix => 'literary_quotation_literary_form_type_id_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'literary_form_type_id', :div_suffix => 'literary_quotation_literary_form_type_id_popupdiv') %>
+
+<% if @literary_quotation.literary_form_type_id.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.literary_form_type.title    
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_literary_form_type_id_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>International date of composition: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'western_date', :div_suffix => 'literary_quotation_western_date_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'western_date', :div_suffix => 'literary_quotation_western_date_popupdiv') %>
+
+<% if @literary_quotation.western_date.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.western_date.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_western_date_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>International date note: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'western_date_note', :div_suffix => 'literary_quotation_western_date_note_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'western_date_note', :div_suffix => 'literary_quotation_western_date_note_popupdiv') %>
+
+<% if @literary_quotation.western_date_note.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.western_date_note.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_western_date_note_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Tibetan date of composition: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'tibetan_date', :div_suffix => 'literary_quotation_tibetan_date_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'tibetan_date', :div_suffix => 'literary_quotation_tibetan_date_popupdiv') %>
+
+<% if @literary_quotation.tibetan_date.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.tibetan_date.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_tibetan_date_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Tibetan date note: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'spelling', :div_suffix => 'literary_quotation_spelling_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'spelling', :div_suffix => 'literary_quotation_spelling_popupdiv') %>
+
+<% if @literary_quotation.spelling.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.spelling.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_spelling_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Edition: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'edition', :div_suffix => 'literary_quotation_edition_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'edition', :div_suffix => 'literary_quotation_edition_popupdiv') %>
+
+<% if @literary_quotation.edition.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.edition.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_edition_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Publisher: </b>"
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'publisher', :div_suffix => 'literary_quotation_publisher_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'publisher', :div_suffix => 'literary_quotation_publisher_popupdiv') %>
+
+<% if @literary_quotation.publisher.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.publisher.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_publisher_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Place of publication: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'place_of_publication', :div_suffix => 'literary_quotation_place_of_publication_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'place_of_publication', :div_suffix => 'literary_quotation_place_of_publication_popupdiv') %>
+
+<% if @literary_quotation.place_of_publication.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.place_of_publication.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_place_of_publication_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Date of publication: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'published_date', :div_suffix => 'literary_quotation_published_date_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'published_date', :div_suffix => 'literary_quotation_published_date_popupdiv') %>
+
+<% if @literary_quotation.published_date.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.published_date.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_published_date_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>ISBN: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'isbn', :div_suffix => 'literary_quotation_isbn_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'isbn', :div_suffix => 'literary_quotation_isbn_popupdiv') %>
+
+<% if @literary_quotation.isbn.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.isbn.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_isbn_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Volume number: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'volume_number', :div_suffix => 'literary_quotation_volume_number_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'volume_number', :div_suffix => 'literary_quotation_volume_number_popupdiv') %>
+
+<% if @literary_quotation.volume_number.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.volume_number.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_volume_number_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Passage number: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'passage_pound', :div_suffix => 'literary_quotation_passage_pound_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'passage_pound', :div_suffix => 'literary_quotation_passage_pound_popupdiv') %>
+
+<% if @literary_quotation.passage.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.passage    
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_passage_pound_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Page number: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'passage_number', :div_suffix => 'literary_quotation_passage_number_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'passage_number', :div_suffix => 'literary_quotation_passage_number_popupdiv') %>
+
+<% if @literary_quotation.passage_number.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.passage_number.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_passage_number_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Page side: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'page_side', :div_suffix => 'literary_quotation_page_side_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'page_side', :div_suffix => 'literary_quotation_page_side_popupdiv') %>
+
+<% if @literary_quotation.page_side.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.page_side.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_page_side_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Line number: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'line_number', :div_suffix => 'literary_quotation_line_number_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'line_number', :div_suffix => 'literary_quotation_line_number_popupdiv') %>
+
+<% if @literary_quotation.line_number.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.line_number.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_line_number_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Passage Url: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'url', :div_suffix => 'literary_quotation_url_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'url', :div_suffix => 'literary_quotation_url_popupdiv') %>
+
+<% if @literary_quotation.url.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.url.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_url_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+
+<b>Analytical note: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_literary_quotation_path(@literary_quotation, :field => 'analytical_note', :div_suffix => 'literary_quotation_analytical_note_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => 'analytical_note', :div_suffix => 'literary_quotation_analytical_note_popupdiv') %>
+
+<% if @literary_quotation.analytical_note.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @literary_quotation.analytical_note.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@literary_quotation.id}_literary_quotation_analytical_note_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Edit Multimedia Data: </b>
+<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>
+<div class='showhide' style='border-style:solid;border-width:1px;padding:5px 5px;margin-left: 5pt;'>
+	<br><b>Image: </b>
+	<br><%#= best_in_place @literary_quotation, :image %>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'image', :div_suffix => 'imagediv') %>
+	<% if @literary_quotation.image.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.image.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_imagediv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Image caption: </b>
+	<br><%#= best_in_place @literary_quotation, :image_caption %>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'image_caption', :div_suffix => 'image_captiondiv') %>
+	<% if @literary_quotation.image_caption.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.image_caption.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_image_captiondiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Image photographer: </b>
+	<br><%#= best_in_place @literary_quotation, :image_photographer %>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'image_photographer', :div_suffix => 'image_photographerdiv') %>
+	<% if @literary_quotation.image_photographer.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.image_photographer.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_image_photographerdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Image link: </b>
+	<br><%#= best_in_place @literary_quotation, :image_link %>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'image_link', :div_suffix => 'image_linkdiv') %>
+	<% if @literary_quotation.image_link.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.image_link.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_image_linkdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Image description: </b>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'image_description', :div_suffix => 'imagedescdiv') %>
+	<% if @literary_quotation.image_description.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.image_description.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_imagedescdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio: </b>
+	<br><%#= best_in_place @literary_quotation, :audio %>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+	<% if @literary_quotation.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_audiodiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio id number: </b>
+	<br><%#= best_in_place @literary_quotation, :audio_id_number %>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'audio', :div_suffix => 'audio_id_numberdiv') %>
+	<% if @literary_quotation.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_audio_id_numberdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio speaker: </b>
+	<br><%#= best_in_place @literary_quotation, :audio_speaker %>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'audio', :div_suffix => 'audio_speakerdiv') %>
+	<% if @literary_quotation.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_audio_speakerdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio date: </b>
+	<br><%#= best_in_place @literary_quotation, :audio_date %>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'audio', :div_suffix => 'audio_datediv') %>
+	<% if @literary_quotation.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_audio_datediv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio place of recording: </b>
+	<br><%#= best_in_place @literary_quotation, :audio_place_of_recording %>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'audio', :div_suffix => 'audio_place_of_recordingdiv') %>
+	<% if @literary_quotation.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_audio_place_of_recordingdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio link: </b>
+	<br><%#= best_in_place @literary_quotation, :audio_link %>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'audio', :div_suffix => 'audio_linkdiv') %>
+	<% if @literary_quotation.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_audio_linkdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio description: </b> 
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'audio_description', :div_suffix => 'audiodescdiv') %>
+	<% if @literary_quotation.audio_description.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.audio_description.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_audiodescdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>-->
+	<br><b>Video: </b>
+	<br><%#= best_in_place @literary_quotation, :video %>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'video', :div_suffix => 'videodiv') %>
+	<% if @literary_quotation.video.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.video.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_videodiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video id number: </b>
+	<br><%#= best_in_place @literary_quotation, :video_id_number %>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'video_id_number', :div_suffix => 'video_id_numberdiv') %>
+	<% if @literary_quotation.video_id_number.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.video_id_number.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_video_id_numberdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video speaker: </b>
+	<br><%#= best_in_place @literary_quotation, :video_speaker %>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'video_speaker', :div_suffix => 'video_speakerdiv') %>
+	<% if @literary_quotation.video_speaker.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.video_speaker.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_video_speakerdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video date: </b>
+	<br><%#= best_in_place @literary_quotation, :video_date %>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'video_date', :div_suffix => 'video_datediv') %>
+	<% if @literary_quotation.video_date.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.video_date.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_video_datediv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video place of recording: </b>
+	<br><%#= best_in_place @literary_quotation, :video_place_of_recording %>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'video_place_of_recording', :div_suffix => 'video_place_of_recordingdiv') %>
+	<% if @literary_quotation.video_place_of_recording.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.video_place_of_recording.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_video_place_of_recordingdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video link: </b>
+	<br><%#= best_in_place @literary_quotation, :video_link %>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'video_link', :div_suffix => 'video_linkdiv') %>
+	<% if @literary_quotation.video_link.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.video_link.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_video_linkdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video description: </b>
+	<% def_edit_path = inline_edit_literary_quotation_path(:id => @literary_quotation.id, :field => 'video_description', :div_suffix => 'videodescdiv') %>
+	<% if @literary_quotation.video_description.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @literary_quotation.video_description.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@literary_quotation.id}_videodescdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+</div> <!--- #showhide -->
+
+<%= form_for(:literary_quotation, :url => update_dynamic_literary_quotation_path(@literary_quotation), :method => :get, :remote => true) do |f| %>
+	<input type="hidden" name="id" value="<%= params["id"] %>"/>
+  	<input type="hidden" name="pk" value="<%= params['pk'] %>">
+  	<br>
+  	<%= submit_tag 'Update', :id => 'update_button' %>
+  	<input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
+<% end %> <!--form_for-->

@@ -1063,4 +1063,48 @@ class DefinitionsController < ApplicationController
         d.model_sentences.delete(p) unless d == nil
       end
       
+    def public_remove_literary_quotation
+      d = Definition.find(params[:id])
+      p = LiteraryQuotation.find(params['literary_quotation'])
+      @literary_quotation = LiteraryQuotation.find(params['literary_quotation'])
+      @temp_definition = Definition.find(@literary_quotation.definitions.first.id)
+      d.literary_quotations.delete(p) unless d == nil
+    end  
+      
+      
+    #Actions to remove Translations from other modules, pending to upgrade
+    def public_remove_etymology_translation
+      e = Etymology.find(params[:id])
+      p = Translation.find(params['translation'])
+      e.translations.delete(p) unless e == nil
+      #redirect_to :action => 'public_content_only', :id => params['head_id']
+      redirect_to :action => 'public_edit', :id => params['head_id']
+    end
+
+    def public_remove_model_sentence_translation
+      m = ModelSentence.find(params[:id])
+      t = Translation.find(params['translation'])
+      m.translations.delete(t) unless m == nil
+      #redirect_to :action => 'public_content_only', :id => params['head_id']
+      redirect_to :action => 'public_edit', :id => params['head_id']
+    end
+
+    def public_remove_literary_quotation_translation
+      l = LiteraryQuotation.find(params[:id])
+      t = Translation.find(params['translation'])
+      l.translations.delete(t) unless l == nil
+      #redirect_to :action => 'public_content_only', :id => params['head_id']
+      redirect_to :action => 'public_edit', :id => params['head_id']
+    end
+
+    def public_remove_oral_quotation_translation
+      o = OralQuotation.find(params[:id])
+      t = Translation.find(params['translation'])
+      o.translations.delete(t) unless o == nil
+      #redirect_to :action => 'public_content_only', :id => params['head_id']
+      redirect_to :action => 'public_edit', :id => params['head_id']
+    end
+    
+      
+      
 end

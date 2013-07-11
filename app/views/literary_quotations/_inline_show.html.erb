@@ -1,0 +1,21 @@
+
+<% edit_path = inline_edit_literary_quotation_path(@literary_quotation, :field => params[:field], :div_suffix => params[:div_suffix] ) 
+   field = params[:field]
+   div_suffix = params[:div_suffix]
+%>	
+
+<% if @literary_quotation[field].blank?
+  	t_content = 'Click to modify'
+   else
+	case params[:field] 
+		when 'literary_period_type_id' then 
+			t_content = @literary_quotation.literary_period_type.title
+		when 'literary_form_type_id' then
+			t_content = @literary_quotation.literary_form_type.title
+		when 'passage_pound' then
+			t_content = @literary_quotation[field]
+		else
+  			t_content = @literary_quotation[field].s
+	end	
+   end %>
+<%= link_to "#{t_content}".html_safe, edit_path, :class => 'definitions_show', :remote => true %>

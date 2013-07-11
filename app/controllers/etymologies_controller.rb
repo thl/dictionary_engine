@@ -209,5 +209,57 @@ class EtymologiesController < ApplicationController
     end
   end
   
+  #used for new etymology->translation
+  def edit_new
+  #    if params['internal'] != nil
+  #      internal = params['internal']
+  #    else
+  #      internal = "etymology"
+  #    end
+  #    if params['level'] != nil
+  #      level = params['level'].to_i + 1
+  #    else
+  #    	 level = '2'
+  #    end
+    @etymology = Etymology.find(params['id'])
+    @etymology.updated_by = session[:user].login
+    @etymology.updated_at = Time.now
+    if @etymology.update_history == nil
+      @etymology.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+    else
+      @etymology.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+    end
+    @etymology.save
+  #    if params["relatedtype"] == "definition"
+  #      o = Definition.new
+  #      o.save
+  #      @etymology.definition = o
+  #      @etymology.save
+  #      render_component :controller => "definitions", :action => "edit_dynamic", :id => o.id, :params => {'internal' => "etymologies", 'pk' => params['id'], 'relatedtype'=> 'definition', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+  #    end
+  
+  #    if params["relatedtype"] == "meta"
+  #      o = Meta.new
+  #      o.created_by = session[:user].login
+  #      o.created_at = Time.now
+  #      o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
+  #      o.save
+  #      @etymology.meta = o
+  #      @etymology.save
+  #      #render_component :controller => "metas", :action => "edit_dynamic", :id => o.id, :params => {'internal' => "edit_box", 'pk' => params['id'], 'relatedtype'=> 'meta', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+  #      redirect_to meta_metadata_edit_dynamic_meta_url(o.id)
+  #    end
+    if params["relatedtype"] == "translation"
+      o = Translation.new
+      o.created_by = session[:user].login
+      o.created_at = Time.now
+      o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
+      o.save
+      @etymology.translations << o
+      redirect_to edit_dynamic_translation_url(o.id)
+    end
+  end
   
 end

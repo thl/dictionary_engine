@@ -1,0 +1,165 @@
+<script>
+$(document).ready(function() {
+
+});
+</script>
+
+<% if d.literary_quotations.size > 0
+	count = 0;
+	size = d.literary_quotations.size;
+	for e in d.literary_quotations %>
+	<b>Literary quotation:</b>
+		<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+		<%= link_to image_tag('pencil.png',:border => 0), edit_dynamic_literary_quotation_path(e, :internal=>'edit_box', :public=>'yes'), :remote => true, :class => 'ui_definition_dialog', :title=>'Literary Quotation Edit' %>
+
+		<span class=menuvalue onclick=show_menu(literary_quotation_menu,getCoord(arguments[0]));>
+			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'literary_quotation_id='+e.id.to_s, :title => 'Edit Relationships' %> 
+		</span>
+				
+		<%= link_to image_tag('cross.png',:border => 0), {:controller => 'definitions', :action => 'public_remove_literary_quotation', :id => d.id, :parent_id => parent_id, :head_id => head_id, :literary_quotation => e.id},  :remote => true, :class => 'ui_definition_dialog', :title=>'Remove Literary Quotation', :confirm => "Are you sure you want to remove this Literary Quotation?" %>
+	
+		<dl style="margin-top:0em;margin-bottom:0em;">
+			<dd style="display:none"></dd>
+			<% if !e.title.blank? %>
+				<dd><b>Title: </b>
+				<% inline_edit_path = inline_edit_literary_quotation_path(:id => e.id, :field => 'title', :div_suffix => 'litquotitlediv"') %>
+				<% if e.title.blank?
+			       t_content = 'Click to modify'
+			   	else
+			       t_content = e.title.s     
+				end %>
+				<span class="tib1">
+					<span class="tinyfied_show">
+						<div id="<%= "#{e.id}_litquotitlediv" %>">
+							<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+			    		</div>
+					</span>
+				</span>
+				</dd>
+			<% end %>
+
+		
+			<% if !e.author.blank? %>
+				<dd><b>Author: </b>
+				<% inline_edit_path = inline_edit_literary_quotation_path(:id => e.id, :field => 'author', :div_suffix => 'litquoauthordiv"') %>
+				<% if e.author.blank?
+					 t_content = 'Click to modify'
+				   else
+				       t_content = e.author.s     
+				   end 
+				%>
+				<span class="tinyfied_show">
+					<div id="<%= "#{e.id}_litquoauthordiv" %>">
+						<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+				    </div>
+				</span>	
+				</dd>
+			<% end %>
+		
+			<% if !e.passage_number.blank? %>
+				<dd><b>Passage number: </b><%= e.passage_number.s %></dd>
+			<% end %>
+			<% if !e.passage.blank? %>
+				<dd><b>Passage: </b>
+				<% inline_edit_path = inline_edit_literary_quotation_path(:id => e.id, :field => 'passage', :div_suffix => 'passagediv"') %>
+				<% if e.passage.blank?
+				       t_content = 'Click to modify'
+				   	else
+				       t_content = e.passage.s     
+				end %>
+				<span class="tib1">
+					<span class="tinyfied_show">
+						<div id="<%= "#{e.id}_passagediv" %>">
+							<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+				   		</div>
+					</span>
+				</span>
+				</dd>
+			<% end %>
+		
+		<% if e.source_id != nil and e.source_id != '' %>
+			  <dd><b>Source ID: </b><%= e.source_id %></dd>
+		<% end %>
+		<% if e.spelling != nil and e.spelling != '' %>
+			  <dd><b>Spelling: </b><%= e.spelling %></dd>
+		<% end %>
+
+		<% assoc = e.category_literary_quotation_associations.find(:all, :conditions => {:category_branch_id => 192}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Script: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ').html_safe %>]</dd>
+		<% end %>
+		<% assoc = e.category_literary_quotation_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
+		<% if !assoc.blank? %>
+			<dd><b>Literary Genre: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ').html_safe %>]</dd>
+		<% end %>
+		<% if !e.literary_period_type.blank? %>
+				<dd><b>Literary period: </b><%= link_to e.literary_period_type.title, e.literary_period_type.get_url_with_parent if !e.literary_period_type.blank? %></dd>
+		<% end %>
+		<% if !e.literary_form_type.blank? %>
+				<dd><b>Literary form: </b><%= link_to e.literary_form_type.title, e.literary_form_type.get_url_with_parent if !e.literary_form_type.blank?  %></dd>
+		<% end %>
+		<% if e.western_date != nil and e.western_date != '' %>
+			  <dd><b>International date of composition: </b><%= e.western_date %></dd>
+		<% end %>
+		<% if e.western_date_note != nil and e.western_date_note != '' %>
+			  <dd><b>Western date note: </b><%= e.western_date_note %></dd>
+		<% end %>
+		<% if e.tibetan_date != nil and e.tibetan_date != '' %>
+			  <dd><b>Tibetan date of composition: </b><%= e.tibetan_date %></dd>
+		<% end %>
+		<% if e.tibetan_date_note != nil and e.tibetan_date_note != '' %>
+			  <dd><b>Tibetan date note: </b><%= e.tibetan_date_note %></dd>
+		<% end %>
+		<% if e.edition != nil and e.edition != '' %>
+			  <dd><b>Edition: </b><%= e.edition %></dd>
+		<% end %>
+		<% if e.publisher != nil and e.publisher != '' %>
+			  <dd><b>Publisher: </b><%= e.publisher %></dd>
+		<% end %>
+		<% if e.place_of_publication != nil and e.place_of_publication != '' %>
+			  <dd><b>Place of publication: </b><%= e.place_of_publication %></dd>
+		<% end %>
+		<% if e.published_date != nil and e.published_date != '' %>
+			  <dd><b>Date of publication: </b><%= e.published_date %></dd>
+		<% end %>
+		<% if e.isbn != nil and e.isbn != '' %>
+			  <dd><b>ISBN: </b><%= e.isbn %></dd>
+		<% end %>
+		<% if e.volume_number != nil and e.volume_number != '' %>
+			  <dd><b>Volume number: </b><%= e.volume_number %></dd>
+		<% end %>
+		<% if e.passage_pound != nil and e.passage_pound != '' %>
+			  <dd><b>Passage number: </b><%= e.passage_pound %></dd>
+		<% end %>
+		<% if e.passage_number != nil and e.passage_number != '' %>
+			  <dd><b>Page number: </b><%= e.passage_number %></dd>
+		<% end %>
+		<% if e.page_side != nil and e.page_side != '' %>
+			  <dd><b>Page side: </b><%= e.page_side %></dd>
+		<% end %>
+		<% if e.line_number != nil and e.line_number != '' %>
+			  <dd><b>Line number: </b><%= e.line_number %></dd>
+		<% end %>
+		<% if e.url != nil and e.url != '' %>
+			  <dd><b>Passage Url: </b><%= e.url %></dd>
+		<% end %>
+		<% if e.analytical_note != nil and e.analytical_note != '' %>
+			  <dd><b>Analytical note: </b><span class='tinyfied_show'><%= e.analytical_note %></span></dd>
+		 <% end %>
+		
+		<div id="<%= e.id%>_literaryquotation_metas_div">
+	      <% if e.meta != nil%>
+	        <% t = Time.now %>
+	        <%#= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+		  <% end %>
+		</div>
+	
+		<div id="<%= e.id%>_literaryquotation_translations_div"> 
+			<%=   render :partial => 'translations/index', :locals => {:o => e, :parent_id => parent_id, :head_id => head_id} %>			
+		</div>
+		
+		</dl>
+	<% end %>
+	<!-- <br> -->
+	<% end %>
+	<span id="<%= d.id%>_literary_quotation" > </span>

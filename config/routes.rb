@@ -33,52 +33,6 @@ Rails.application.routes.draw do
     end
   end
  
-  
-  #========== Translations Routes
-  resources :translations do
-    member do
-      get :edit_dynamic
-      post :update_dynamic
-      get :inline_edit
-      get :inline_show
-      post :inline_update
-    end
-  end
-  
-  #match 'translations/:id/edit_dynamic_translation' => 'translations#edit_dynamic_translation', :as => :edit_dynamic_translation
-  #match 'translations/:id/inline_edit' => 'translations#inline_edit', :as => :translation_inline_edit
-  #match 'translations/:id/inline_show' => 'translations#inline_show', :as => :translation_inline_show
-  
-  #========== Translation Equivalents Routes
-  resources :translation_equivalents do
-    member do
-      get :edit_dynamic
-      post :update_dynamic
-      get :inline_edit
-      get :inline_show
-      post :inline_update
-    end
-  end
-  
-  #========== Model Sentences Routes
-  resources :model_sentences do
-    member do
-      get :edit_dynamic
-      post :update_dynamic
-      get :inline_edit
-      get :inline_show
-      post :inline_update
-    end
-  end  
-  
-  #========== Spellings Routes
-  resources :spellings 
- 
-  match 'spellings/:id/edit_dynamic_spelling' => 'spellings#edit_dynamic_spelling', :as => :edit_dynamic_spelling
-  match 'spellings/:id/inline_edit' => 'spellings#inline_edit', :as => :spelling_inline_edit
-  match 'spellings/:id/inline_show' => 'spellings#inline_show', :as => :spelling_inline_show
-  
-  
   #========== etymologies Routes
   resources :etymologies
   match 'etymologies/:id/edit_dynamic_etymology' => 'etymologies#edit_dynamic_etymology', :as => :edit_dynamic_etymology
@@ -114,7 +68,62 @@ Rails.application.routes.draw do
   match 'pronunciations/:id/audio_description_edit' => 'pronunciations#audio_description_edit', :as => :pronunciation_audio_description_edit
   match 'pronunciations/:id/video_description_edit' => 'pronunciations#video_description_edit', :as => :pronunciation_video_description_edit
   #=========
+ 
+  #========== Spellings Routes
+  resources :spellings 
+ 
+  match 'spellings/:id/edit_dynamic_spelling' => 'spellings#edit_dynamic_spelling', :as => :edit_dynamic_spelling
+  match 'spellings/:id/inline_edit' => 'spellings#inline_edit', :as => :spelling_inline_edit
+  match 'spellings/:id/inline_show' => 'spellings#inline_show', :as => :spelling_inline_show
   
+  #========== Translations Routes
+  resources :translations do
+    member do
+      get :edit_dynamic
+      post :update_dynamic
+      get :inline_edit
+      get :inline_show
+      post :inline_update
+    end
+  end
+  #match 'translations/:id/edit_dynamic_translation' => 'translations#edit_dynamic_translation', :as => :edit_dynamic_translation
+  #match 'translations/:id/inline_edit' => 'translations#inline_edit', :as => :translation_inline_edit
+  #match 'translations/:id/inline_show' => 'translations#inline_show', :as => :translation_inline_show
+  
+  #========== Translation Equivalents Routes
+  resources :translation_equivalents do
+    member do
+      get :edit_dynamic
+      post :update_dynamic
+      get :inline_edit
+      get :inline_show
+      post :inline_update
+    end
+  end
+  
+  #========== Model Sentences Routes
+  resources :model_sentences do
+    member do
+      get :edit_dynamic
+      post :update_dynamic
+      get :inline_edit
+      get :inline_show
+      post :inline_update
+    end
+  end  
+  
+  #========== Literary Quotations Routes
+  resources :literary_quotations do
+    member do
+      get :edit_dynamic
+      post :update_dynamic
+      get :inline_edit
+      get :inline_show
+      post :inline_update
+    end
+  end
+  
+
   #==========  definition Routes
   match 'definitions/:id/term_edit' => 'definitions#term_edit', :as => :definition_term_edit
   match 'definitions/:id/term_show' => 'definitions#term_show', :as => :definition_term_show

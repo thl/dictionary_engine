@@ -395,7 +395,9 @@ $(document).ready(function() {
 </div> <!--- #showhide -->
 
 <%= form_for(:model_sentence, :url => update_dynamic_model_sentence_path(@model_sentence), :method => :get, :remote => true) do |f| %>
-  <br>
-  <%= submit_tag 'Update', :id => 'update_button' %>
-  <input type='button' name='cancel_button' value='Cancel' id='cancel_button'>  
+	<input type="hidden" name="id" value="<%= params["id"] %>"/>
+  	<input type="hidden" name="pk" value="<%= params['pk'] %>">
+  	<br>
+  	<%= submit_tag 'Update', :id => 'update_button' %>
+  	<input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
 <% end %> <!--form_for-->
