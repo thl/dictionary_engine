@@ -63,7 +63,7 @@
 					for e in d.translation_equivalents %>
 						<%= "<br>".html_safe if count > 0 %>
 						<span class='tinyfied_public_show_inline'>
-							<%= e.translation_equivalent.html_safe %>
+							<%= e.translation_equivalent.html_safe if !e.translation_equivalent.blank? %>
 						</span>		
 						<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
 					
