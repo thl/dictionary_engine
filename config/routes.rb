@@ -123,6 +123,16 @@ Rails.application.routes.draw do
     end
   end
   
+  #========== Oral Quotations Routes
+  resources :oral_quotations do
+    member do
+      get :edit_dynamic
+      post :update_dynamic
+      get :inline_edit
+      get :inline_show
+      post :inline_update
+    end
+  end  
 
   #==========  definition Routes
   match 'definitions/:id/term_edit' => 'definitions#term_edit', :as => :definition_term_edit
