@@ -1,2 +1,2 @@
 
-$("#<%= @model_sentence.definitions.first.id %>_model_sentences_div").html("<%= escape_javascript(render(:partial => 'model_sentences/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition, :head_id => @temp_definition})) %>")
+$("#<%= @temp_definition.id %>_model_sentences_div").html("<%= escape_javascript(render(:partial => 'model_sentences/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition, :head_id => @temp_definition})) %>")

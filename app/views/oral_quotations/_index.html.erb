@@ -1,0 +1,33 @@
+<script>
+$(document).ready(function() {
+
+});
+</script>
+
+
+<% if d.oral_quotations.size > 0 %>
+ 	count = 0;
+	size = d.oral_quotations.size;
+	for e in d.oral_quotations %>
+		<b>Oral quotation:</b>
+		<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+		<%= link_to image_tag('pencil.png',:border => 0), edit_dynamic_oral_quotation_path(e, :internal=>'edit_box', :public=>'yes'), :remote => true, :class => 'ui_definition_dialog', :title=>'Oral Quotation Edit' %>
+		<span class=menuvalue onclick=show_menu(oral_quotation_menu,getCoord(arguments[0]));>
+			<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'oral_quotation_id='+e.id.to_s, :title => 'Edit Relationships' %> 
+		</span>	
+		<%= link_to image_tag('cross.png',:border => 0), {:controller => 'definitions', :action => 'public_remove_oral_quotation', :id => d.id, :parent_id => parent_id, :head_id => head_id, :oral_quotation => e.id},  :remote => true, :class => 'ui_definition_dialog', :title=>'Remove Oral Quotation', :confirm => "Are you sure you want to remove this Oral Quotation?" %>
+	
+		<dl style="margin-top:0em;margin-bottom:0em;">
+			<dd style="display:none"></dd>
+				<% if !e.source.blank? %>
+			  		<dd><b>Source ID: </b><%= e.source %></dd>
+		 		<% end %>
+		
+
+	
+		
+		</dl>
+	<% end %><!-- for -->
+	
+<% end %><!-- if d.oral_quotations.size > 0 -->
+<span id="<%= d.id%>_oral_quotation" > </span>

@@ -1073,37 +1073,7 @@ class DefinitionsController < ApplicationController
       
       
     #Actions to remove Translations from other modules, pending to upgrade
-    def public_remove_etymology_translation
-      e = Etymology.find(params[:id])
-      p = Translation.find(params['translation'])
-      e.translations.delete(p) unless e == nil
-      #redirect_to :action => 'public_content_only', :id => params['head_id']
-      redirect_to :action => 'public_edit', :id => params['head_id']
-    end
 
-    def public_remove_model_sentence_translation
-      m = ModelSentence.find(params[:id])
-      t = Translation.find(params['translation'])
-      m.translations.delete(t) unless m == nil
-      #redirect_to :action => 'public_content_only', :id => params['head_id']
-      redirect_to :action => 'public_edit', :id => params['head_id']
-    end
-
-    def public_remove_literary_quotation_translation
-      l = LiteraryQuotation.find(params[:id])
-      t = Translation.find(params['translation'])
-      l.translations.delete(t) unless l == nil
-      #redirect_to :action => 'public_content_only', :id => params['head_id']
-      redirect_to :action => 'public_edit', :id => params['head_id']
-    end
-
-    def public_remove_oral_quotation_translation
-      o = OralQuotation.find(params[:id])
-      t = Translation.find(params['translation'])
-      o.translations.delete(t) unless o == nil
-      #redirect_to :action => 'public_content_only', :id => params['head_id']
-      redirect_to :action => 'public_edit', :id => params['head_id']
-    end
     
       
       
