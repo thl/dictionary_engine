@@ -1,0 +1,177 @@
+<script>
+$(document).ready(function() {
+	$('div.showhide').hide();
+  	$('#hideh1').click(function(){
+	     $('div.showhide').hide();
+	   });
+	$('#showh1').click(function(){
+	     $('div.showhide').show();
+	   });
+	$('#toggleh1').click(function(){
+	     $('div.showhide').slideToggle("slow");
+	   });
+	
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); });
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});
+		
+	/* Activating Best In Place */
+	jQuery(".best_in_place").best_in_place();
+		
+});
+</script>
+
+<h1>Editing Source</h1>
+<%#= error_messages_for 'translation' %>
+
+<b>Source ID: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_source_path(@source, :field => 'source_id_value', :div_suffix => 'source_source_id_value_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_source_path(@source, :field => 'source_id_value', :div_suffix => 'source_source_id_value_popupdiv') %>
+<% if @source.source_id_value.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @source.source_id_value.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@source.id}_source_source_id_value_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+
+<br/><b>Source type: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_source_path(@source, :field => 'source_type', :div_suffix => 'source_source_type_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_source_path(@source, :field => 'source_type', :div_suffix => 'source_source_type_popupdiv') %>
+<% if @source.source_type.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @source.source_type.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@source.id}_source_source_type_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<br/><b>Start Page number: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_source_path(@source, :field => 'page_number', :div_suffix => 'source_page_number_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_source_path(@source, :field => 'page_number', :div_suffix => 'source_page_number_popupdiv') %>
+<% if @source.page_number.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @source.page_number.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@source.id}_source_page_number_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<br/><b>Start Page side: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_source_path(@source, :field => 'start_page_side', :div_suffix => 'source_start_page_side_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_source_path(@source, :field => 'start_page_side', :div_suffix => 'source_start_page_side_popupdiv') %>
+<% if @source.start_page_side.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @source.start_page_side.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@source.id}_source_start_page_side_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<br/><b>Start Line number: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_source_path(@source, :field => 'start_line_number', :div_suffix => 'source_start_line_number_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_source_path(@source, :field => 'start_line_number', :div_suffix => 'source_start_line_number_popupdiv') %>
+<% if @source.start_line_number.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @source.start_line_number.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@source.id}_source_start_line_number_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<br/><b>End Page number: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_source_path(@source, :field => 'end_page_number', :div_suffix => 'source_end_page_number_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_source_path(@source, :field => 'end_page_number', :div_suffix => 'source_end_page_number_popupdiv') %>
+<% if @source.end_page_number.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @source.end_page_number.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@source.id}_source_end_page_number_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<br/><b>End Page side: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_source_path(@source, :field => 'end_page_side', :div_suffix => 'source_end_page_side_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_source_path(@source, :field => 'end_page_side', :div_suffix => 'source_end_page_side_popupdiv') %>
+<% if @source.end_page_side.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @source.end_page_side.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@source.id}_source_end_page_side_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<br/><b>End Line number: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_source_path(@source, :field => 'end_line_number', :div_suffix => 'source_end_line_number_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_source_path(@source, :field => 'end_line_number', :div_suffix => 'source_end_line_number_popupdiv') %>
+<% if @source.end_line_number.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @source.end_line_number.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@source.id}_source_end_line_number_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<br/><b>Spelling: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_source_path(@source, :field => 'spelling', :div_suffix => 'source_spelling_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_source_path(@source, :field => 'spelling', :div_suffix => 'source_spelling_popupdiv') %>
+<% if @source.spelling.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @source.spelling.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@source.id}_source_spelling_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+
+<br/><b>Analytical note: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_source_path(@source, :field => 'source_note', :div_suffix => 'source_start_anote_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_source_path(@source, :field => 'source_note', :div_suffix => 'source_start_anote_popupdiv') %>
+<% if @source.source_note.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @source.source_note.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@source.id}_source_start_anote_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+    </div>
+</span>
+
+
+<%= form_for(:source, :url => update_dynamic_source_path(@source), :method => :get, :remote => true) do |f| %>
+	<input type="hidden" name="id" value="<%= params["id"] %>"/>
+  	<input type="hidden" name="pk" value="<%= params['pk'] %>">
+ 
+	<input type="hidden" name="head_id" value="<%= params['head_id'] %>">
+  	<br>
+  	<%= submit_tag 'Update', :id => 'update_button' %>
+  	<input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
+<% end %> <!--form_for-->

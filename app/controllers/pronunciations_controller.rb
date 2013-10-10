@@ -121,6 +121,46 @@ class PronunciationsController < ApplicationController
     end
   end
 
+  def edit_new
+    #  if params['internal'] != nil
+    #    internal = params['internal']
+    #  else
+    #    internal = "pronunciations"
+    #  end
+    #  if params['level'] != nil
+    #    level = params['level'].to_i + 1
+    #  else
+    #  	 level = '2'
+    #  end
+      @pronunciation = Pronunciation.find(params['id'])
+      @pronunciation.updated_by = session[:user].login
+      @pronunciation.updated_at = Time.now
+      if @pronunciation.update_history == nil
+        @pronunciation.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+      	@pronunciation.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end
+      @pronunciation.save
+     # if params["relatedtype"] == "definition"
+    #    o = Definition.new
+    #    o.save
+    #    @pronunciation.definition = o
+    #    @pronunciation.save
+    #    render_component :controller => "definitions", :action => "edit_dynamic", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'definition', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
+    #  end
+    if params["relatedtype"] == "meta"
+      o = Meta.new
+      o.created_by = session[:user].login
+      o.created_at = Time.now
+      o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
+      o.save
+      @pronunciation.meta = o
+      @pronunciation.save
+      redirect_to edit_dynamic_meta_url(o.id)
+    end
+  end
 #=========== end of upgraded code to Rails 3 ====
 
 

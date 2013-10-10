@@ -1,0 +1,1 @@
+$("#<%= @temp_definition.id %>_related_terms_div").html("<%= escape_javascript(render(:partial => 'definition_definition_forms/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition, :head_id => @temp_definition})) %>")

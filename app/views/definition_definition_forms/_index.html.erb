@@ -1,0 +1,30 @@
+<% if d.definition_definition_form_froms.size > 0%>
+	<% size = d.definition_definition_form_froms.size;%>
+	<% for e in d.definition_definition_form_froms %>
+	  	<b>Related term:</b>
+			 
+		
+		<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+		<%#= link_to_function image_tag('pencil.png',:border => 0), "edit_form_to('definition_definition_forms','"+e.id.to_s+"','"+head_id.to_s+"')", :title => "Edit"%>
+		<%#= link_to image_tag('pencil.png',:border => 0), edit_dynamic_model_sentence_path(e, :internal=>'edit_box', :public=>'yes'), :remote => true, :class => 'ui_definition_dialog', :title=>'Model Sentence Edit' %>
+
+		<span class=menuvalue onclick=show_menu(related_term_menu,getCoord(arguments[0]));>
+			 <%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'definition_definition_form_id='+e.id.to_s, :title => 'Edit Relationships' %> 
+		</span>	
+		<%= link_to image_tag('cross.png',:border => 0), {:controller => 'definitions', :action => 'public_remove_form_from', :id => d.id, :parent_id => parent_id, :head_id => head_id, :form_from => e.id},  :remote => true, :class => 'ui_definition_dialog', :title=>'Remove related term', :confirm => "Are you sure you want to remove this Term?" %>
+			
+		<span class="tib1">
+		 	<%= e.displayFromInfoPublic.s %>
+			<%= link_to(e.displayFromTerm.s, :controller => 'definitions', :action => 'public_edit', :id => e.definition_to.id) unless e.definition_to == nil%>
+		</span>
+		<br>
+		
+		<div id="<%= e.id%>_definitiondefinitionform_metas_div">
+			<% if e.meta != nil%>
+		        <% t = Time.now %>
+		        <%= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+			<% end %>
+		</div>
+	<% end %>
+<% end %>
+<span id="<%= d.id%>_form_from" > </span>

@@ -1,0 +1,4 @@
+$("#search_result_term_<%= params[:id] %>").html("<%= escape_javascript(render(:partial => 'definitions/public_term')) %>")
+$("#search_result_term_<%= params[:id] %>").show();
+$("#hide_<%= params[:id] %>").show();
+$("#show_<%= params[:id] %>").hide();

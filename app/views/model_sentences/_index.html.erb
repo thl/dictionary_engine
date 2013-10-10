@@ -79,10 +79,10 @@ $(document).ready(function() {
 		 		<% end %>		
 		
 				<div id="<%= e.id%>_modelsentence_metas_div">
-	      			<%# if e.meta != nil%>
+	      			<% if e.meta != nil%>
 	        			<% t = Time.now %>
-	        			<%#= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
-		  			<%# end %>
+	        			<%= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+		  			<% end %>
 				</div>
 		
 				<div id="<%= e.id%>_modelsentence_translations_div"> 

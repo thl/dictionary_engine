@@ -54,11 +54,11 @@
 			  &nbsp;&nbsp;&nbsp;&nbsp;<b>Analytical note: </b><span class="tib1"><span class='tinyfied_show'><%= e.analytical_note.s %></span></span>
 		 <% end %>
 
-         <div id="<%= e.id%>_<%= o.class.name.downcase%>_translation_metas_div">
-<%         if !e.meta.blank? %>
-<%           tm = Time.now %>
-<%#=          render :partial => 'metas/index', :locals => {:t => tm.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
-<%         end %>
+        <div id="<%= e.id%>_<%= o.class.name.downcase%>_translation_metas_div">
+			<%  if !e.meta.blank? %>
+				<%   tm = Time.now %>
+				<%=  render :partial => 'metas/index', :locals => {:t => tm.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+			<%  end %>
 	     </div>		
 	     <br>
 	   </dd>

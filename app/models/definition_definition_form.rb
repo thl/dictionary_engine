@@ -3,7 +3,27 @@ class DefinitionDefinitionForm < ActiveRecord::Base
   belongs_to :definition_from, :class_name => "Definition", :foreign_key => "def1_id"
   has_one :meta, :foreign_key => 'definition_definition_form_id'
 
+  def displayFromInfoPublic
+    str = ""
+    if relationship_to == 'future form' then
+      str += "future tense"
+    else
+      if relationship_to == 'imperative form' then
+      str += "imperative tense"
+      else
+        str += relationship_to unless relationship_to == nil
+      end
+    end
+  
+    return str
+  end
 
+  def displayFromTerm
+    str = ""
+    str += definition_to.term unless definition_to == nil or definition_to.term == nil
+    return str
+  end
+  
 end
 
 # == Schema Info

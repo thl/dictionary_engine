@@ -1,0 +1,72 @@
+<script>
+$(document).ready(function() {	
+	$('div.showhide').hide();
+  	$('#hideh1').click(function(){
+	     $('div.showhide').hide();
+	   });
+	$('#showh1').click(function(){
+	     $('div.showhide').show();
+	   });
+	$('#toggleh1').click(function(){
+	     $('div.showhide').slideToggle("slow");
+	   });
+	
+
+	
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});	
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});	
+	
+});
+</script>
+
+
+<div id="definition_definition_form_definition_froms">
+	<%= form_for(:full_synonym, :url => { :action => "add_synonym", :id => params['id'],:internal => 'definitions' }, :remote => true, :id => params['id'],:internal => 'definitions') do |f| %>
+
+		<% if @terms.size > 0 %>
+			<%#= render :partial => "partial/full_synonym_find_paginator", :locals => {:find_paginator => @definition_pages, :query => @query} %><br>
+		  	<% @wylie_term = Definition.find(params['id']).wylie %>
+			<% @wylie_term =  @wylie_term.split(" ").each{|word| word.capitalize!}.join(" ") %>
+			<h4>Select Full Synonym of <%= @wylie_term %>:</h4>
+			<% for tag in @terms %>
+		
+				<p></p>
+				<span id="show_<%=tag.id.to_s %>">
+					<%= link_to image_tag('plus.gif',:border => 0, :size => "10x10"), public_term_definition_path( tag.id),  :remote => true %> 	
+					<%#= link_to_function(image_tag('plus.gif', :border => 0), public_term_definition_path( tag.id, :list_view => 'true'),  :remote => true, "$('#hide_#{tag.id.to_s}').show();$('#show_#{tag.id.to_s}').hide();")%>
+				
+				</span>
+				<span id="hide_<%= tag.id.to_s %>" style=display:none>
+					<%#= link_to image_tag('minus.gif',:border => 0, :size => "10x10"), definition_public_show_list_path( tag.id, :list_view => 'true'),  :remote => true %> 	
+					<%= link_to_function(image_tag('minus.gif', :border => 0), "$('#hide_#{tag.id.to_s}').hide();$('#search_result_term_#{tag.id.to_s}').hide();$('#show_#{tag.id.to_s}').show();")%>
+				
+				</span>	
+				<input type="radio" name="tags[]" id=tag_"<%= tag.id %>" value="<%= tag.id %>"  />
+				<span style="font-size:120%;padding:3px;"> <%= tag.displayInfo%> </span>
+				&nbsp;&nbsp;	
+				<span id="search_result_term_<%= tag.id.to_s %>"></span>
+			<% end %>
+			
+			<input type="hidden" name="definition_id" value="<%= params['definition_id'] %>" />
+
+			<%= submit_tag 'Select', :id => 'update_button' %>
+			<input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
+			<br><br>
+				<%#= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0, :alt => "search again", :options => {:display => 'inline'}), :update => 'definition_full_synonyms',  :url => {:controller => 'definitions', :action => 'synonym_search', :pk => params[:id], :id => params[:id], :internal => 'definitions', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+				<%#= link_to_remote "Search Again", :update => 'definition_full_synonyms',  :url => {:controller => 'definitions', :action => 'synonym_search', :pk => params[:id], :id => params[:id], :internal => 'definitions', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+
+			<%= link_to "Search Again", synonym_search_full_synonyms_path(:pk => params[:id], :id => params[:id], :internal => 'definitions', :relatedtype=> params['relatedtype'], :level => params['level']), :remote => true,  :class => 'ui_definition_dialog', :title=>'Search Again' %>
+			
+		<% else %>
+			<h3>No Results Found</h3><br>
+			<input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
+			<br><br>
+			<%#= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0, :alt => "search again", :options => {:display => 'inline'}), :update => 'definition_full_synonyms',  :url => {:controller => 'definitions', :action => 'synonym_search', :pk => params[:id], :id => params[:id], :internal => 'definitions', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+			<%#= link_to_remote "Search Again", :update => 'definition_full_synonyms',  :url => {:controller => 'definitions', :action => 'synonym_search', :pk => params[:id], :id => params[:id], :internal => 'definitions', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+			<%= link_to "Search Again", synonym_search_full_synonyms_path(:pk => params[:id], :id => params[:id], :internal => 'definitions', :relatedtype=> params['relatedtype'], :level => params['level']), :remote => true,  :class => 'ui_definition_dialog', :title=>'Search Again' %>
+	 	
+	<% end %>
+		<br> <br>
+
+	<% end %>
+</div>

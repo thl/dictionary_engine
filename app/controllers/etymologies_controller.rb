@@ -240,17 +240,16 @@ class EtymologiesController < ApplicationController
   #      render_component :controller => "definitions", :action => "edit_dynamic", :id => o.id, :params => {'internal' => "etymologies", 'pk' => params['id'], 'relatedtype'=> 'definition', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
   #    end
   
-  #    if params["relatedtype"] == "meta"
-  #      o = Meta.new
-  #      o.created_by = session[:user].login
-  #      o.created_at = Time.now
-  #      o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
-  #      o.save
-  #      @etymology.meta = o
-  #      @etymology.save
-  #      #render_component :controller => "metas", :action => "edit_dynamic", :id => o.id, :params => {'internal' => "edit_box", 'pk' => params['id'], 'relatedtype'=> 'meta', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
-  #      redirect_to meta_metadata_edit_dynamic_meta_url(o.id)
-  #    end
+      if params["relatedtype"] == "meta"
+        o = Meta.new
+        o.created_by = session[:user].login
+        o.created_at = Time.now
+        o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
+        o.save
+        @etymology.meta = o
+        @etymology.save
+        redirect_to edit_dynamic_meta_url(o.id)
+      end
     if params["relatedtype"] == "translation"
       o = Translation.new
       o.created_by = session[:user].login

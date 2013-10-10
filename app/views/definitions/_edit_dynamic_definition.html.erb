@@ -517,7 +517,7 @@ $(document).ready(function() {
 		@language_type = @data.children.collect {|l| [ h(l.title), l.id ] } %>
 		<%#= 	select(:definition, :language_type_id, @language_type, { :include_blank => true }) %>
 
-
+<% debugger %>
 
 	<input type="hidden" name="id" value="<%= params["id"] %>"/>
 	<input type="hidden" name="internal" value="<%= params['internal'] %>">

@@ -46,13 +46,12 @@ $(document).ready(function() {
 					<dd><b>Analytical note: </b><span class="tib1"><span class='tinyfied_show'><%= e.analytical_note.s %></span></span></dd>
 					<% end %>	
 				
-			
-				<% if !e.meta.blank? %>
-					<dd>
+				<div id="<%= e.id%>_translationequivalent_metas_div">
+					<% if !e.meta.blank? %>
 						<% t = Time.now %>
-						<%#= render :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
-					</dd>
-				<% end %>
+						<%= render :partial => 'definitions/meta', :locals => {:meta_location => t.to_f, :meta => e.meta , :head_id => head_id} %>
+					<% end %>
+				</div>
 			</dl>
 	<% end %>
 

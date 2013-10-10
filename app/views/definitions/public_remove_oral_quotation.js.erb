@@ -1,0 +1,2 @@
+
+$("#<%= @temp_definition.id %>_oral_quotations_div").html("<%= escape_javascript(render(:partial => 'oral_quotations/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition, :head_id => @temp_definition})) %>")

@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     member do
       match 'new_inplace/branches/:branch_id' => 'definition_category_associations#new_inline', :as => :new_inplace_category_definition_association
       get :public_remove_etymology
+      get :edit_dynamic_definition
     end
     collection do
       get :index_edit
@@ -134,6 +135,65 @@ Rails.application.routes.draw do
     end
   end  
 
+  #========== Metas Routes
+  resources :metas do
+    member do
+      get :edit_dynamic
+      post :update_dynamic
+      get :inline_edit
+      get :inline_show
+      post :inline_update
+    end
+  end
+  
+  #========== Sources Routes
+  resources :sources do
+    member do
+      get :edit_dynamic
+      post :update_dynamic
+      get :inline_edit
+      get :inline_show
+      post :inline_update
+    end
+  end
+  
+  
+  #========== Full Synonym Routes
+  resources :full_synonyms do
+    member do
+      
+      get :edit_dynamic
+      post :update_dynamic
+      get :inline_edit
+      get :inline_show
+      post :inline_update
+      
+    end
+    collection do
+      get :synonym_search
+      get :search_action
+      get :add_synonym
+    end
+  end
+  
+  #========== Related Terms Routes
+  resources :definition_definition_forms do
+    collection do
+      get :related_term_search
+    end
+  end  
+  
+  #========== Old Definitions Routes
+  resources :old_definitions do
+    member do
+      get :edit_dynamic
+      post :update_dynamic
+      get :inline_edit
+      get :inline_show
+      post :inline_update
+    end
+  end
+  
   #==========  definition Routes
   match 'definitions/:id/term_edit' => 'definitions#term_edit', :as => :definition_term_edit
   match 'definitions/:id/term_show' => 'definitions#term_show', :as => :definition_term_show

@@ -1,0 +1,125 @@
+<script>
+$(document).ready(function() {
+	
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); });
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});
+		
+	/* Activating Best In Place */
+	/* jQuery(".best_in_place").best_in_place();*/
+		
+});
+</script>
+
+<h1>Editing Meta</h1>
+
+<b>Project Type: </b>
+
+<b>Title: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_meta_path(@meta, :field => 'title', :div_suffix => 'meta_title_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_meta_path(@meta, :field => 'title', :div_suffix => 'meta_title_popupdiv') %>
+<% if @meta.title.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @meta.title.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@meta.id}_meta_title_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+
+<b>Author: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_meta_path(@meta, :field => 'author', :div_suffix => 'meta_author_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_meta_path(@meta, :field => 'author', :div_suffix => 'meta_author_popupdiv') %>
+<% if @meta.author.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @meta.author.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@meta.id}_meta_author_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Date of publication: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_meta_path(@meta, :field => 'date_of_publication', :div_suffix => 'meta_date_of_publication_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_meta_path(@meta, :field => 'date_of_publication', :div_suffix => 'meta_date_of_publication_popupdiv') %>
+<% if @meta.date_of_publication.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @meta.date_of_publication.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@meta.id}_meta_date_of_publication_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Place of publication: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_meta_path(@meta, :field => 'place_of_publication', :div_suffix => 'meta_place_of_publication_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_meta_path(@meta, :field => 'place_of_publication', :div_suffix => 'meta_place_of_publication_popupdiv') %>
+<% if @meta.place_of_publication.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @meta.place_of_publication.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@meta.id}_meta_place_of_publication_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Metadata note: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_meta_path(@meta, :field => 'metadata_note', :div_suffix => 'meta_metadata_note_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_meta_path(@meta, :field => 'metadata_note', :div_suffix => 'meta_ametadata_note_popupdiv') %>
+<% if @meta.metadata_note.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @meta.metadata_note.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@meta.id}_meta_metadata_note_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Precedence: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_meta_path(@meta, :field => 'precedence', :div_suffix => 'meta_precedence_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_meta_path(@meta, :field => 'precedence', :div_suffix => 'meta_precedence_popupdiv') %>
+<% if @meta.precedence.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @meta.precedence     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@meta.id}_meta_precedence_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+
+<b>Language: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_meta_path(@meta, :field => 'language_type_id', :div_suffix => 'popuplanguage_type_iddiv'), :remote => true %> 
+<%  popup_edit_path = inline_edit_meta_path(@meta, :field => 'language_type_id', :div_suffix => 'popuplanguage_type_iddiv') %>
+<% if @meta.language_type_id.blank?
+       t_content = 'Click to modify'
+     else
+       t_content = @meta.language_type.title
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@meta.id}_popuplanguage_type_iddiv" %>">
+		<%= link_to "#{t_content}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true %> 
+	</div>
+</span>
+
+
+
+<%= form_for(:meta, :url => update_dynamic_meta_path(@meta), :method => :get, :remote => true) do |f| %>
+	<input type="hidden" name="id" value="<%= params["id"] %>"/>
+  	<input type="hidden" name="pk" value="<%= params['pk'] %>">
+  	<br>
+  	<%= submit_tag 'Update', :id => 'update_button' %>
+  	<input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
+<% end %> <!--form_for-->

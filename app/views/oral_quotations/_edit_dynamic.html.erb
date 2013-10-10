@@ -1,0 +1,471 @@
+<script>
+$(document).ready(function() {
+	$('div.showhide').hide();
+  	$('#hideh1').click(function(){
+	     $('div.showhide').hide();
+	   });
+	$('#showh1').click(function(){
+	     $('div.showhide').show();
+	   });
+	$('#toggleh1').click(function(){
+	     $('div.showhide').slideToggle("slow");
+	     //$('#toggleh1').val('collapse');
+	   });
+	
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); });
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});
+		
+});
+</script>
+
+
+<h1>Editing Oral Quotation</h1>
+<%#= error_messages_for 'oral_quotation' %>
+<b>Source ID: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_oral_quotation_path(@oral_quotation, :field => 'source', :div_suffix => 'oral_quotation_source_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_oral_quotation_path(@oral_quotation, :field => 'source', :div_suffix => 'oral_quotation_source_popupdiv') %>
+<% if @oral_quotation.source.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @oral_quotation.source.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@oral_quotation.id}_oral_quotation_source_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Transcript in Tibetan: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_oral_quotation_path(@oral_quotation, :field => 'transcript_in_tibetan', :div_suffix => 'oral_quotation_transcript_in_tibetan_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_oral_quotation_path(@oral_quotation, :field => 'transcript_in_tibetan', :div_suffix => 'oral_quotation_transcript_in_tibetan_popupdiv') %>
+<% if @oral_quotation.transcript_in_tibetan.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @oral_quotation.transcript_in_tibetan.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@oral_quotation.id}_oral_quotation_transcript_in_tibetan_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Source title: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_title', :div_suffix => 'oral_quotation_source_title_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_title', :div_suffix => 'oral_quotation_source_title_popupdiv') %>
+<% if @oral_quotation.source_title.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @oral_quotation.source_title.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@oral_quotation.id}_oral_quotation_source_title_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Source type: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_type', :div_suffix => 'oral_quotation_source_type_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_type', :div_suffix => 'oral_quotation_source_type_popupdiv') %>
+<% if @oral_quotation.source_type.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @oral_quotation.source_type.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@oral_quotation.id}_oral_quotation_source_type_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Source speaker: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_speaker', :div_suffix => 'oral_quotation_source_speaker_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_speaker', :div_suffix => 'oral_quotation_source_speaker_popupdiv') %>
+<% if @oral_quotation.source_speaker.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @oral_quotation.source_speaker.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@oral_quotation.id}_oral_quotation_source_speaker_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Source speaker Tibetan dialect: </b>
+<br/>
+
+
+<b>Source speech type: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_speech_type', :div_suffix => 'oral_quotation_source_speech_type_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_speech_type', :div_suffix => 'oral_quotation_source_speech_type_popupdiv') %>
+<% if @oral_quotation.source_speech_type.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @oral_quotation.source_speech_type.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@oral_quotation.id}_oral_quotation_source_speech_type_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Source speech context: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_speech_context', :div_suffix => 'oral_quotation_source_speech_context_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_speech_context', :div_suffix => 'oral_quotation_source_speech_context_popupdiv') %>
+<% if @oral_quotation.source_speech_context.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @oral_quotation.source_speech_context.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@oral_quotation.id}_oral_quotation_source_speech_context_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Source location within title: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_location_within_title', :div_suffix => 'oral_quotation_source_location_within_title_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_location_within_title', :div_suffix => 'oral_quotation_source_location_within_title_popupdiv') %>
+<% if @oral_quotation.source_location_within_title.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @oral_quotation.source_location_within_title.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@oral_quotation.id}_oral_quotation_source_location_within_title_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Source speech date: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_speech_date', :div_suffix => 'oral_quotation_source_speech_date_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_speech_date', :div_suffix => 'oral_quotation_source_speech_date_popupdiv') %>
+<% if @oral_quotation.source_speech_date.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @oral_quotation.source_speech_date.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@oral_quotation.id}_oral_quotation_source_speech_date_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Source speech date Tibetan: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_speech_date_tibetan', :div_suffix => 'oral_quotation_source_speech_date_tibetan_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_speech_date_tibetan', :div_suffix => 'oral_quotation_source_speech_date_tibetan_popupdiv') %>
+<% if @oral_quotation.source_speech_date_tibetan.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @oral_quotation.source_speech_date_tibetan.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@oral_quotation.id}_oral_quotation_source_speech_date_tibetan_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Source speech date Western: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_speech_date_western', :div_suffix => 'oral_quotation_source_speech_date_western_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_speech_date_western', :div_suffix => 'oral_quotation_source_speech_date_western_popupdiv') %>
+<% if @oral_quotation.source_speech_date_western.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @oral_quotation.source_speech_date_western.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@oral_quotation.id}_oral_quotation_source_speech_date_western_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Source location of speech: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_location_of_speech', :div_suffix => 'oral_quotation_source_location_of_speech_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_oral_quotation_path(@oral_quotation, :field => 'source_location_of_speech', :div_suffix => 'oral_quotation_source_location_of_speech_popupdiv') %>
+<% if @oral_quotation.source_location_of_speech.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @oral_quotation.source_location_of_speech.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@oral_quotation.id}_oral_quotation_source_location_of_speech_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+
+
+<b>Analytical note: </b>
+<%= link_to image_tag('pencil.png',:border => 0), inline_edit_oral_quotation_path(@oral_quotation, :field => 'analytical_note', :div_suffix => 'oral_quotation_analytical_note_popupdiv'), :remote => true %> 	
+<% inline_edit_path = inline_edit_oral_quotation_path(@oral_quotation, :field => 'analytical_note', :div_suffix => 'oral_quotation_analytical_note_popupdiv') %>
+<% if @oral_quotation.analytical_note.blank?
+       t_content = 'Click to modify'
+   else
+       t_content = @oral_quotation.analytical_note.s     
+   end %>
+<span class="tinyfied_show">
+	<div id="<%= "#{@oral_quotation.id}_oral_quotation_analytical_note_popupdiv" %>">
+		<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'tinyfied_show', :remote => true %>
+    </div>
+</span>
+
+<b>Edit Multimedia Data: </b>
+<input type='button' name='toggleh1' value='show/hide multimedia' id='toggleh1'><br>
+<div class='showhide' style='border-style:solid;border-width:1px;padding:5px 5px;margin-left: 5pt;'>
+	<br><b>Image: </b>
+	<br>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'image', :div_suffix => 'imagediv') %>
+	<% if @oral_quotation.image.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.image.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_imagediv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Image caption: </b>
+	<br>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'image_caption', :div_suffix => 'image_captiondiv') %>
+	<% if @oral_quotation.image_caption.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.image_caption.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_image_captiondiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Image photographer: </b>
+	<br>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'image_photographer', :div_suffix => 'image_photographerdiv') %>
+	<% if @oral_quotation.image_photographer.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.image_photographer.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_image_photographerdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Image link: </b>
+	<br>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'image_link', :div_suffix => 'image_linkdiv') %>
+	<% if @oral_quotation.image_link.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.image_link.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_image_linkdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Image description: </b>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'image_description', :div_suffix => 'imagedescdiv') %>
+	<% if @oral_quotation.image_description.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.image_description.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_imagedescdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio: </b>
+	<br>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'audio', :div_suffix => 'audiodiv') %>
+	<% if @oral_quotation.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_audiodiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio id number: </b>
+	<br>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'audio', :div_suffix => 'audio_id_numberdiv') %>
+	<% if @oral_quotation.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_audio_id_numberdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio speaker: </b>
+	<br>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'audio', :div_suffix => 'audio_speakerdiv') %>
+	<% if @oral_quotation.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_audio_speakerdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio date: </b>
+	<br>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'audio', :div_suffix => 'audio_datediv') %>
+	<% if @oral_quotation.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_audio_datediv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio place of recording: </b>
+	<br>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'audio', :div_suffix => 'audio_place_of_recordingdiv') %>
+	<% if @oral_quotation.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_audio_place_of_recordingdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio link: </b>
+	<br>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'audio', :div_suffix => 'audio_linkdiv') %>
+	<% if @oral_quotation.audio.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.audio.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_audio_linkdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Audio description: </b> 
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'audio_description', :div_suffix => 'audiodescdiv') %>
+	<% if @oral_quotation.audio_description.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.audio_description.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_audiodescdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>-->
+	<br><b>Video: </b>
+	<br>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'video', :div_suffix => 'videodiv') %>
+	<% if @oral_quotation.video.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.video.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_videodiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video id number: </b>
+	<br>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'video_id_number', :div_suffix => 'video_id_numberdiv') %>
+	<% if @oral_quotation.video_id_number.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.video_id_number.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_video_id_numberdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video speaker: </b>
+	<br>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'video_speaker', :div_suffix => 'video_speakerdiv') %>
+	<% if @oral_quotation.video_speaker.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.video_speaker.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_video_speakerdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video date: </b>
+	<br>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'video_date', :div_suffix => 'video_datediv') %>
+	<% if @oral_quotation.video_date.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.video_date.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_video_datediv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video place of recording: </b>
+	<br>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'video_place_of_recording', :div_suffix => 'video_place_of_recordingdiv') %>
+	<% if @oral_quotation.video_place_of_recording.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.video_place_of_recording.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_video_place_of_recordingdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video link: </b>
+	<br>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'video_link', :div_suffix => 'video_linkdiv') %>
+	<% if @oral_quotation.video_link.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.video_link.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_video_linkdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+	<br><b>Video description: </b>
+	<% def_edit_path = inline_edit_oral_quotation_path(:id => @oral_quotation.id, :field => 'video_description', :div_suffix => 'videodescdiv') %>
+	<% if @oral_quotation.video_description.blank?
+	       t_content = 'Click to modify'
+	   else
+	       t_content = @oral_quotation.video_description.s     
+	   end %>
+	<span class="tinyfied_show">
+		<div id="<%= "#{@oral_quotation.id}_videodescdiv" %>">
+			<%= link_to "#{t_content}".html_safe, def_edit_path, :class => 'definitions_show', :remote => true %>
+	    </div>
+	</span>
+</div> <!--- #showhide -->
+
+
+
+<%= form_for(:oral_quotation, :url => update_dynamic_oral_quotation_path(@oral_quotation), :method => :get, :remote => true) do |f| %>
+	
+
+  <input type="hidden" name="id" value="<%= params["id"] %>"/>
+  <input type="hidden" name="pk" value="<%= params['pk'] %>">
+  <br>
+  <%= submit_tag 'Update', :id => 'update_button' %>
+  <input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
+<% end %> <!--form_for-->	

@@ -166,7 +166,8 @@ class DefinitionsController < ApplicationController
          @definition.meta = o
          @definition.save
          #render_component :controller => "metas", :action => "edit_dynamic", :id => o.id, :params => {'internal' => internal, 'pk' => params['id'], 'relatedtype'=> 'meta', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
-         redirect_to meta_metadata_edit_dynamic_meta_url(o.id)
+         #redirect_to meta_metadata_edit_dynamic_meta_url(o.id)
+         redirect_to edit_dynamic_meta_url(o.id)
        end
        if params["relatedtype"] == "spelling"
          o = Spelling.new
@@ -646,6 +647,23 @@ class DefinitionsController < ApplicationController
 
 
 
+  #Creation of Definition or Sub-definition
+  def public_add
+    head = Definition.find(params[:id]) #'parent_id'])
+    definition = Definition.new
+    definition.term = head.term
+    definition.level = 'not head'
+    definition.save
+    dd = DefinitionDefinition.new
+    dd.def1_id = params[:id]
+    dd.def2_id = definition.id
+    dd.save
+    redirect_to :controller => 'definitions', :action => 'edit_dynamic_definition', :id => definition.id, :params => {'internal' => 'edit_box','public'=>'yes','definition_id'=> params['parent_id']} 
+    #removing redirection and incorporating public addition to its own segment, and re-using editorial partials
+    
+    #redirect_to edit_dynamic_definition_definition_url(definition.id, :internal => 'edit_box', :public => 'yes', :definition_id => params['parent_id'])
+  end
+
        #Restful update to take care of best_in_place calls
        def update
            @definition = Definition.find(params[:id])
@@ -676,6 +694,7 @@ class DefinitionsController < ApplicationController
        end
 
        def edit_dynamic_definition
+         
          @data = Category.find(184)
          @level = ["","head term","not head"]
          @alphabet = ComplexScripts::TibetanLetter.all
@@ -985,6 +1004,8 @@ class DefinitionsController < ApplicationController
            @history += "\n"
         end
      	end
+  
+
        
       def public_remove_etymology
         d = Definition.find(params[:id])
@@ -1070,7 +1091,38 @@ class DefinitionsController < ApplicationController
       @temp_definition = Definition.find(@literary_quotation.definitions.first.id)
       d.literary_quotations.delete(p) unless d == nil
     end  
+
+    def public_remove_oral_quotation
+      d = Definition.find(params[:id])
+      p = OralQuotation.find(params['oral_quotation'])
+      @oral_quotation = OralQuotation.find(params['oral_quotation'])
+      @temp_definition = Definition.find(@oral_quotation.definitions.first.id)
+      d.oral_quotations.delete(p) unless d == nil
+    end      
       
+    def public_remove_meta
+      p = Meta.destroy(params['meta'])
+      redirect_to :action => 'public_edit', :id => params['head_id']
+    end
+
+    def public_remove_source
+      p = Source.destroy(params['source'])
+      redirect_to :action => 'public_edit', :id => params['head_id']
+    end      
+  
+    def public_remove_full_synonym
+      d = Definition.find(params[:id])
+      p = FullSynonym.find(params['full_synonym'])
+      @temp_definition = Definition.find(params[:id])
+      d.full_synonyms.delete(p) unless d == nil
+    end
+      
+    def public_remove_form_from
+      d = Definition.find(params[:id])
+      p = DefinitionDefinitionForm.find(params['form_from'])
+      @temp_definition = Definition.find(params[:id])
+      d.definition_definition_form_froms.delete(p) unless d == nil
+    end  
       
     #Actions to remove Translations from other modules, pending to upgrade
 

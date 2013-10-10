@@ -1,0 +1,1 @@
+$("#<%= @temp_definition.id %>_full_synonyms_div").html("<%= escape_javascript(render(:partial => 'full_synonyms/index', :locals => {:d => @temp_definition, :parent_id => @temp_definition, :head_id => @temp_definition})) %>")

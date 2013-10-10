@@ -97,5 +97,39 @@ class SpellingsController < ApplicationController
     end
   end
   
+  def edit_new
+    #  if params['internal'] != nil
+    #    internal = params['internal']
+    #  else
+    #    internal = "spelling"
+    #  end
+    #  if params['level'] != nil
+    #    level = params['level'].to_i + 1
+    #  else
+    #  	 level = '2'
+    #  end
+    @spelling = Spelling.find(params['id'])
+      @spelling.updated_by = session[:user].login
+      @spelling.updated_at = Time.now
+      if @spelling.update_history == nil
+        @spelling.update_history = session[:user].login + " ["+Time.now.to_s+"]
+  "
+      else
+      	@spelling.update_history += session[:user].login + " ["+Time.now.to_s+"]
+  "
+      end
+      @spelling.save
+
+    if params["relatedtype"] == "meta"
+      o = Meta.new
+      o.created_by = session[:user].login
+      o.created_at = Time.now
+      o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
+      o.save
+      @spelling.meta = o
+      @spelling.save
+      redirect_to edit_dynamic_meta_url(o.id)
+    end
+  end
   
 end

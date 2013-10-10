@@ -132,4 +132,24 @@ class TranslationsController < ApplicationController
       end
     end  
   
+  def edit_new
+    #  if params['internal'] != nil
+    #    internal = params['internal']
+    #  else
+    #    internal = "translation"
+    #  end
+    #  if params['level'] != nil
+    #    level = params['level'].to_i + 1
+    #  else
+    #  	 level = '2'
+    #  end
+    @translation = Translation.find(params['id'])
+    if params["relatedtype"] == "meta"
+      o = Meta.new
+      o.save
+      @translation.meta = o
+      @translation.save
+      redirect_to edit_dynamic_meta_url(o.id)
+    end
+  end  
 end

@@ -1,0 +1,82 @@
+<script>
+$(document).ready(function() {	
+	
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});	
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});	
+	
+});
+</script>
+
+<% if params['relatedtype'] == "definition_to" %>
+  	<%= form_for(:definition_definition_form, :url => { :action => "add_related_term", :id => params['id'] }, :remote => true, :id => params['id']) do |f| %>
+  		<% if @definition_tos.size > 0 %>
+			<%#= render :partial => "partial/related_term_find_paginator", :locals => {:find_paginator => @definition_pages, :query => @query} %><br>
+			<% 	if DefinitionDefinitionForm.find(params['id']).relationship_to == 'future form' then
+					@relationship = "future tense"
+			 	else
+					if DefinitionDefinitionForm.find(params['id']).relationship_to == 'imperative form' then
+		 				@relationship = "imperative tense"
+					else
+		  				@relationship = DefinitionDefinitionForm.find(params['id']).relationship_to
+					end
+				end
+			%>
+			<% @wylie_term = Definition.find(DefinitionDefinitionForm.find(params['id']).def1_id).wylie %>
+			<% @relationship =  @relationship.split(" ").each{|word| word.capitalize!}.join(" ") %>
+			<% if !@wylie_term.blank? 
+			     @wylie_term =  @wylie_term.split(" ").each{|word| word.capitalize!}.join(" ") 
+			   end
+			%>
+			<%# @wylie_term =  @wylie_term.split(" ").each{|word| word.capitalize!}.join(" ") %>
+			<h4>Select <%= @relationship %> of <%= @wylie_term %>:</h4>
+			<% if @definition_definition_form.definition_to != nil %>
+			     <%#= build_form_radiolist_group(@definition_tos,@definition_definition_form.definition_to.displayInfo) %>
+			<% else %>
+			     <p><%#= build_form_radiolist_group(@definition_tos) %></p>
+			<% end %>
+			<% for tag in @definition_tos %>
+				<p></p>
+				<span id="show_<%=tag.id.to_s %>">
+					<%= link_to image_tag('plus.gif',:border => 0, :size => "10x10"), public_term_definition_path( tag.id),  :remote => true %> 	
+					<%#= link_to_function(image_tag('plus.gif', :border => 0), public_term_definition_path( tag.id, :list_view => 'true'),  :remote => true, "$('#hide_#{tag.id.to_s}').show();$('#show_#{tag.id.to_s}').hide();")%>
+				</span>
+				<span id="hide_<%= tag.id.to_s %>" style=display:none>
+					<%#= link_to image_tag('minus.gif',:border => 0, :size => "10x10"), definition_public_show_list_path( tag.id, :list_view => 'true'),  :remote => true %> 	
+					<%= link_to_function(image_tag('minus.gif', :border => 0), "$('#hide_#{tag.id.to_s}').hide();$('#search_result_term_#{tag.id.to_s}').hide();$('#show_#{tag.id.to_s}').show();")%>
+				</span>
+				<% if @definition_definition_form.definition_to != nil %>
+					<% if (@definition_definition_form.definition_to.displayInfo == tag.displayInfo) %>
+						<input type="radio" name="tags[]" id=tag_"<%= tag.id %>" value="<%= tag.id %>"  checked='checked' />
+					<% else %>
+						<input type="radio" name="tags[]" id=tag_"<%= tag.id %>" value="<%= tag.id %>"  />
+					<% end %>
+				<% else %>
+					<input type="radio" name="tags[]" id=tag_"<%= tag.id %>" value="<%= tag.id %>"  />
+				<% end %>
+				<span style="font-size:120%;padding:3px;"> <%= tag.displayInfo %> </span>
+				&nbsp;&nbsp;	
+				<span id="search_result_term_<%= tag.id.to_s %>"></span>
+			<% end %>
+			<br>
+			<%= submit_tag 'Select', :id => 'update_button' %>
+			<input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
+			<%#= submit_tag 'Select', :id => 'update_button' %>
+		   	<%#= link_to_remote "Cancel", :update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'cancel', :pk => params[:id], :internal => 'definition_definition_forms', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+			<br><br>
+			<%#= link_to_remote image_tag("magnify.gif", :size => "16x16", :border => 0, :alt => "search again", :options => {:display => 'inline'}), :update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'edit_search', :pk => params[:id], :internal => 'definition_definition_forms', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+			<%#= link_to_remote "Search Again", :update => 'definition_definition_form_definition_tos',  :url => {:controller => 'definition_definition_forms', :action => 'edit_search', :pk => params[:id], :internal => 'definition_definition_forms', :relatedtype=> params['relatedtype'], :level => params['level']} , :method => 'get' %>
+			<%= link_to "Search Again", related_term_search_definition_definition_forms_path(:pk => params[:id], :id => params[:id], :internal => 'definitions', :relatedtype=> params['relatedtype'], :level => params['level']), :remote => true,  :class => 'ui_definition_dialog', :title=>'Search Again' %>
+			
+		<% else %> <!-- else @definition_tos.size>0 -->
+			<h3>No Results Found</h3><br>
+			<input type='button' name='cancel_button' value='Cancel' id='cancel_button'>
+			<br><br>
+			<%= link_to "Search Again", synonym_search_full_synonyms_path(:pk => params[:id], :id => params[:id], :internal => 'definitions', :relatedtype=> params['relatedtype'], :level => params['level']), :remote => true,  :class => 'ui_definition_dialog', :title=>'Search Again' %>
+			
+		<% end %>
+		<input type=hidden name=relatedtype value=definition_to />
+		<input type="hidden" name="definition_definition_form[id]" value="<%= @definition_definition_form.id %>"/> 
+		
+		<br> <br>
+	<% end %> <!-- form -->
+<% end %>  <!-- if definition_to -->

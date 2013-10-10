@@ -6,17 +6,17 @@ class ModelSentencesController < ApplicationController
   helper :translations
   
   def edit_dynamic
-    @type = ["literary","oral"]
-    if(params['internal'] != nil)
-      @divname = 'model_sentence_internal'
-    else
-    	@divname = 'model_sentence'
-    end
-    if params['level'] != nil
-      params['level'] = (params['level'].to_i + 1).to_s
-    else
-      params['level'] = '1'
-    end
+    #@type = ["literary","oral"]
+    #if(params['internal'] != nil)
+    #  @divname = 'model_sentence_internal'
+    #else
+    #	@divname = 'model_sentence'
+    #end
+    #if params['level'] != nil
+    #  params['level'] = (params['level'].to_i + 1).to_s
+    #else
+    #  params['level'] = '1'
+    #end
     @model_sentence = ModelSentence.find(params[:id])
     respond_to do |format|
         format.js { render :layout=>false }
@@ -165,17 +165,16 @@ class ModelSentencesController < ApplicationController
     #    @model_sentence.save
     #    render_component :controller => "definitions", :action => "edit_dynamic", :id => o.id, :params => {'internal' => "model_sentences", 'pk' => params['id'], 'relatedtype'=> 'definition', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
     #  end
-    #  if params["relatedtype"] == "meta"
-    #    o = Meta.new
-    #    o.created_by = session[:user].login
-    #    o.created_at = Time.now
-    #    o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
-    #    o.save
-    #    @model_sentence.meta = o
-    #    @model_sentence.save
-    #    #render_component :controller => "metas", :action => "edit_dynamic", :id => o.id, :params => {'internal' => "edit_box", 'pk' => params['id'], 'relatedtype'=> 'meta', 'level' => params['level'], 'new' => 'yes', 'definition_id' => params['definition_id']}
-    #    redirect_to meta_metadata_edit_dynamic_meta_url(o.id)
-    #  end
+      if params["relatedtype"] == "meta"
+        o = Meta.new
+        o.created_by = session[:user].login
+        o.created_at = Time.now
+        o.update_history = session[:user].login + " ["+Time.now.to_s+"] \n"
+        o.save
+        @model_sentence.meta = o
+        @model_sentence.save
+        redirect_to edit_dynamic_meta_url(o.id)
+      end
     if params["relatedtype"] == "translation"
       o = Translation.new
       o.created_by = session[:user].login

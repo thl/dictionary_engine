@@ -1,0 +1,84 @@
+<script>
+$(document).ready(function() {
+	
+});
+</script>
+
+	<b>Meta: </b>
+	<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => meta.id, :history_class => meta.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+	<%= link_to image_tag('pencil.png',:border => 0), edit_dynamic_meta_path(meta, :internal=>'edit_box', :public=>'yes'), :remote => true, :class => 'ui_definition_dialog', :title=>'Meta Edit' %>
+
+	<span class=menuvalue onclick=show_menu(meta_menu,getCoord(arguments[0]));>
+		<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'meta_id='+meta.id.to_s, :title => 'Edit Relationships' %> 
+	</span>
+			
+	<%= link_to image_tag('cross.png',:border => 0), {:controller => 'definitions', :action => 'public_remove_meta', :id => meta.id, :head_id => head_id,  :meta => meta.id},  :remote => true, :class => 'ui_definition_dialog', :title=>'Remove Meta', :confirm => "Are you sure you want to remove this Meta?" %>
+
+	<br/>
+	<% assoc = meta.category_meta_associations.find(:all, :conditions => {:category_branch_id => 236}) %>
+	<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent, :target => "_blank"}.join(', ').html_safe %>
+
+	
+	<dl style="margin-top:0em;margin-bottom:0em;">
+		<dd style="display:none"></dd>
+		<% if !meta.title.blank? %>
+			<dd><b>Title: </b>
+			<% inline_edit_path = inline_edit_meta_path(:id => meta.id, :field => 'title', :div_suffix => 'metatitlediv') %>
+			<% if meta.title.blank?
+		       		t_content = 'Click to modify'
+		   	   else
+		       		t_content = meta.title.s     
+			end %>
+			<span class="tib1">
+				<span class="tinyfied_show">
+					<div id="<%= "#{meta.id}_metatitlediv" %>">
+						<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+		    		</div>
+				</span>
+			</span>
+			</dd>
+		<% end %>
+		
+		<% if !meta.author.blank? %>
+			<dd><b>Author: </b>
+			<% inline_edit_path = inline_edit_meta_path(:id => meta.id, :field => 'author', :div_suffix => 'metaauthordiv') %>
+			<% if meta.author.blank?
+	       			t_content = 'Click to modify'
+	   	   		else
+	       			t_content = meta.author.s     
+			end %>
+			<span class="tib1">
+				<span class="tinyfied_show">
+					<div id="<%= "#{meta.id}_metaauthordiv" %>">
+						<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+	    			</div>
+				</span>
+			</span>	
+			</dd>
+		<% end %>
+	
+		<% if !meta.date_of_publication.blank? %>
+	    	<dd><b>Date of publication: </b><%= meta.date_of_publication %></dd>
+		<% end %>
+		<% if !meta.publisher.blank? %>
+	    	<dd><b>Publisher: </b><%= meta.publisher %></dd>
+		<% end %>
+		<% if !meta.place_of_publication.blank? %>
+	    	<dd><b>Place of publication: </b><%= meta.place_of_publication %></dd>
+		<% end %>
+		<% if !meta.metadata_note.blank? %>
+	    	<dd><b>Metadata note: </b><span class='tinyfied_show'><span class="tib1"><%= meta.metadata_note.s %></span></span></dd>
+		<% end %>
+		<% if !meta.precedence.blank? %>
+	    	<dd><b>Precedence: </b><%= meta.precedence %></dd>
+		<% end %>
+
+		<% if !meta.language_type.blank? %>
+			<dd><b>Language: </b><%= link_to meta.language_type.title, meta.language_type.get_url_with_parent, :target => "_blank", :target => "_blank" if !meta.language_type.blank? %></dd>
+		<% end %>
+		
+		<span id="<%= meta_location %>" > </span>
+		<div id="<%= meta.id%>_meta_sources_div"> 
+		  <%=   render :partial => 'sources/index', :locals => {:meta => meta, :head_id => head_id} %>	
+		</div>
+	</dl>

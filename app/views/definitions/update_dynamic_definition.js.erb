@@ -1,10 +1,16 @@
 <%#  if params[:definition][:level] == "head term" %>
+	<% debugger %>
 <% if @definition.level == "head term" %>
 	$("#<%= @definition.id %>_defdiv").html("<%= escape_javascript(render(:partial => 'definitions/definition_show')) %>")
 <% else
 	if params[:parent_definition_id].blank? %>
-	$("#<%= @definition.id %>_defdiv").html("<%= escape_javascript(render(:partial => 'definitions/definition_show')) %>")
+		$("#<%= @definition.id %>_defdiv").html("<%= escape_javascript(render(:partial => 'definitions/definition_show')) %>")
 	<% else %>
 	//render_subdefinitions(params[:parent_definition_id])
+	 	<% 	@sub_definition = Definition.find(params[:id])
+    		@definition = Definition.find(parent_definition_id)
+    		@head_id = @definition.id %>
+		$("#sub_definitions_div").html("<%= escape_javascript(render(:partial => 'definitions/sub_definitions_index', :locals => {:d => @definition, :parent_id => @definition.id, :head_id => @definition.id})) %>")
+		
 	<% end%>
 <% end %>

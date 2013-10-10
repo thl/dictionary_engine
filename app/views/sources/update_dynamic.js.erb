@@ -1,0 +1,1 @@
+$("#<%= @source.metas.first.id %>_meta_sources_div").html("<%= escape_javascript(render(:partial => 'sources/index', :locals => {:meta => @temp_meta :parent_id => @temp_definition, :head_id => @temp_definition})) %>")

@@ -4,7 +4,7 @@
 	
 	<b>Definition: </b>
 		<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => d.id, :history_class => d.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
-	<%= link_to image_tag('pencil.png',:border => 0), {:controller => 'definitions', :action => 'edit_dynamic_definition', :id => d.id,  :internal=>'edit_box', :public=>'yes'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Definition Edit' %>
+	<%= link_to image_tag('pencil.png',:border => 0), {:controller => 'definitions', :action => 'edit_dynamic_definition', :id => d.id,  :internal=>'edit_box', :public=>'yes', :parent_id => head_id},  :remote => true, :class => 'ui_definition_dialog', :title=>'Definition Edit' %>
 	<span class=menuvalue onclick="definition_id=<%= d.id.to_s %>;parent_id=<%= head_id.to_s %>;show_menu(definition_menu,getCoord(arguments[0]));">		
 	<%= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), '', :title => 'Edit Relationships' %> 
 	</span>
@@ -25,7 +25,12 @@
 		</span>
 	</span>
 
-
+	<div id="<%= d.id%>_definition_metas_div">
+	  <% if !d.meta.blank? %>
+	    <% t = Time.now %>
+	    <%= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>d, :meta => d.meta , :head_id => head_id} %>	
+	  <% end %>
+	</div>
 
 	<div id="<%= d.id%>_definition_translations_div"> 
 		<%=   render :partial => 'translations/index', :locals => {:o => d, :parent_id => parent_id, :head_id => head_id} %>
@@ -89,11 +94,11 @@
 	</div> 
 
 	<div id="<%= d.id%>_related_terms_div"> 
-	  <%#=   render :partial => 'definition_definition_forms/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
+	  <%=   render :partial => 'definition_definition_forms/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
 	</div>
 	
 	<div id="<%= d.id%>_full_synonyms_div"> 
-	  <%#=   render :partial => 'full_synonyms/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
+	  <%=   render :partial => 'full_synonyms/index', :locals => {:d => d, :parent_id => parent_id, :head_id => head_id} %>	
 	</div>
 	
 	<div id="<%= d.id%>_translation_equivalents_div"> 

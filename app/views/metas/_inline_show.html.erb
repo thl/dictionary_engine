@@ -1,0 +1,19 @@
+
+<% edit_path = inline_edit_meta_path(@meta, :field => params[:field], :div_suffix => params[:div_suffix] ) 
+   field = params[:field]
+   div_suffix = params[:div_suffix]
+%>	
+
+<% if @meta[field].blank?
+  	t_content = 'Click to modify'
+   else
+	case params[:field] 
+		when 'language_type_id' then 
+			t_content = @meta.language_type.title
+		when 'precedence' then
+			t_content = @meta[field]
+		else
+  			t_content = @meta[field].s
+	end	
+   end %>
+<%= link_to "#{t_content}".html_safe, edit_path, :class => 'definitions_show', :remote => true %>

@@ -5,7 +5,7 @@ $(document).ready(function() {
 </script>
 
 
-<% if d.oral_quotations.size > 0 %>
+<% if d.oral_quotations.size > 0
  	count = 0;
 	size = d.oral_quotations.size;
 	for e in d.oral_quotations %>
@@ -22,12 +22,73 @@ $(document).ready(function() {
 				<% if !e.source.blank? %>
 			  		<dd><b>Source ID: </b><%= e.source %></dd>
 		 		<% end %>
-		
 
-	
+
+				<% inline_edit_path = inline_edit_oral_quotation_path(:id => e.id, :field => 'transcript_in_tibetan', :div_suffix => 'transcript_in_tibetandiv') %>
+				<% if e.transcript_in_tibetan.blank?
+				       t_content = 'Click to modify'
+				   else
+				       t_content = e.transcript_in_tibetan.s     
+				end %>
+				<span class="tib1">
+					<span class="tinyfied_show">
+						<div id="<%= "#{e.id}_transcript_in_tibetandiv" %>">
+							<%= link_to "#{t_content}".html_safe, inline_edit_path, :class => 'definitions_show', :remote => true %>
+				    	</div>
+					</span>
+				</span>
+
+				<% if e.source_type != nil and e.source_type != '' %>
+			  		<dd><b>Source type: </b><%= e.source_type %></dd>
+		 		<% end %>
+				<% if e.source_speaker != nil and e.source_speaker != '' %>
+			  		<dd><b>Source speaker: </b><%= e.source_speaker %></dd>
+				<% end %>
+
+				<% assoc = e.category_oral_quotation_associations.find(:all, :conditions => {:category_branch_id => 638}) %>
+				<% if !assoc.blank? %>
+					<dd><b>Source Speaker Tibetan dialect: </b>[<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ').html_safe %>]</dd>
+				<% end %>
+				<%# if e.transcript_in_tibetan != nil and e.transcript_in_tibetan != ''%>
+				<!--	<dd><b>Transcript in Tibetan: </b><%#= e.transcript_in_tibetan %></dd>-->
+				<%# end %>
+				<% if e.source_speech_type != nil and e.source_speech_type != ''%>
+					<dd><b>Source speech type: </b><%= e.source_speech_type %></dd>
+				<% end %>
+				<% if e.source_speech_context != nil and e.source_speech_context != ''%>
+					<dd><b>Source speech context: </b><%= e.source_speech_context %></dd>
+				<% end %>
+				<% if e.source_location_within_title != nil and e.source_location_within_title != ''%>
+					<dd><b>Source location within title: </b><%= e.source_location_within_title %></dd>
+				<% end %>
+				<% if e.source_speech_date != nil and e.source_speech_date != '' %>
+			  		<dd><b>Source speech date: </b><%= e.source_speech_date %></dd>
+				<% end %>
+				<% if e.source_speech_date_tibetan != nil and e.source_speech_date_tibetan != '' %>
+			  		<dd><b>Source speech date Tibetan: </b><%= e.source_speech_date_tibetan %></dd>
+				<% end %>
+				<% if e.source_speech_date_western != nil and e.source_speech_date_western != '' %>
+			  		<dd><b>Source speech International date: </b><%= e.source_speech_date_western %></dd>
+		 		<% end %>
+				<% if e.source_location_of_speech != nil and e.source_location_of_speech != '' %>
+			  	<dd><b>Source location of speech: </b><%= e.source_location_of_speech %></dd>
+		 		<% end %>
+				<% if e.analytical_note != nil and e.analytical_note != '' %>
+			  	<dd><b>Analytical note: </b><span class="tib1"><span class='tinyfied_show'><%= e.analytical_note.s %></span></span></dd>
+		 		<% end %>
+
+				<div id="<%= e.id%>_oralquotation_metas_div">
+	      			<% if e.meta != nil%>
+	        			<% t = Time.now %>
+	        			<%= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+		  			<% end %>
+				</div>
+		
+				<div id="<%= e.id%>_oralquotation_translations_div"> 
+					<%=   render :partial => 'translations/index', :locals => {:o => e, :parent_id => parent_id, :head_id => head_id} %>			
+				</div>
 		
 		</dl>
 	<% end %><!-- for -->
-	
 <% end %><!-- if d.oral_quotations.size > 0 -->
 <span id="<%= d.id%>_oral_quotation" > </span>

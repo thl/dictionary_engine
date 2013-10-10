@@ -17,16 +17,6 @@ class Meta < ActiveRecord::Base
   belongs_to :project_type, :class_name => 'Category'
   belongs_to :language_type, :class_name => 'Category'
 
-  def displayInfo
-    str = ""
-    str += project unless project == nil
-    str += ':'
-    str += source unless source == nil
-    return str
-  end
-
-  #$project = "Buddhist Tantra Terminology, TLLR Colloquial, Tournadre/Dorje Manual Glossary, TLLR Colloquial Standardized Spelling, TLLR Literary Glossary, THDL Architecture Terminology, THDL Astrology Terminology, THDL/Rubin Art Terminology, THDL Colophons, THDL Computer Science Terminology, THDL Library Science Terminology, THDL Medical Terminology, THDL Music Terminology, THDL Samantabhadra Titles, Public Domain Dictionary Entry Project".split(', ')
-  #$source_type = "personal communication, text, original".split(", ")
 end
 
 # == Schema Info

@@ -1,0 +1,19 @@
+
+<%#= include_tiny_mce_if_needed %>
+<%##= wide_tagged_tinymce_script %>
+
+<%= form_for(:source, :url => inline_update_source_path(@source, :field => params[:field], :div_suffix => params[:div_suffix]), :remote =>true) do |f| %>
+<p>
+<% case params[:field] %>
+<% 	when 'source_id_value', 'source_type', 'page_number','start_page_side','start_line_number','end_page_number','end_page_side','end_line_number','spelling' then %>
+		<%= f.text_field params[:field] %>
+<%	else %>
+		<%= f.text_area params[:field], :class => 'mceEditor'  %>
+<% end %>
+
+
+<%= submit_tag 'update'%>
+
+<%= link_to 'Cancel', inline_show_source_path(@source, :field => params[:field], :div_suffix => params[:div_suffix]), :class => 'definitions_show', :remote => true %> 
+</p>
+<% end %>

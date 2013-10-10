@@ -1,0 +1,123 @@
+<script>
+$(document).ready(function() {
+	
+	$("#cancel_button").click(function () { $("#popup_dialog").dialog("close"); });
+	$("#update_button").click(function () { $("#popup_dialog").dialog("close"); $("#popup_dialog").dialog("destroy");});
+
+});
+</script>
+
+<%= tag "div", {:id => @divname } %>
+	<h1>Editing Other definition</h1>
+	<b>Term: </b>
+	<%= link_to image_tag('pencil.png',:border => 0), inline_edit_old_definition_path(@old_definition.id, :field => 'term', :div_suffix => 'popuptermdiv'), :remote => true %> 
+	<%  popup_edit_path = inline_edit_old_definition_path(@old_definition.id, :field => 'term', :div_suffix => 'popuptermdiv') %>
+	<%	if @old_definition.term.blank?
+	  		t_term = 'Click to modify'
+		else
+	  		t_term = @old_definition.term.to_s.s 
+		end
+	%>
+	<span class="tib1">
+		<span class='tinyfied_show'>
+			<div id="<%= "#{@old_definition.id}_popuptermdiv" %>">
+				<%= link_to "#{t_term}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true  %>
+			</div>
+		</span>
+	</span>
+	
+	<br><b>Definition: </b>
+	<%= link_to image_tag('pencil.png',:border => 0), inline_edit_old_definition_path(@old_definition.id, :field => 'definition', :div_suffix => 'popupdefdiv'), :remote => true %> 
+	<%  popup_edit_path = inline_edit_old_definition_path(@old_definition.id, :field => 'definition', :div_suffix => 'popupdefdiv') %>
+	<%	if @old_definition.definition.blank?
+	  		t_term = 'Click to modify'
+		else
+	  		t_term = @old_definition.definition.to_s.s 
+		end
+	%>
+	<span class="tib1">
+		<span class='tinyfied_show'>
+			<div id="<%= "#{@old_definition.id}_popupdefdiv" %>">
+				<%= link_to "#{t_term}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true  %>
+			</div>
+		</span>
+	</span>	
+	
+	<br><b>Dictionary: </b>
+	<%= link_to image_tag('pencil.png',:border => 0), inline_edit_old_definition_path(@old_definition.id, :field => 'dictionary', :div_suffix => 'popupdictionarydiv'), :remote => true %> 
+	<%  popup_edit_path = inline_edit_old_definition_path(@old_definition.id, :field => 'dictionary', :div_suffix => 'popupdictionarydiv') %>
+	<%	if @old_definition.dictionary.blank?
+	  		t_term = 'Click to modify'
+		else
+	  		t_term = @old_definition.dictionary.to_s.s 
+		end
+	%>
+	<span class="tib1">
+		<span class='tinyfied_show'>
+			<div id="<%= "#{@old_definition.id}_popupdictionarydiv" %>">
+				<%= link_to "#{t_term}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true  %>
+			</div>
+		</span>
+	</span>
+
+	<br><b>Url: </b>
+	<%= link_to image_tag('pencil.png',:border => 0), inline_edit_old_definition_path(@old_definition.id, :field => 'url', :div_suffix => 'popupurldiv'), :remote => true %> 
+	<%  popup_edit_path = inline_edit_old_definition_path(@old_definition.id, :field => 'url', :div_suffix => 'popupurldiv') %>
+	<%	if @old_definition.url.blank?
+	  		t_term = 'Click to modify'
+		else
+	  		t_term = @old_definition.url
+		end
+	%>
+	<span class="tib1">
+		<span class='tinyfied_show'>
+			<div id="<%= "#{@old_definition.id}_popupurldiv" %>">
+				<%= link_to "#{t_term}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true  %>
+			</div>
+		</span>
+	</span>
+	
+	
+	<br><b>Notes: </b>
+	<%= link_to image_tag('pencil.png',:border => 0), inline_edit_old_definition_path(@old_definition.id, :field => 'notes', :div_suffix => 'popupnotesdiv'), :remote => true %> 
+	<%  popup_edit_path = inline_edit_old_definition_path(@old_definition.id, :field => 'notes', :div_suffix => 'popupnotesdiv') %>
+	<%	if @old_definition.notes.blank?
+	  		t_term = 'Click to modify'
+		else
+	  		t_term = @old_definition.notes.to_s.s 
+		end
+	%>
+	<span class="tib1">
+		<span class='tinyfied_show'>
+			<div id="<%= "#{@old_definition.id}_popupnotesdiv" %>">
+				<%= link_to "#{t_term}".html_safe, popup_edit_path, :class => 'definitions_show', :remote => true  %>
+			</div>
+		</span>
+	</span>
+	
+	
+	<%#= error_messages_for 'old_definition' %>
+	<%# remote_form_for :old_definition, :url => { :action => "update_dynamic_old_definition" } do |f| %>
+	<%#= form_for :old_definition, :url => { :action => "update_dynamic_old_definition" }, :remote => true do |f| %>
+	<%= form_for(:old_definition, :url => update_dynamic_old_definition_path(@old_definition), :method => :get, :remote => true) do |f| %>
+	
+
+
+  		<input type="hidden" name="id" value="<%= params["id"] %>"/>
+  		<input type="hidden" name="internal" value="<%= params['internal'] %>">
+  		<input type="hidden" name="pk" value="<%= params['pk'] %>">
+  		<input type="hidden" name="head_id" value="<%= params["head_id"] %>"/>
+
+  		<p>
+  		<%= submit_tag 'Update', :id => 'update_button' %>
+  		<input type='button' name='cancel_button' value='Close' id='cancel_button'>
+
+  		<p>
+  		<% if params["query"] != nil %>
+  			<%= link_to image_tag("back_up.gif", :size => "87x19", :border => 0, :alt => "back", :name => "back"), {:action => 'searchaction', :params => { :query => params['query']}}, :onMouseOut => "MM_swapImgRestore();", :onMouseOver => "MM_swapImage('back','','/images/back_down.gif',1);"%>
+  		<% end %>
+	<% end %><!--remote_form_for-->
+</div>
+
+<%= tag "div", {:id => @divname+"search_old_definition" } %>
+</div>

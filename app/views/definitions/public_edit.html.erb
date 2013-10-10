@@ -244,32 +244,11 @@ function clear_contents(node)
 	    tb_show("add new popup", root_dir+'/'+controller+'/edit_search/'+id+'?level=0&relatedtype='+relatedtype+'&height=450&internal=edit_box&modal=true&public=yes&width=550&TB_iframe=true',null);
 	};
 
- 	/*function add_new_popup(controller,relatedtype,id) {	
-		tb_show("add new popup", root_dir+'/'+controller+'/edit_new/'+id+'?level=0&relatedtype='+relatedtype+'&definition_id='+head_definition+'&height=450&internal=edit_box&modal=true&public=yes&width=550&TB_iframe=true',null);
-	};	*/
- 	f	
+
 
 
 
 	
-	/*function add_new_relationship(controller,relatedtype,id,role_to,role_from) {
-		//new Ajax.Updater('edit_box', root_dir+'/'+controller+'/edit_new/'+id+'?internal=edit_box&public=yes&relatedtype='+relatedtype+'&role_to='+role_to+'&role_from='+role_from+'&definition_id='+head_definition, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
-		//tb_show("add new relationship", root_dir+'/'+controller+'/edit_new/'+id+'?internal=edit_box&public=yes&relatedtype='+relatedtype+'&role_to='+role_to+'&role_from='+role_from+'&definition_id='+head_definition+'&height=350&internal=edit_box&modal=true&public=yes&width=650&TB_iframe=true',null);
-	} */
-	function add_new_relationship(controller,relatedtype,id,role_to,role_from) {
-		$.ajax({
-		    url: root_dir+'/'+controller+'/edit_new/'+id+'?internal=edit_box&public=yes&relatedtype='+relatedtype+'&role_to='+role_to+'&role_from='+role_from+'&definition_id='+head_definition+'&height=350&internal=edit_box&modal=true&public=yes',
-			success: function(data) {
-				$("#popup_dialog").html("<p></p>")
-			    $("#popup_dialog").html(data);
-				$("#popup_dialog").dialog( "destroy" );
-			    $("#popup_dialog").dialog({ modal: true, width: 650, height:350, autoOpen: false });
-			    $("#popup_dialog").dialog('open');
-			  } ,
-		    timeout: 3000 
-		  });
-		
-	};
 	
 	function add_def_popup(controller,id,parent_id,head_id) {
 		$.ajax({
@@ -287,25 +266,7 @@ function clear_contents(node)
 		  });
 	};
 	
-	//this is used for related_terms => full_synonym
-	/*function search_term(controller,relatedtype,id) {
-		//new Ajax.Updater('edit_box', root_dir+'/'+controller+'/synonym_search/'+id+'?internal=edit_box&public=yes&level=0&relatedtype='+relatedtype+'&definition_id='+head_definition, {asynchronous:true, evalScripts:true, onLoading:function(request){new Effect.Appear("edit_box");}}); 
-	    tb_show("add new popup", root_dir+'/'+controller+'/synonym_search/'+id+'??internal=edit_box&public=yes&level=0&relatedtype='+relatedtype+'&definition_id='+head_definition+'&height=350&internal=edit_box&modal=true&public=yes&width=650&TB_iframe=true',null);
-	}*/
-	function search_term(controller,relatedtype,id) {
-		$.ajax({
-		    url: root_dir+'/'+controller+'/synonym_search/'+id+'??internal=edit_box&public=yes&level=0&relatedtype='+relatedtype+'&definition_id='+head_definition+'&height=350&internal=edit_box&modal=true&public=yes',
-			success: function(data) {
-				$("#popup_dialog").html("<p></p>")
-			    $("#popup_dialog").html(data);
-				$("#popup_dialog").dialog( "destroy" );
-			    $("#popup_dialog").dialog({ modal: true, width: 650, height:550, autoOpen: false });
-			    $("#popup_dialog").dialog('open');
-			  } ,
-		    timeout: 3000 
-		  });
-		
-	};
+
 	
 	
 	
@@ -332,6 +293,40 @@ function clear_contents(node)
 			  } ,
 		    timeout: 3000 
 		  });
+	};
+	
+	//this is used for related_terms => full_synonym
+	function search_term(controller,relatedtype,id) {
+		$.ajax({
+		    url: root_dir+'/'+controller+'/synonym_search/'+id+'??internal=edit_box&public=yes&level=0&relatedtype='+relatedtype+'&definition_id='+head_definition+'&height=350&internal=edit_box&modal=true&public=yes',
+			success: function(data) {
+
+			  } ,
+		    timeout: 3000 
+		  });
+	};
+	
+	//this is used for related_terms => all other related terms
+	function related_term_search(controller,relatedtype,id,role_to,role_from) {
+		$.ajax({
+		    url: root_dir+'/'+controller+'/related_term_search/'+id+'?internal=edit_box&public=yes&relatedtype='+relatedtype+'&role_to='+role_to+'&role_from='+role_from+'&definition_id='+head_definition+'&height=350&internal=edit_box&modal=true&public=yes',
+			success: function(data) {
+
+			  } ,
+		    timeout: 3000 
+		  });
+	};
+	
+	//this is used for related_terms => all other related terms
+	function add_new_relationship(controller,relatedtype,id,role_to,role_from) {
+		$.ajax({
+		    url: root_dir+'/'+controller+'/edit_new/'+id+'?internal=edit_box&public=yes&relatedtype='+relatedtype+'&role_to='+role_to+'&role_from='+role_from+'&definition_id='+head_definition+'&height=350&internal=edit_box&modal=true&public=yes',
+			success: function(data) {
+	
+			  } ,
+		    timeout: 3000 
+		  });
+		
 	};
 </script>
 
@@ -480,3 +475,19 @@ function clear_contents(node)
 		<%= render(:partial => 'public_definition', :locals => {:d => @definition, :parent_id => @head_id, :head_id => @head_id, :level => 'head'})%>
 	</div>
 	
+	
+	<% if @definition.super_definitions.size > 0 %>
+		<hr>
+		<div id="sub_definitions_div"> 
+	  	<%=   render :partial => 'definitions/sub_definitions_index' %>	
+		</div>
+	<% end %>
+	
+	
+	</div>
+	<% if @dan_martin_definitions.size > 0 or @jeffrey_hopkins_definitions.size > 0 or @yogacara_definitions.size > 0 or @rangjung_yeshe_definitions.size > 0 or @richard_baron_definitions.size > 0 or @jim_valby_definitions.size > 0 or @ives_waldo_definitions.size > 0 %>
+	  <div id="other_dictionaries_div"> 
+	    <%=   render :partial => 'definitions/other_dictionaries_index' %>	
+	  </div>
+
+	<% end %>
