@@ -576,12 +576,12 @@ class DefinitionsController < ApplicationController
        #@tshig_definitions = OldDefinition.find(:all, :conditions => "dictionary = 'bod rgya tshig mdzod chen mo' and (term = '"+val+"' or term = '"+val+space+"' or term = '"+val+line+"' or term = '"+val+space+line+"' or term = '"+val+space2+"' or term = '"+val+space2+line+"')")
        @tshig_definitions = OldDefinition.where("dictionary = 'bod rgya tshig mdzod chen mo' and (term = '"+val+"' or term = '"+val+space+"' or term = '"+val+line+"' or term = '"+val+space+line+"' or term = '"+val+space2+"' or term = '"+val+space2+line+"')")
 
-       debugger
+       
        if params['list_view'] == "true"
-         debugger
+         #debugger
          if !params['ui_dialog'].blank? #in a thickbox, so a temporary solution or hack
            #this is to UI info
-           debugger
+           #debugger
            respond_to do |format|
              format.js { render :layout=>false }
            end
