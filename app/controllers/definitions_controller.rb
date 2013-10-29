@@ -49,6 +49,19 @@ class DefinitionsController < ApplicationController
      render :layout => 'staging_new'
    end
    
+   def alphabet_sub_list
+     @terms = []
+     @definitions = Definition.find( :all, :conditions => {:root_letter_id => params[:letter], :level => 'head term'}, :order => 'sort_order asc', :offset => params[:offset], :limit => 100)
+     #above was commented
+
+     #below wasn't commented
+     #@definitions = Definition.find(:all, :conditions => ["sort_order >= ? and sort_order <= ? and level = 'head term'", "#{params['start']}","#{params['start'].to_i+params['total'].to_i}"], :order => 'sort_order asc')
+     @definitions.each do |d|
+       @terms << {:term => "#{d.term.span} #{d.wylie} #{d.phonetic}", :id => d.id}
+     end
+     render :layout => false
+     end
+   
    def edit_new
        if params['internal'] != nil
          internal = params['internal']
@@ -563,12 +576,21 @@ class DefinitionsController < ApplicationController
        #@tshig_definitions = OldDefinition.find(:all, :conditions => "dictionary = 'bod rgya tshig mdzod chen mo' and (term = '"+val+"' or term = '"+val+space+"' or term = '"+val+line+"' or term = '"+val+space+line+"' or term = '"+val+space2+"' or term = '"+val+space2+line+"')")
        @tshig_definitions = OldDefinition.where("dictionary = 'bod rgya tshig mdzod chen mo' and (term = '"+val+"' or term = '"+val+space+"' or term = '"+val+line+"' or term = '"+val+space+line+"' or term = '"+val+space2+"' or term = '"+val+space2+line+"')")
 
+       debugger
        if params['list_view'] == "true"
          debugger
-         if !params['width'].blank? #in a thickbox, so a temporary solution or hack
-           render :layout => 'staging_popup_show'
+         if !params['ui_dialog'].blank? #in a thickbox, so a temporary solution or hack
+           #this is to UI info
+           debugger
+           respond_to do |format|
+             format.js { render :layout=>false }
+           end
+           #render :layout => 'staging_popup_show'
          else #not in a thickbox
-           render :layout => false #render :layout => 'staging_popup_show' #render :layout => false   #without the layout no jquery calls available
+           #this is for browse expand info
+           
+           #commented for browse testing
+           #render :layout => false #render :layout => 'staging_popup_show' #render :layout => false   #without the layout no jquery calls available
          end    
        else
          @current_section = :showview

@@ -27,13 +27,15 @@ Rails.application.routes.draw do
       match 'new_inplace/branches/:branch_id' => 'definition_category_associations#new_inline', :as => :new_inplace_category_definition_association
       get :public_remove_etymology
       get :edit_dynamic_definition
+      #get :alphabet_sub_list
     end
     collection do
       get :index_edit
       post :find_head_terms
+      get :alphabet_sub_list
     end
   end
- 
+  
   #========== etymologies Routes
   resources :etymologies
   match 'etymologies/:id/edit_dynamic_etymology' => 'etymologies#edit_dynamic_etymology', :as => :edit_dynamic_etymology

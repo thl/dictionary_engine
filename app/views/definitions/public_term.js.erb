@@ -1,4 +1,18 @@
+<% debugger%>
+<% if params[:mode] == 'browse' %>
+	<% if !params['ui_dialog'].blank?  %>
+		<% debugger %>
+		$("#popup_dialog" ).dialog({ modal: true, width: 900, height: 500});
+		$("#popup_dialog").html("<%= escape_javascript(render(:partial => 'definitions/public_term')) %>")
+	<% else %>
+  		$("#<%=params[:id]%>row").show();
+		$("#hide_<%= params[:id] %>").show();
+		$("#show_<%= params[:id] %>").hide();
+		$("#<%=params[:id]%>row").html("<%= escape_javascript(render(:partial => 'definitions/public_term')) %>")
+	<% end %>
+<% else %>
 $("#search_result_term_<%= params[:id] %>").html("<%= escape_javascript(render(:partial => 'definitions/public_term')) %>")
 $("#search_result_term_<%= params[:id] %>").show();
 $("#hide_<%= params[:id] %>").show();
 $("#show_<%= params[:id] %>").hide();
+<% end %>

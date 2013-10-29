@@ -20,4 +20,12 @@ namespace :dictionary_engine do
       end
     end
   end
+  
+  desc 'Generation of Static Pages'
+  task :preheat_entries => :environment do |t|
+     
+    require File.join(File.dirname(__FILE__), '../static_pages.rb')
+    
+    StaticPages.build
+  end
 end
