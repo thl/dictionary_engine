@@ -20,12 +20,15 @@
 		<%# color = 'background-color:#eeeeee' %>
 	<%# end %>
 	<% str = '' %>
-			
+		
+	<% assoc = @definition.definition_category_associations.where(:category_branch_id => 286) %>		
 	<td style="<%= color %>" class="def_header"  align="right">
+		<% if !assoc.blank? %>
 		<strong>FUNCTION:</strong>
+		<% end %>
 	</td>
 	<td style="<%= color %>">
-		<% assoc = @definition.definition_category_associations.where(:category_branch_id => 286) %>
+		
 		<%= "#{assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ')}".html_safe %>
 	</td>
 </tr>
@@ -87,7 +90,7 @@
 	<%# elsif d.definition != nil and d.definition != '' %>
 	<% elsif !d.definition.blank? %>
 		<td style="<%= color %>"  align="right" valign="top">
-			<strong><%= label %>: </strong>
+			<strong><%= "Sub-definition #{label}" %>: </strong>
 		</td>
 	<% end %>
 <% end %>

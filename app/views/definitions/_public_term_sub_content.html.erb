@@ -326,13 +326,48 @@
 					}
 			    @related_terms = related_terms.sort
 		%>
-		
-		<% if @tenses.size > 0 or @honorifics.size > 0 or @related_terms.size > 0 or d.full_synonyms.size > 0 %>
+	
+		<%# if @tenses.size > 0 or @honorifics.size > 0 or @related_terms.size > 0 or d.full_synonyms.size > 0 %>
+		<% if d.definition_definition_form_froms.size > 0%>
 			<tr class="display_<%= time %>" style="<%= @style %>">
 				<td valign="top" class="def_header" align="right">
 					<b>RELATIONSHIPS:</b>
 				</td>
 				<td>
+					<!-- this code is for showing related terms -->
+					<% if d.definition_definition_form_froms.size > 0%>
+						<% size = d.definition_definition_form_froms.size;%>
+						<% for e in d.definition_definition_form_froms %>
+						  	
+
+							<%#= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+						
+							<span class=menuvalue onclick=show_menu(related_term_menu,getCoord(arguments[0]));>
+								 <%#= link_to_function image_tag('plugin.png', :alt => 'Edit', :border => 0), 'definition_definition_form_id='+e.id.to_s, :title => 'Edit Relationships' %> 
+							</span>	
+							<%#= link_to image_tag('cross.png',:border => 0), {:controller => 'definitions', :action => 'public_remove_form_from', :id => d.id, :parent_id => parent_id, :head_id => head_id, :form_from => e.id},  :remote => true, :class => 'ui_definition_dialog', :title=>'Remove related term', :confirm => "Are you sure you want to remove this Term?" %>
+
+							<span class="tib1">
+							 	
+								<%#= link_to(e.displayFromTerm.s, :controller => 'definitions', :action => 'public_edit', :id => e.definition_to.id) unless e.definition_to == nil%>
+								<%= link_to(e.displayFromTerm.s, :action => 'public_term', :id => e.definition_to.id) unless e.definition_to == nil %>
+							    (<%= e.displayFromInfoPublic.s %>)
+							</span>
+							<br>
+
+							<div id="<%= e.id%>_definitiondefinitionform_metas_div">
+								<% if e.meta != nil%>
+							        <% t = Time.now %>
+							        <%#= render :partial => 'metas/index', :locals => {:t => t.to_f, :element =>e, :meta => e.meta , :head_id => head_id} %>	
+								<% end %>
+							</div>
+						<% end %>
+					<% end %>
+					<!-- end of list of related terms -->
+					
+					
+					
+					
 					<% previous = false %>
 					<% count = 0;
 		   				size = @tenses.size;
