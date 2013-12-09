@@ -4,7 +4,7 @@
 
        <dd>
 
-			<b>Translation <% if !e.language_type.blank? %> (<%= link_to e.language_type.title, e.language_type.get_url_with_parent, :target => '_blank'  if !e.language_type.blank? %>)<% end %>:</b> 
+			<b>Translation &nbsp;<% if !e.language_type.blank? %> (<%= link_to e.language_type.title, e.language_type.get_url_with_parent, :target => '_blank'  if !e.language_type.blank? %>)<% end %>:</b> 
 	
 				<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
 				<%= link_to image_tag('pencil.png',:border => 0), edit_dynamic_translation_path(e, :internal=>'edit_box', :public=>'yes'), :remote => true, :class => 'ui_definition_dialog', :title=>'Translation Edit' %>

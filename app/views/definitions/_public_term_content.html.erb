@@ -123,10 +123,10 @@
 
 					<%#= link_to_function( image_tag('btn_minus.gif', :border => 0, :id => 'up_'+d.id.to_s, :style => 'display:none'), "$('#up_"+d.id.to_s+"').hide();$('#right_"+d.id.to_s+"').show();hide_content('display_"+time+"');", :title => 'Show') %>
 					<span id="plus_item_p_<%= d.id %>">
-						<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "$('#minus_item_p_#{d.id}').show();$('#p_#{d.id}').show();$('#plus_item_p_#{d.id}').hide();")%>
+						<%#= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "$('#minus_item_p_#{d.id}').show();$('#p_#{d.id}').show();$('#plus_item_p_#{d.id}').hide();")%>
 					</span>
 					<span id="minus_item_p_<%= d.id %>" style="display:none" >
-	  					<%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "$('#minus_item_p_#{d.id}').hide();$('#p_#{d.id}').hide();$('#plus_item_p_#{d.id}').show();")%>
+	  					<%#= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "$('#minus_item_p_#{d.id}').hide();$('#p_#{d.id}').hide();$('#plus_item_p_#{d.id}').show();")%>
 					</span>
 			<!-- NEED TO FIX PLUS MINUS LINKS  -->		
 			<% end %>
