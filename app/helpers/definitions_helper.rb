@@ -13,7 +13,7 @@ module DefinitionsHelper
 		  ['antonym',\"javascript:related_term_search('definition_definition_forms','definition_definition_form_from',definition_id,'antonym','antonym');\"],
 		  ['literary correlate',\"javascript:related_term_search('definition_definition_forms','definition_definition_form_from',definition_id,'literary correlate','colloquial correlate');\"],
 		  ['colloquial correlate',\"javascript:related_term_search('definition_definition_forms','definition_definition_form_from',definition_id,'colloquial correlate','literary correlate');\"],
-		  ['dialect correlate',\"javascript:related_term_search('definition_definition_forms','definition_definition_form_from',definition_id,'dialectical correlate','dialectical correlate');\"],
+		  ['dialect correlate',\"javascript:related_term_search('definition_definition_forms','definition_definition_form_from',definition_id,'dialect correlate','dialect correlate');\"],
 		  ['paired term',\"javascript:related_term_search('definition_definition_forms','definition_definition_form_from',definition_id,'paired term','paired term');\"],
 		  ['register', null, null,
 		    ['double honorific form',\"javascript:related_term_search('definition_definition_forms','definition_definition_form_from',definition_id,'double honorific form','non-honorific form');\"],
