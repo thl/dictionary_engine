@@ -1027,7 +1027,31 @@ class DefinitionsController < ApplicationController
         end
      	end
   
+    	def display_public_history
+    	  @history = ''
+    	  hash = {}
+    	  if params[:history] == nil
+      	  c = eval(params[:history_class])
+      	  o = c.find params[:history_id]
+      	  h = o.update_history 
+      	else
+      	  h = params[:history]
+      	end
+    	  h = '' if h == nil
+    	  a = h.split("\n")
+        a.each {|k| hash[k.split(' ')[0]] = k}
 
+        hash.each do |k,v|
+          k = 'none' if k == nil
+          #user = User.find(:first,:conditions=>"login='"+k+"'")
+          user = Dictionary::User.find(:first,:conditions=>"login='"+k+"'")
+ 
+          @history += hash[k].gsub(k,user.full_name) unless user == nil
+          @history += "\n"
+        end
+
+    	  render :partial => 'partial/display_history'
+    	end
        
       def public_remove_etymology
         d = Definition.find(params[:id])

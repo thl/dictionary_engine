@@ -27,7 +27,8 @@
 						<% if e.language == 'Tibetan' %>
 							</span>
 						<% end %>			
-						<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+						<%#= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+						<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
 						<%= render :partial => 'translation', :locals => {:translation => e, :head_id => head_id} %>
 					<% end %>
 				</td>
@@ -65,8 +66,9 @@
 						<span class='tinyfied_public_show_inline'>
 							<%= e.translation_equivalent.html_safe if !e.translation_equivalent.blank? %>
 						</span>		
-						<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
-					
+						<%#= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+						<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+						
 						<% str = render :partial => 'translation_equivalent', :locals => {:translation_equivalent => e, :head_id => head_id} %>
 						<% if str.gsub("\n",'').gsub("\t",'').size > 0 %>
 							<span id="plus_item_te_<%= e.id %>" >
@@ -107,7 +109,9 @@
 							</span>
 							<% count += 1 %>
 						<% end %>
-						<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+						<%#= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+						<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+						
 						<% str = render :partial => 'pronunciation', :locals => {:pronunciation => e, :head_id => head_id} %>		
 						<% if str.gsub("\n",'').gsub("\t",'').size > 0 %>
 							<span id="plus_item_p_<%= e.id %>">
@@ -145,7 +149,9 @@
 								(<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ').html_safe %>)
 							<% end %>
 			
-							<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>		
+							<%#= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>		
+							<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+							
 							<% str = render :partial => 'spelling', :locals => {:spelling => e, :head_id => head_id} %>	
 							<% if str.strip.size > 0 %>
 								<span id="plus_item_s_<%= e.id %>" >
@@ -183,7 +189,9 @@
 						<%= link_to e.etymology_category.title, e.etymology_category.get_url_with_parent if !e.etymology_category.blank? %>
 						<%= e.etymology.html_safe if !e.etymology.blank? %>
 					</span>
-					<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>	
+					<%#= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>	
+					<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+					
 					<% str = render :partial => 'etymology', :locals => {:etymology => e, :head_id => head_id} %>	
 					<% if str.strip.size > 0 %>	
 						<span id="plus_item_e_<%= e.id %>">
@@ -378,7 +386,9 @@
 							<%= link_to(e[1].s, :controller => 'definitions', :action => 'public_term', :id => e[2]) unless e[2] == nil %>
 							</span>
 			 				(<%= e[0]%>)
-							<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e[2], :history_class => 'Definition', :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>		
+							<%#= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e[2], :history_class => 'Definition', :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>		
+							<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e[2], :history_class => 'Definition'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+							
 							<% if e[4] != nil%>
 								<% t = Time.now %>
 								<%#= render :partial => 'public_meta', :locals => {:meta_location => t.to_f, :meta => Meta.find(e[4]) , :head_id => head_id} %>
@@ -419,8 +429,9 @@
 								<%= link_to(e[1].s, :controller => 'definitions', :action => 'public_term', :id => e[2]) unless e[2] == nil %>
 							</span>
 			 				(<%= e[0]%>)
-							<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e[2], :history_class => 'Definition', :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
-		
+							<%#= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e[2], :history_class => 'Definition', :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+							<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e[2], :history_class => 'Definition'},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+							
 							<% if e[4] != nil%>
 								<% t = Time.now %>
 								<%#= render :partial => 'public_meta', :locals => {:meta_location => t.to_f, :meta => Meta.find(e[4]) , :head_id => head_id} %>
@@ -445,7 +456,9 @@
 									<% if count < size %>, <% end %>
 								<% end %>
 							<% end %>
-							<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors for Full Synonym' %>	
+							<%#= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors for Full Synonym' %>	
+							<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+							
 							<br>
 							<% if e[3] != nil%>
 								<% t = Time.now %>
@@ -491,7 +504,8 @@
 					<span class='tinyfied_public_show'>
 						<%= e.model_sentence.html_safe if !e.model_sentence.blank? %>
 					</span>
-					<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>	
+					<%#= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>	
+					<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
 		
 					<% str = render :partial => 'model_sentence', :locals => {:model_sentence => e, :head_id => head_id} %>	
 					<% if str.strip.size > 0 %>
@@ -523,7 +537,8 @@
 		   		size = d.literary_quotations.size;
 				for e in d.literary_quotations %>
 					<%= '<br><br>' if count > 0 %>
-					<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>	
+					<%#= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>	
+					<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
 		
 					<% if !e.passage.blank? %>
 						<span class="tib1">

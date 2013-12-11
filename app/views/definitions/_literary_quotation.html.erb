@@ -3,7 +3,7 @@
 	<dl class="inner_dl">
 		<dd class="inner_dd">
 			<span class="inner_def_header">
-				<strong>Translation<%= "(#{link_to t.language_type.title, t.language_type.get_url_with_parent})".html_safe if !t.language_type.blank? %>:</strong> 
+				<strong>Translation <%= "(#{link_to t.language_type.title, t.language_type.get_url_with_parent})".html_safe if !t.language_type.blank? %>:</strong> 
 			</span>
 			<span class='tinyfied_public_show'>
 				<%= t.translation.html_safe %> 

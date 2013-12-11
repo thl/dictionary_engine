@@ -111,7 +111,8 @@
 			<!-- (<%#= d.language%><%= d.language_type.title if d.language_type != nil %>) -->
 		<% end %>
 
-		<%= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => d.id, :history_class => d.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+		<%#= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => d.id, :history_class => d.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>
+		<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => d.id, :history_class => d.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
 
 
 		<% if level == 'head' %>
