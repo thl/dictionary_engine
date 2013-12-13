@@ -119,6 +119,25 @@
 			<% style = color %>
 		<% else %>
 			<% if str.size > 0 %>
+			<%# if str.strip.size > 0 %>
+			
+			
+			
+				<span id="plus_item_sd_<%= d.id %>">
+					<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "$('#minus_item_sd_#{d.id}').show();$('#sd_#{d.id}').show();$('#plus_item_sd_#{d.id}').hide();")%>
+				</span>
+				<span id="minus_item_sd_<%= d.id %>" style="display:none" >
+					<%= link_to_function(image_tag('btn-minus-sm.gif', :border => 0), "$('#minus_item_sd_#{d.id}').hide();$('#sd_#{d.id}').hide();$('#plus_item_sd_#{d.id}').show();")%>
+				</span>
+				
+				<div id="sd_<%=d.id%>" style="display:none">
+					<table width="100%" cellspacing="0" style="background-color:#ffffff">
+				
+					<%= str.html_safe %>
+					</table>
+				</div>	
+		
+			
 			<!-- NEED TO FIX PLUS MINUS LINKS  -->
 					<%#= link_to_function( image_tag('btn_plus.gif', :border => 0, :id => 'right_'+d.id.to_s), "$('#right_"+d.id.to_s+"').hide();$('#up_"+d.id.to_s+"').show();show_content('display_"+time+"');", :title => 'Show') %>
 
@@ -132,9 +151,14 @@
 			<!-- NEED TO FIX PLUS MINUS LINKS  -->		
 			<% end %>
 			<% @style = 'display:none;'+color %>
+			
+			
 		<% end %>
 </td>
 </tr>
-	<%= str.html_safe %>
+	<% if level == 'head' %>
+
+	  <%= str.html_safe %>
+	<% end%>
 
 <% end %>  <!-- if d != nil -->

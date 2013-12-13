@@ -483,6 +483,7 @@
 				<%= link_to d.literary_form_type.title + ' (literary form)', d.literary_form_type.get_url_with_parent if !d.literary_form_type.blank? %><br>
 				<%= link_to d.register_type.title + ' (register)', d.register_type.get_url_with_parent if !d.register_type.blank? %><br>
 				<% assoc = d.definition_category_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
+				
 				<!-- literary genre -->
 				<% if !assoc.blank? %>
 					<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ').html_safe %>
@@ -536,10 +537,11 @@
 				<% count = 0;
 		   		size = d.literary_quotations.size;
 				for e in d.literary_quotations %>
-					<%= '<br><br>' if count > 0 %>
+					<%= '<br><br>'.html_safe if count > 0 %>
 					<%#= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>	
+					<% if !e.passage.blank? and str.strip.size > 0 %>
 					<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
-		
+					<% end %>
 					<% if !e.passage.blank? %>
 						<span class="tib1">
 							<span class='tinyfied_public_show_inline'>
@@ -549,7 +551,8 @@
 					<% end %>
 					<% str = render :partial => 'literary_quotation', :locals => {:literary_quotation => e, :head_id => head_id} %>	
 			
-					<% if str.strip.size > 0 %>
+					<% if !e.passage.blank? and str.strip.size > 0 %>
+						
 						<span id="plus_item_lq_<%= e.id %>">
 							<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "$('#minus_item_lq_#{e.id}').show();$('#lq_#{e.id}').show();$('#plus_item_lq_#{e.id}').hide();")%>
 						</span>
