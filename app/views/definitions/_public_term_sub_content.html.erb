@@ -190,10 +190,13 @@
 						<%= e.etymology.html_safe if !e.etymology.blank? %>
 					</span>
 					<%#= link_to image_tag('user.png',:border=>0, :title => 'Contributors', :class => 'contributors', :style => 'display:none'), url_for(:controller => 'definitions', :action => 'display_public_history', :history_id => e.id, :history_class => e.class.to_s, :height=>500,:width=>600) + '&TB_iframe=true', :class=>:thickbox, :title=>'Contributors' %>	
-					<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+					
 					
 					<% str = render :partial => 'etymology', :locals => {:etymology => e, :head_id => head_id} %>	
-					<% if str.strip.size > 0 %>	
+					<% if !e.etymology.blank? and str.strip.size > 0 %>
+					<%# if str.strip.size > 0 %>
+						<%= link_to image_tag('user.png',:border => 0), {:controller => 'definitions', :action => 'display_history', :history_id => e.id, :history_class => e.class.to_s},  :remote => true, :class => 'ui_definition_dialog', :title=>'Contributors' %>
+						
 						<span id="plus_item_e_<%= e.id %>">
 							<%= link_to_function(image_tag('btn-plus-sm.gif', :border => 0), "$('#minus_item_e_#{e.id}').show();$('#e_#{e.id}').show();$('#plus_item_e_#{e.id}').hide();")%>
 						</span>
@@ -481,7 +484,7 @@
 				<%= link_to d.language_context_type.title + ' (language context)', d.language_context_type.get_url_with_parent if !d.language_context_type.blank? %><br>
 				<%= link_to d.literary_period_type.title + ' (literary period)', d.literary_period_type.get_url_with_parent if !d.literary_period_type.blank? %><br>
 				<%= link_to d.literary_form_type.title + ' (literary form)', d.literary_form_type.get_url_with_parent if !d.literary_form_type.blank? %><br>
-				<%= link_to d.register_type.title + ' (register)', d.register_type.get_url_with_parent if !d.register_type.blank? %><br>
+				<%= link_to d.register_type.title + ' (register)', d.register_type.get_url_with_parent if !d.register_type.blank? %>
 				
 			</td>
 		</tr>
