@@ -483,18 +483,22 @@
 				<%= link_to d.literary_form_type.title + ' (literary form)', d.literary_form_type.get_url_with_parent if !d.literary_form_type.blank? %><br>
 				<%= link_to d.register_type.title + ' (register)', d.register_type.get_url_with_parent if !d.register_type.blank? %><br>
 				
-				
-				<!-- literary genre -->
-				
-				<% assoc = d.definition_category_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
-				<% if !assoc.blank? %>
-				<b>LITERARY GENRE:</b>
-					<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ').html_safe %>
-				<% end %>
 			</td>
 		</tr>
-
-
+		
+		<% assoc = d.definition_category_associations.find(:all, :conditions => {:category_branch_id => 119}) %>
+		<% if !assoc.blank? %>
+		<tr class="display_<%= time %>" style="<%= @style %>">
+			<td valign="top" class="def_header" align="right">
+				<b>LITERARY GENRE:</b>
+			</td>
+			<td>
+			<%= assoc.collect{|a| link_to a.category.title, a.category.get_url_with_parent}.join(', ').html_safe %>
+		
+			</td>
+		</tr>
+		<% end %>
+		
 		<% if d.model_sentences.size > 0%>
 			<tr class="display_<%= time %>" style="<%= @style %>">
 				<td valign="top" class="def_header" align="right">
