@@ -103,7 +103,7 @@ module ApplicationHelper
          :search => {:index => 2, :title => "Search", :url => search_main_definition_path },
          #:term => {:index => 3, :title => "Term", :url => current_term_path },
          :browse => {:index => 4, :title => "Browse", :url => browse_definitions_path },
-         :translate => {:index => 5, :title => "Translate", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/translate.php&div_id=universal_navigation_content"},
+         :translate => {:index => 5, :title => "Translate", :url => "#{app_host_url}/reference/dictionaries/tibetan-dictionary/translate.php"}, #:translate => {:index => 5, :title => "Translate", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/translate.php&div_id=universal_navigation_content"},
          :hierarchies => {:index => 6, :title => "Hierarchies", :url => "#{tmb_url}"},
          :projects => {:index => 7, :title => "Projects", :url => "#{tmb_url}/categories/236/children"},
          #:bibliography => {:index => 7, :title => "Bibliography", :url => "#iframe=#{app_host_url}/reference/dictionaries/tibetan-dictionary/dictionary-biblio.php#spt=SPT--BrowseResources.php?ParentId=1476&div_id=universal_navigation_content"},
